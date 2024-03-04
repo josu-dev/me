@@ -3,24 +3,12 @@
   import HyperDebug from '$comps/HyperDebug.svelte';
   import SiteBackground from '$comps/SiteBackground.svelte';
   import SitePalette from '$comps/SitePalette.svelte';
+  import { globalCommands } from '$lib/palette/global.js';
   import { Toaster } from 'svelte-french-toast';
-  import { defineCommand, definePage } from 'svelte-hypercommands';
+  import { definePage } from 'svelte-hypercommands';
   import '../app.pcss';
-  
-  let {children} = $props();
 
-  const globalCommands = defineCommand([
-    {
-      name: 'Open Command Palette',
-      shortcut: 'mod+shift+p',
-      onAction: () => {
-        const commandPalette = document.querySelector('command-palette');
-        if (commandPalette) {
-          commandPalette.dispatchEvent(new CustomEvent('open'));
-        }
-      },
-    },
-  ]);
+  let {children} = $props();
 
   const globalPages = definePage([
     { url: '/'},

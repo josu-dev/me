@@ -6,4 +6,51 @@ html,
 body {
     min-height: 100%;
     min-height: 100dvh;
+    height: 100%;
+}
+
+body {
+    /* --base-font-family is set by state/preferences.svelte.js */
+    @apply font-[JetBrainsMono] data-[font-family="FiraCode"]:font-[FiraCode] data-[font-family="CascadiaCode"]:font-[CascadiaCode] data-[font-family="RobotoMono"]:font-[RobotoMono] data-[font-family="GeistMono"]:font-[GeistMono] data-[font-family="monospace"]:font-mono;
+}
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/jetbrains/JetBrainsMono[wght].ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'FiraCode';
+    src: url('/fonts/fira_code/FiraCode-VF.woff2') format('woff2-variations'),
+         url('/fonts/fira_code/FiraCode-VF.woff') format('woff-variations'),
+         url('/fonts/fira_code/FiraCode-VF.ttf') format('truetype-variations');
+    /* font-weight requires a range: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide#Using_a_variable_font_font-face_changes */
+    font-weight: 300 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CascadiaCode';
+    src: url('/fonts/cascadia_code/CascadiaCode.woff2') format('woff2-variations'),
+         url('/fonts/cascadia_code/CascadiaCode.ttf') format('truetype-variations');
+    font-weight: 300 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GeistMono';
+    src: url('/fonts/geist_mono/GeistMonoVariableVF.woff2') format('woff2-variations'),
+         url('/fonts/geist_mono/GeistMonoVariableVF.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RobotoMono';
+    src: url('/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: normal;
 }

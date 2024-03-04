@@ -132,7 +132,7 @@
   }
 
   .palette-search input {
-    @apply w-full py-1 px-2 rounded-sm border-none text-base font-sans bg-zinc-800 ring-1 ring-zinc-500/25 focus:ring-sky-600;
+    @apply w-full py-1 px-2 rounded-sm border-none text-base bg-zinc-800 ring-1 ring-zinc-500/25 focus:ring-sky-600;
   }
 
   .palette-results {
