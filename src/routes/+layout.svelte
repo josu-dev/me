@@ -1,9 +1,10 @@
 <script lang="ts">
   import { dev } from '$app/environment';
   import HyperDebug from '$comps/HyperDebug.svelte';
+  import SiteBackground from '$comps/SiteBackground.svelte';
+  import SitePalette from '$comps/SitePalette.svelte';
   import { Toaster } from 'svelte-french-toast';
   import { defineCommand, definePage } from 'svelte-hypercommands';
-  import CommandPalette from 'svelte-hypercommands/CommandPalette.svelte';
   import '../app.pcss';
   
   let {children} = $props();
@@ -22,14 +23,23 @@
   ]);
 
   const globalPages = definePage([
-    {
-      name: 'Home',
-      url: '/',
-    },
+    { url: '/'},
+    { url: '/test1'},
+    { url: '/test2'},
+    { url: '/test3'},
+    { url: '/test4'},
+    { url: '/test5'},
+    { url: '/test6'},
+    { url: '/test7'},
+    { url: '/test8'},
+    { url: '/test9'},
+    { url: '/test10'} 
   ]);
 </script>
 
-<CommandPalette commands={globalCommands} pages={globalPages} />
+<SiteBackground />
+
+<SitePalette commands={globalCommands} pages={globalPages} />
 {#if dev}
   <HyperDebug/>
 {/if}
