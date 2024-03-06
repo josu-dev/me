@@ -1,7 +1,11 @@
 <script lang="ts" context="module">
   import { createCommandPalette } from 'svelte-hypercommands';
+  import { goto } from '$app/navigation';
 
-  const _state = createCommandPalette({ defaultOpen: false });
+  const _state = createCommandPalette({
+    defaultOpen: false,
+    onNavigationLocal: goto,
+  });
 
   export const states = _state.states;
   export const helpers = _state.helpers;

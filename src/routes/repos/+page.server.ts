@@ -117,7 +117,7 @@ export const actions: Actions = {
             console.error(r);
             return fail(r.status, { message: 'Bad Request' });
         }
-        
+
         const html = await highlightMarkdown(Buffer.from(r.data.content, 'base64').toString('utf8'));
         return { html };
     }

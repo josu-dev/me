@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { OPEN_GRAPH } from '$lib/defaults.js';
+  import { DEFAULT_OPEN_GRAPH } from '$lib/constants.js';
 
   type Props = {
     /**
@@ -51,14 +51,14 @@
     type,
     url,
     image = {
-      url: OPEN_GRAPH.image,
-      alt: OPEN_GRAPH.imageAlt,
-      width: OPEN_GRAPH.imageWidth,
-      height: OPEN_GRAPH.imageHeight,
+      url: DEFAULT_OPEN_GRAPH.IMAGE_URL,
+      alt: DEFAULT_OPEN_GRAPH.IMAGE_ALT,
+      width: DEFAULT_OPEN_GRAPH.IMAGE_WIDTH,
+      height: DEFAULT_OPEN_GRAPH.IMAGE_HEIGHT,
     },
   } = $props<Props>();
 
-  const currentUrl = $derived(
+  let currentUrl = $derived(
     $page.url.origin + ($page.url.pathname === '/' ? '' : $page.url.pathname),
   );
 </script>
@@ -76,7 +76,7 @@
   <meta property="og:type" content={type} />
   <meta property="og:url" content={url === 'current' ? currentUrl : url} />
   <meta property="og:description" content={description} />
-  {#if image}
+  {#if image.url}
     <meta property="og:image" content={image.url} />
     <meta property="og:image:alt" content={image.alt} />
     <meta property="og:image:width" content={image.width} />

@@ -1,12 +1,14 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import IconArrowlefttoline from '$comps/icons/IconArrowefttoline.svelte';
   import IconArrowrighttoline from '$comps/icons/IconArrowrighttoline.svelte';
   import IconCheck from '$comps/icons/IconCheck.svelte';
   import IconChevronright from '$comps/icons/IconChevronright.svelte';
+  import { GITHUB_REPOSITORY } from '$lib/constants.js';
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Menubar } from 'bits-ui';
-  import { fly } from 'svelte/transition';
-
+  import { fly, slide } from 'svelte/transition';
+  import { helpers } from '$comps/SitePalette.svelte';
   const prefs = getUserPreferences();
 
   function reloadWindow() {
@@ -38,18 +40,33 @@
         prefs.fullscreen = false;
       });
   }
+
+  let currentUrlPathname = $derived($page.url.pathname);
+  let pageStatusError = $derived(
+    $page.status >= 400 ? $page.status : undefined,
+  );
+
+  const localPages = [
+    { name: 'Inicio', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: 'Proyectos publicos', url: '/repos' },
+    { name: 'Sobre mi', url: '/about' },
+  ];
+
+  const externalPages = [
+    { name: 'Repositorio', url: GITHUB_REPOSITORY },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/j-josu/' },
+  ];
 </script>
 
-<div class="this relative h-full text-zinc-200">
+<div class="relative h-full text-zinc-200">
   {#if prefs.navbar.open}
     <div
       in:fly={{ x: 1920, duration: 250 }}
       out:fly={{ x: 1920, duration: 250 }}
-      class="h-full"
+      class="h-full flex flex-row border-b border-zinc-500/25 bg-zinc-950/95 px-[3px] shadow-sm"
     >
-      <Menubar.Root
-        class="pl-2 flex h-full items-center border-b border-zinc-500/25 bg-zinc-950/95 px-[3px] shadow-sm"
-      >
+      <Menubar.Root class="grow w-1/5 h-full flex items-center justify-start ">
         <Menubar.Menu>
           <Menubar.Trigger class="menu-trigger">General</Menubar.Trigger>
           <Menubar.Content class="menu-content" align="start" sideOffset={1}>
@@ -62,10 +79,23 @@
         <Menubar.Menu>
           <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
           <Menubar.Content class="menu-content" align="start" sideOffset={1}>
+            <Menubar.Item
+              class="menu-item"
+              on:click={() => {
+                prefs.navbar.open = false;
+              }}
+            >
+              {#if prefs.navbar.open}
+                <div class="icon-left p-0.5">
+                  <IconCheck />
+                </div>
+              {/if}
+              <span class="label">Barra principal</span>
+            </Menubar.Item>
             <Menubar.Sub>
               <Menubar.SubTrigger class="menu-item">
                 <span class="label">Fuente</span>
-                <div class="icon-right">
+                <div class="icon-right p-0.5">
                   <IconChevronright />
                 </div>
               </Menubar.SubTrigger>
@@ -77,10 +107,10 @@
                 <Menubar.RadioGroup bind:value={prefs.font.family}>
                   {#each prefs.font.available as family (family)}
                     <Menubar.RadioItem value={family.value} class="menu-item">
-                      <span class="label">{family.name}</span>
-                      <Menubar.RadioIndicator class="icon-right">
+                      <Menubar.RadioIndicator class="icon-left p-0.5">
                         <IconCheck />
                       </Menubar.RadioIndicator>
+                      <span class="label">{family.name}</span>
                     </Menubar.RadioItem>
                   {/each}
                 </Menubar.RadioGroup>
@@ -90,26 +120,81 @@
             <Menubar.Item
               class="menu-item"
               on:click={() => {
-                prefs.navbar.open = false;
+                helpers.openPalette();
               }}
             >
-              <span class="label">Ocultar barra principal</span>
+              <span class="label">Paleta de comandos</span>
             </Menubar.Item>
             <Menubar.Item class="menu-item" on:click={toggleFullscreen}>
-              <span class="label">
-                {#if prefs.fullscreen}
-                  Salir de pantalla completa
-                {:else}
-                  Pantalla completa
-                {/if}
-              </span>
+              {#if prefs.fullscreen}
+                <div class="icon-left p-0.5">
+                  <IconCheck />
+                </div>
+              {/if}
+              <span class="label">Pantalla completa</span>
             </Menubar.Item>
             <Menubar.Item class="menu-item" on:click={reloadWindow}>
-              <span class="label">Recargar</span>
+              <span class="label">Recargar pagina</span>
             </Menubar.Item>
           </Menubar.Content>
         </Menubar.Menu>
+
+        <Menubar.Menu>
+          <Menubar.Trigger class="menu-trigger">Paginas</Menubar.Trigger>
+          <Menubar.Content class="menu-content" align="start" sideOffset={1}>
+            {#each localPages as page (page.url)}
+              {@const current = currentUrlPathname === page.url}
+              <Menubar.Item
+                class="menu-item aria-[current=page]:underline underline-offset-2"
+                href={page.url}
+                aria-current={current ? 'page' : undefined}
+              >
+                {#if current}
+                  <div class="icon-left p-0.5">
+                    <IconChevronright />
+                  </div>
+                {/if}
+                <span class="label">{page.name}</span>
+              </Menubar.Item>
+            {/each}
+            <Menubar.Separator class="menu-separator" />
+            {#each externalPages as page (page.url)}
+              <Menubar.Item
+                class="menu-item"
+                href={page.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="label">{page.name}</span>
+              </Menubar.Item>
+            {/each}
+          </Menubar.Content>
+        </Menubar.Menu>
       </Menubar.Root>
+
+      <div
+        class="max-w-fit min-w-0 w-3/5 h-full flex items-center justify-center mx-2"
+      >
+        {#key currentUrlPathname}
+          <div
+            in:slide={{ axis: 'x', duration: 250 }}
+            class="relative h-full flex items-center max-w-full"
+          >
+            <span class="text-sm font-light text-ellipsis overflow-hidden">{currentUrlPathname}</span>
+            {#if pageStatusError}
+              <span
+                class="absolute top-1.5 left-full translate-x-1.5 text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500"
+              >
+                {pageStatusError}
+              </span>
+            {/if}
+          </div>
+        {/key}
+      </div>
+
+      <div
+        class="min-w-0 grow w-1/5 h-full flex items-center justify-end"
+      ></div>
     </div>
   {/if}
 

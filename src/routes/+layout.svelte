@@ -4,6 +4,7 @@
   import SiteBackground from '$comps/SiteBackground.svelte';
   import SitePalette from '$comps/SitePalette.svelte';
   import SiteMenubar from '$comps/layout/SiteMenubar.svelte';
+  import { DEFAULT_SITE_MENUBAR_OPEN } from '$lib/constants.js';
   import { globalCommands, globalPages } from '$lib/global/palette.js';
   import { setUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Toaster } from 'svelte-french-toast';
@@ -11,7 +12,14 @@
 
   let {children, data} = $props();
 
-  const preferences = setUserPreferences({font:{family:data.userPrefs?.fontFamily}})
+  const preferences = setUserPreferences({
+    font:{
+      family:data.userPrefs?.fontFamily
+    },
+    navbar: {
+      open: DEFAULT_SITE_MENUBAR_OPEN
+    }
+  });
 </script>
 
 <SiteBackground />

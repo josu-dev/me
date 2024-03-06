@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { DEFAULT_FONT_FAMILY, DEFAULT_THEME, FONTS } from '$lib/constants';
+import { DEFAULT_FONT_FAMILY, DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME, FONTS } from '$lib/constants.js';
 import { getContext, setContext } from 'svelte';
 
 const PREFERENCES_KEY = 'PREFFERENCES_CTX_KEY';
@@ -36,7 +36,7 @@ const DEFAULT_PREFERENCES: PreferencesState = {
         value: DEFAULT_THEME,
     },
     navbar: {
-        open: false,
+        open: DEFAULT_SITE_MENUBAR_OPEN,
     },
 };
 

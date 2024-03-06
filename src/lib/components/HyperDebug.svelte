@@ -20,7 +20,7 @@
 
 <script lang="ts">
   import { clickoutside } from '$lib/actions.js';
-  import { helpers } from 'svelte-hypercommands/CommandPalette.svelte';
+  import { helpers } from '$comps/SitePalette.svelte';
   import SuperDebug from 'sveltekit-superforms';
 
   let {
@@ -44,7 +44,8 @@
 
   $effect(() => {
     return helpers.registerCommand({
-      name: 'Open Debug',
+      category: 'Dev',
+      name: 'Ver datos de depuracion',
       shortcut: '$mod+D',
       onAction: () => {
         debug.enabled = !debug.enabled;
@@ -56,7 +57,7 @@
 {#if debug.enabled}
   <div
     use:clickoutside={{ handler: () => (debug.enabled = false) }}
-    class="fixed inset-0 my-auto mx-auto h-max max-h-[90vh] max-w-[95vw] sm:max-w-[min(90vw,1024px)] overflow-y-auto"
+    class="fixed inset-0 z-10 my-auto mx-auto h-max max-h-[90vh] max-w-[95vw] sm:max-w-[min(90vw,1024px)] overflow-y-auto"
   >
     <SuperDebug
       data={debug.data}

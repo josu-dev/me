@@ -1,6 +1,6 @@
 import { browser, dev } from '$app/environment';
 import { env } from '$env/dynamic/public';
-import { LOG_FORMATTER, LOG_LEVEL_CLIENT, TOAST } from '$lib/defaults.js';
+import { DEFAULT_LOG_FORMATTER, DEFAULT_LOG_LEVEL_CLIENT, TOAST } from '$lib/constants.js';
 import * as sftoast from 'svelte-french-toast';
 import type { ValidationErrors } from 'sveltekit-superforms';
 
@@ -15,9 +15,9 @@ export function safeInt(str: string | undefined, defaultValue: number): number {
     return value;
 }
 
-const logLevel = safeInt(env.PUBLIC_LOG_LEVEL_SK_CLIENT, LOG_LEVEL_CLIENT);
+const logLevel = safeInt(env.PUBLIC_LOG_LEVEL_SK_CLIENT, DEFAULT_LOG_LEVEL_CLIENT);
 
-export function createLogger(level: number, dev: boolean = false, formatter: Intl.DateTimeFormat = LOG_FORMATTER) {
+export function createLogger(level: number, dev: boolean = false, formatter: Intl.DateTimeFormat = DEFAULT_LOG_FORMATTER) {
     function setFormatter(value: Intl.DateTimeFormat) {
         formatter = value;
     }

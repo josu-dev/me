@@ -3,7 +3,7 @@
   import type { SubmitFunction } from './$types.js';
   import ReposSidebar from './ReposSidebar.svelte';
   import { enhance } from '$app/forms';
-  import { Collapsible } from "bits-ui";
+  import { Collapsible } from 'bits-ui';
   import IconMinus from '$comps/icons/IconMinus.svelte';
   import IconPlus from '$comps/icons/IconPlus.svelte';
   import IconStar from '$comps/icons/IconStar.svelte';
@@ -13,12 +13,14 @@
 
   let { data } = $props();
   let repoItems = $derived(
-    (data.repos ?? []).map((repo) => ({
-      id: repo.id.toString(),
-      title: repo.name,
-      description: repo.description,
-      updatedAt: new Date(repo.updatedAt ?? repo.createdAt ?? 0).getTime(),
-    })).sort((a, b) => b.updatedAt - a.updatedAt),
+    (data.repos ?? [])
+      .map((repo) => ({
+        id: repo.id.toString(),
+        title: repo.name,
+        description: repo.description,
+        updatedAt: new Date(repo.updatedAt ?? repo.createdAt ?? 0).getTime(),
+      }))
+      .sort((a, b) => b.updatedAt - a.updatedAt),
   );
 
   let selectedId = $state('');
@@ -39,23 +41,23 @@
       }
     }
     return true;
-  })
+  });
 
-  let repoReadmeHtml = $state('')
-  let selectedRepoError = $state('')
+  let repoReadmeHtml = $state('');
+  let selectedRepoError = $state('');
   let highlightReadmeForm: HTMLFormElement | undefined;
 
-  const enhanceHighlightReadme : SubmitFunction = (form) => {
-    return ({result}) => {
+  const enhanceHighlightReadme: SubmitFunction = (form) => {
+    return ({ result }) => {
       if (result.type !== 'success') {
-        console.error(result)
-        selectedRepoError = `No se pudo obtener el README del repositorio ${selectedRepo?.name}`
+        console.error(result);
+        selectedRepoError = `No se pudo obtener el README del repositorio ${selectedRepo?.name}`;
         return;
       }
 
       repoReadmeHtml = result.data?.html ?? '';
-    }
-  }
+    };
+  };
 
   $effect(() => {
     debug.data = { selectedId: selectedId, selectedRepo: selectedRepo };
@@ -67,7 +69,7 @@
     }
 
     fetch(selectedRepo.homepage)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error('HTTP error ' + response.status);
         }
@@ -86,7 +88,7 @@
     }
 
     highlightReadmeForm.requestSubmit();
-  })
+  });
 </script>
 
 <main class="flex flex-col md:px-4 h-full">
@@ -94,11 +96,17 @@
     <h1 class="text-2xl font-bold mt-4">Repositorios publicos</h1>
   </header>
 
-  <div class="flex-1 overflow-hidden grid mt-4 md:grid-cols-[1fr,24rem] md:gap-8 md:mt-6 2xl:grid-cols-[1fr,28rem]">
+  <div
+    class="flex-1 overflow-hidden grid mt-4 md:grid-cols-[1fr,24rem] md:gap-8 md:mt-6 2xl:grid-cols-[1fr,28rem]"
+  >
     <section class="flex flex-col h-full overflow-hidden">
       {#if !selectedRepo}
         <div class="grid place-items-center h-full">
-          <p class="text-zinc-300 text-lg text-balance">Intenta seleccionando un repositorio <span class="animate-bounce inline-block">😉</span></p>
+          <p class="text-zinc-300 text-lg text-balance">
+            Intenta seleccionando un repositorio <span
+              class="animate-bounce inline-block">😉</span
+            >
+          </p>
         </div>
       {:else}
         <div class="flex-1 rounded-md overflow-y-auto">
@@ -115,14 +123,25 @@
               class="w-full h-full"
             />
           {:else}
-            <code title="{selectedRepo.name} README.md" class="flex-1 overflow-auto [&>pre]:p-4 [&_pre.shiki]:whitespace-pre-wrap">{@html repoReadmeHtml}</code>
+            <code
+              title="{selectedRepo.name} README.md"
+              class="flex-1 overflow-auto [&>pre]:p-4 [&_pre.shiki]:whitespace-pre-wrap"
+              >{@html repoReadmeHtml}</code
+            >
           {/if}
         </div>
         <div class="h-max mt-4" class:opacity-75={!repoInfoOpen}>
-          <Collapsible.Root bind:open={repoInfoOpen} class="rounded-md p-4 border border-zinc-500/25 bg-zinc-950/75 shadow">
+          <Collapsible.Root
+            bind:open={repoInfoOpen}
+            class="rounded-md p-4 border border-zinc-500/25 bg-zinc-950/75 shadow"
+          >
             <div class="flex items-center gap-4 text-zinc-200">
               <h3 class="text-xl font-medium">{selectedRepo.name}</h3>
-              <Collapsible.Trigger title={repoInfoOpen? 'Ocultar informacion del repositorio' : 'Mostrar informacion del repositorio'}>
+              <Collapsible.Trigger
+                title={repoInfoOpen
+                  ? 'Ocultar informacion del repositorio'
+                  : 'Mostrar informacion del repositorio'}
+              >
                 {#if repoInfoOpen}
                   <div><IconMinus /></div>
                 {:else}
@@ -137,14 +156,20 @@
                 </span>
               </Collapsible.Trigger>
               {#if selectedRepo.language}
-                <span class="ml-auto badge-lg bg-zinc-950 ring-1 ring-sky-950 text-zinc-300" style="font-size:inherit;">{selectedRepo.language}</span>
+                <span
+                  class="ml-auto badge-lg bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
+                  style="font-size:inherit;">{selectedRepo.language}</span
+                >
               {/if}
             </div>
             <Collapsible.Content class="mt-2 space-y-4" transition={slide}>
               {#if selectedRepo.topics.length}
                 <div class="flex flex-wrap gap-1">
-                  {#each selectedRepo.topics as tag (tag) }
-                    <span class="badge bg-zinc-950 ring-1 ring-sky-950 text-zinc-300">{tag}</span>
+                  {#each selectedRepo.topics as tag (tag)}
+                    <span
+                      class="badge bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
+                      >{tag}</span
+                    >
                   {/each}
                 </div>
               {/if}
@@ -153,33 +178,73 @@
                 <div class="flex flex-col gap-2">
                   <h4 class="sr-only">Estadisticas</h4>
                   <div class="flex gap-4">
-                    <div title="Estrellas" class="flex items-center gap-1 text-yellow-500">
+                    <div
+                      title="Estrellas"
+                      class="flex items-center gap-1 text-yellow-500"
+                    >
                       <IconStar />
-                      <span class="whitespace-pre text-zinc-300">{selectedRepo.stars}</span>
+                      <span class="whitespace-pre text-zinc-300"
+                        >{selectedRepo.stars}</span
+                      >
                     </div>
-                    <div title="Forks" class="flex items-center gap-1 text-neutral-500">
+                    <div
+                      title="Forks"
+                      class="flex items-center gap-1 text-neutral-500"
+                    >
                       <IconGitfork />
-                      <span class="whitespace-pre text-zinc-300">{selectedRepo.forks}</span>
+                      <span class="whitespace-pre text-zinc-300"
+                        >{selectedRepo.forks}</span
+                      >
                     </div>
-                    <div title="Tamaño en kilobytes" class="flex items-center gap-1 text-neutral-400">
+                    <div
+                      title="Tamaño en kilobytes"
+                      class="flex items-center gap-1 text-neutral-400"
+                    >
                       <IconFile />
-                      <span class="whitespace-pre text-zinc-300">{selectedRepo.size} kb</span>
+                      <span class="whitespace-pre text-zinc-300"
+                        >{selectedRepo.size} kb</span
+                      >
                     </div>
                   </div>
                   <div class="flex flex-wrap gap-x-8">
-                    <div class="text-zinc-300">Creado: {new Date(selectedRepo.createdAt ?? '').toLocaleString()}</div>
-                    <div class="text-zinc-300">Actualizado: {new Date(selectedRepo.updatedAt ?? '').toLocaleString()}</div>
+                    <div class="text-zinc-300">
+                      Creado: {new Date(
+                        selectedRepo.createdAt ?? '',
+                      ).toLocaleString()}
+                    </div>
+                    <div class="text-zinc-300">
+                      Actualizado: {new Date(
+                        selectedRepo.updatedAt ?? '',
+                      ).toLocaleString()}
+                    </div>
                   </div>
                 </div>
                 <nav>
                   <h4 class="sr-only">Links</h4>
                   <ul class="flex gap-4">
-                    <li><a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" class="text-sky-500 a">Github</a></li>
-                    {#if selectedRepo.homepage}<li >
-                        <a href={selectedRepo.homepage} target="_blank" rel="noopener noreferrer" class="text-sky-500 a">Pagina</a>
+                    <li>
+                      <a
+                        href={selectedRepo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-sky-500 a">Github</a
+                      >
+                    </li>
+                    {#if selectedRepo.homepage}<li>
+                        <a
+                          href={selectedRepo.homepage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-sky-500 a">Pagina</a
+                        >
                       </li>{/if}
-                    {#if selectedRepo.license}<li >
-                        <a href={selectedRepo.license.url} target="_blank" rel="noopener noreferrer" class="text-sky-500 a">Licencia</a>
+                    {#if selectedRepo.license}<li>
+                        <a
+                          href={selectedRepo.license.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-sky-500 a">Licencia</a
+                        >
                       </li>{/if}
                   </ul>
                 </nav>
@@ -188,16 +253,19 @@
           </Collapsible.Root>
         </div>
       {/if}
-      <form action="?/readme_highlighted" method="post" use:enhance={enhanceHighlightReadme} bind:this={highlightReadmeForm} class="hidden">
+      <form
+        action="?/readme_highlighted"
+        method="post"
+        use:enhance={enhanceHighlightReadme}
+        bind:this={highlightReadmeForm}
+        class="hidden"
+      >
         <input type="hidden" name="repo" value={selectedRepo?.name ?? ''} />
       </form>
     </section>
-      
+
     <aside class="h-full overflow-y-auto">
-      <ReposSidebar
-        repos={repoItems}
-        bind:selected={selectedId}
-      />
+      <ReposSidebar repos={repoItems} bind:selected={selectedId} />
     </aside>
   </div>
 </main>
