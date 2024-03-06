@@ -1,0 +1,367 @@
+[
+  {
+    "id": 1,
+    "name": "advent-of-code",
+    "description": "Solutions for the Advent of code challenges. Currently only for the 2023 edition.",
+    "language": "JavaScript",
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/advent-of-code",
+    "createdAt": "2023-12-11T20:05:29Z",
+    "updatedAt": "2023-12-11T22:27:54Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "advent-of-code",
+      "advent-of-code-2023",
+      "javascript"
+    ],
+    "size": 0,
+    "homepage": "http://localhost:5173/"
+  },
+  {
+    "id": 2,
+    "name": "brb-screen",
+    "description": "A simple PWA for displaying brb scenes when you're away from your stream for a moment.",
+    "language": "Svelte",
+    "stars": 2,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/brb-screen",
+    "createdAt": "2023-08-17T14:02:57Z",
+    "updatedAt": "2023-09-06T08:01:28Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "pwa",
+      "scene",
+      "streaming",
+      "svelte",
+      "sveltekit"
+    ],
+    "size": 0,
+    "homepage": "https://brb-screen.vercel.app"
+  },
+  {
+    "id": 3,
+    "name": "Computer-Science",
+    "description": "Parte del contenido generado como estudiante de Lic. en Informatica UNLP",
+    "language": "Pascal",
+    "stars": 1,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/Computer-Science",
+    "createdAt": "2022-03-23T20:59:28Z",
+    "updatedAt": "2023-07-13T00:02:39Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": ""
+  },
+  {
+    "id": 4,
+    "name": "do-discord-bot",
+    "description": "A bot based on DiscordJS for a Computer Science Students community.",
+    "language": "TypeScript",
+    "stars": 1,
+    "forks": 1,
+    "url": "https://github.com/J-Josu/do-discord-bot",
+    "createdAt": "2023-06-06T01:04:24Z",
+    "updatedAt": "2024-01-11T23:06:24Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "community",
+      "discord-bot",
+      "discordjs",
+      "student",
+      "typescript"
+    ],
+    "size": 0,
+    "homepage": ""
+  },
+  {
+    "id": 5,
+    "name": "Enunciados-Extractor",
+    "description": "Herramienta para la extracción de enunciados desde archivos de texto",
+    "language": "Python",
+    "stars": 2,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/Enunciados-Extractor",
+    "createdAt": "2022-06-14T02:45:08Z",
+    "updatedAt": "2022-06-18T03:37:11Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": ""
+  },
+  {
+    "id": 6,
+    "name": "facturacion_llamadas",
+    "description": null,
+    "language": "Java",
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/facturacion_llamadas",
+    "createdAt": "2023-05-24T20:08:17Z",
+    "updatedAt": "2023-05-24T20:11:08Z",
+    "topics": [],
+    "size": 0,
+    "homepage": null
+  },
+  {
+    "id": 7,
+    "name": "FiguRace",
+    "description": "Trabajo final de Seminario de Lenguajes opción Python - UNLP 2022",
+    "language": "Python",
+    "stars": 4,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/FiguRace",
+    "createdAt": "2023-01-24T17:56:17Z",
+    "updatedAt": "2023-07-13T03:42:54Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "csv",
+      "desktop-app",
+      "game",
+      "pysimplegui",
+      "python",
+      "spanish"
+    ],
+    "size": 0,
+    "homepage": ""
+  },
+  {
+    "id": 8,
+    "name": "flask-livetw",
+    "description": "A simple package that enables livereload and tailwindcss for flask templates",
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/flask-livetw",
+    "createdAt": "2023-09-11T13:24:20Z",
+    "updatedAt": "2023-09-29T23:57:06Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "cli",
+      "devserver",
+      "flask",
+      "library",
+      "livereload",
+      "tailwindcss",
+      "websockets"
+    ],
+    "size": 0,
+    "homepage": "https://pypi.org/project/flask-livetw"
+  },
+  {
+    "id": 9,
+    "name": "J-Josu",
+    "description": "Config files for my GitHub profile.",
+    "language": null,
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/J-Josu",
+    "createdAt": "2021-10-20T15:00:35Z",
+    "updatedAt": "2021-10-20T15:03:30Z",
+    "topics": [
+      "config",
+      "github-config"
+    ],
+    "size": 0,
+    "homepage": "https://github.com/J-Josu"
+  },
+  {
+    "id": 10,
+    "name": "me",
+    "description": null,
+    "language": "Svelte",
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/me",
+    "createdAt": "2024-02-28T02:55:09Z",
+    "updatedAt": "2024-03-04T16:07:02Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": null
+  },
+  {
+    "id": 11,
+    "name": "onemorechance",
+    "description": "A Game jam idea for https://globalgamejam.org/games/2024 ended as a really funny game",
+    "language": "TypeScript",
+    "stars": 2,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/onemorechance",
+    "createdAt": "2024-01-27T02:59:30Z",
+    "updatedAt": "2024-02-25T20:11:49Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "gamejam",
+      "sveltekit",
+      "typescript",
+      "websocket"
+    ],
+    "size": 0,
+    "homepage": "https://omc.eventitos.com.ar/"
+  },
+  {
+    "id": 12,
+    "name": "PintaService",
+    "description": "Sistema que permite registrar y gestionar los servicios ofrecidos por instituciones o centros de \"Investigación y Desarrollo en Tecnología de Pinturas\".",
+    "language": "Python",
+    "stars": 2,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/PintaService",
+    "createdAt": "2024-02-29T23:25:49Z",
+    "updatedAt": "2024-03-01T05:22:08Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": "https://pintaservice.onrender.com/"
+  },
+  {
+    "id": 13,
+    "name": "pyday-datos-de-color",
+    "description": null,
+    "language": "Python",
+    "stars": 1,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/pyday-datos-de-color",
+    "createdAt": "2023-09-09T04:11:41Z",
+    "updatedAt": "2023-09-09T17:28:20Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": "https://pyday-datos-de-color.vercel.app"
+  },
+  {
+    "id": 14,
+    "name": "Quiz-FOD",
+    "description": null,
+    "language": "Svelte",
+    "stars": 3,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/Quiz-FOD",
+    "createdAt": "2022-07-09T04:02:46Z",
+    "updatedAt": "2022-07-12T10:38:10Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": "https://j-josu.github.io/Quiz-FOD/"
+  },
+  {
+    "id": 15,
+    "name": "RobotScript",
+    "description": "A web rework of R-Info, a desktop IDE for learning programing basics and concurrency",
+    "language": "JavaScript",
+    "stars": 8,
+    "forks": 1,
+    "url": "https://github.com/J-Josu/RobotScript",
+    "createdAt": "2022-01-05T15:46:34Z",
+    "updatedAt": "2023-02-01T23:01:53Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "ide",
+      "language-learning",
+      "open-source",
+      "student-project"
+    ],
+    "size": 0,
+    "homepage": "https://J-Josu.github.io/RobotScript/"
+  },
+  {
+    "id": 16,
+    "name": "svelte-hypercommands",
+    "description": "A headless Command Palette for hyper commands in your SvelteKit app",
+    "language": "TypeScript",
+    "stars": 1,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/svelte-hypercommands",
+    "createdAt": "2023-10-24T22:45:36Z",
+    "updatedAt": "2024-02-12T14:35:32Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "commandpalette",
+      "commands",
+      "svelte",
+      "sveltekit"
+    ],
+    "size": 0,
+    "homepage": ""
+  },
+  {
+    "id": 17,
+    "name": "sveltekit-superforms",
+    "description": "Making SvelteKit validation and displaying of forms easier than ever!",
+    "language": null,
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/sveltekit-superforms",
+    "createdAt": "2023-07-11T13:09:50Z",
+    "updatedAt": "2023-07-11T13:09:51Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": "https://superforms.rocks"
+  },
+  {
+    "id": 18,
+    "name": "yadw",
+    "description": null,
+    "language": "JavaScript",
+    "stars": 0,
+    "forks": 0,
+    "url": "https://github.com/J-Josu/yadw",
+    "createdAt": "2024-02-26T00:12:29Z",
+    "updatedAt": "2024-02-26T18:27:51Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "size": 0,
+    "homepage": null
+  }
+]

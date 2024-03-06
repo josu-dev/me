@@ -3,26 +3,15 @@
   import HyperDebug from '$comps/HyperDebug.svelte';
   import SiteBackground from '$comps/SiteBackground.svelte';
   import SitePalette from '$comps/SitePalette.svelte';
-  import { globalCommands } from '$lib/palette/global.js';
+  import SiteMenubar from '$comps/layout/SiteMenubar.svelte';
+  import { globalCommands, globalPages } from '$lib/global/palette.js';
+  import { setUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Toaster } from 'svelte-french-toast';
-  import { definePage } from 'svelte-hypercommands';
   import '../app.pcss';
 
-  let {children} = $props();
+  let {children, data} = $props();
 
-  const globalPages = definePage([
-    { url: '/'},
-    { url: '/test1'},
-    { url: '/test2'},
-    { url: '/test3'},
-    { url: '/test4'},
-    { url: '/test5'},
-    { url: '/test6'},
-    { url: '/test7'},
-    { url: '/test8'},
-    { url: '/test9'},
-    { url: '/test10'} 
-  ]);
+  const preferences = setUserPreferences({font:{family:data.userPrefs?.fontFamily}})
 </script>
 
 <SiteBackground />
@@ -38,4 +27,15 @@
   toastOptions={{ className: 'omc-toast' }}
 />
 
-{@render children()}
+<div class="relative flex flex-col h-full overflow-x-hidden overflow-y-auto">  
+  <header class="block sticky top-0 h-8 flex-none">
+    <SiteMenubar />
+  </header>
+
+  <div class="h-[calc(100%-4rem)] [&:has(main.page-scroll)]:h-max">
+    {@render children()}
+  </div>
+  
+  <div class="h-8 flex-none">
+  </div>
+</div>

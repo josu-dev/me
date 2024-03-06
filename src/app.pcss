@@ -14,6 +14,39 @@ body {
     @apply font-[JetBrainsMono] data-[font-family="FiraCode"]:font-[FiraCode] data-[font-family="CascadiaCode"]:font-[CascadiaCode] data-[font-family="RobotoMono"]:font-[RobotoMono] data-[font-family="GeistMono"]:font-[GeistMono] data-[font-family="monospace"]:font-mono;
 }
 
+body * {
+    @apply scrollbar-2 sb-thumb-sky-800/25 sb-thumb-hover-sky-800/75;
+}
+
+.lucide {
+    @apply size-full;
+}
+
+@layer components {
+    .badge {
+        @apply text-xs font-medium me-2 px-1.5 py-0.5 rounded;
+    }
+    .badge-lg {
+        @apply text-sm font-medium me-2 px-2 py-1 rounded;
+    }
+    .badge-primary {
+        @apply bg-black text-gray-300;
+    }
+    .badge-secondary {
+        @apply bg-gray-300 text-black;
+    }
+    .badge-tertiary {
+        @apply bg-purple-300 text-black;
+    }
+    .badge-accent {
+        @apply bg-black text-purple-500
+    }
+
+    .a {
+        @apply underline underline-offset-2 hover:underline-offset-4 transition-all duration-200;
+    }
+}
+
 @font-face {
     font-family: 'JetBrainsMono';
     font-style: normal;

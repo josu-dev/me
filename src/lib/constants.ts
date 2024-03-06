@@ -10,3 +10,5 @@ export const FONTS = [
     { name: 'Geist Mono', value: 'GeistMono' },
     { name: 'monospace', value: 'monospace' }
 ]
+
+export const GITHUB_USERNAME = 'J-Josu'
