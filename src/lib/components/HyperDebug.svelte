@@ -1,31 +1,34 @@
 <script lang="ts" context="module">
   let data = $state();
-  let enabled = $state(false);
+  let visible = $state(false);
 
   export const debug = {
     get data() {
       return data;
     },
-    set data(value) {
+    setData(value: unknown) {
       data = value;
     },
-    get enabled() {
-      return enabled;
+    get visible() {
+      return visible;
     },
-    set enabled(value: boolean) {
-      enabled = value;
+    setVisible(value: boolean) {
+      visible = value;
+    },
+    toggle() {
+      visible = !visible;
     },
   };
 </script>
 
 <script lang="ts">
-  import { clickoutside } from '$lib/actions.js';
+  import { clickoutside, escapekey } from '$lib/actions.js';
   import { helpers } from '$comps/SitePalette.svelte';
   import SuperDebug from 'sveltekit-superforms';
 
   let {
     label,
-    stringTruncate,
+    truncate,
     functions = true,
   } = $props<{
     /**
@@ -39,38 +42,46 @@
     /**
      * The maximum length of strings to show in the debug output
      */
-    stringTruncate?: number;
+    truncate?: number;
   }>();
+
+  function closeDialog() {
+    debug.setVisible(false);
+  }
 
   $effect(() => {
     return helpers.registerCommand({
+      id: 'global:toggle-debug',
+      name: 'Datos de depuracion',
       category: 'Dev',
-      name: 'Ver datos de depuracion',
+      description: 'Alternar la visibilidad de los datos de depuracion',
       shortcut: '$mod+D',
       onAction: () => {
-        debug.enabled = !debug.enabled;
+        debug.toggle();
       },
     });
   });
 </script>
 
-{#if debug.enabled}
+{#if debug.visible}
   <div
-    use:clickoutside={{ handler: () => (debug.enabled = false) }}
+    use:clickoutside={{ handler: closeDialog }}
+    use:escapekey={{ handler: closeDialog }}
     class="fixed inset-0 z-10 my-auto mx-auto h-max max-h-[90vh] max-w-[95vw] sm:max-w-[min(90vw,1024px)] overflow-y-auto"
   >
     <SuperDebug
       data={debug.data}
       {label}
-      {stringTruncate}
+      stringTruncate={truncate}
       {functions}
       theme="vscode"
     />
   </div>
 {/if}
 
-<style lang="postcss">
-  div :global(:is(pre, span)) {
+<style>
+  div :global(pre),
+  div :global(span) {
     font-family: 'JetBrains Mono', Inconsolata, Monaco, Consolas,
       'Lucida Console', 'Courier New', Courier, monospace;
   }

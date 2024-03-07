@@ -14,10 +14,10 @@
 
   const preferences = setUserPreferences({
     font:{
-      family:data.userPrefs?.fontFamily
+      family: data.userPrefs?.fontFamily
     },
-    navbar: {
-      open: DEFAULT_SITE_MENUBAR_OPEN
+    sitebar: {
+      open: data.userPrefs?.sitebar ?? DEFAULT_SITE_MENUBAR_OPEN
     }
   });
 </script>

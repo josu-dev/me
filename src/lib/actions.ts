@@ -4,7 +4,7 @@ type ClickTypeMap = {
     pointerup: PointerEvent;
 };
 
-export type UseClickOutsideOptions<K extends keyof ClickTypeMap> = {
+type UseClickOutsideOptions<K extends keyof ClickTypeMap> = {
     type?: K;
     handler: (event: ClickTypeMap[K]) => void;
     exclude?: HTMLElement;
@@ -39,6 +39,40 @@ export function clickoutside<K extends keyof ClickTypeMap>(el: HTMLElement, opti
             }
             if (newOptions.handler) {
                 eventHandler = newOptions.handler;
+            }
+        }
+    };
+}
+
+type UseEscapeKeyOptions = {
+    handler: (event: KeyboardEvent) => void;
+    preventDefault?: boolean;
+};
+
+export function escapekey(el: HTMLElement, options:UseEscapeKeyOptions) {
+    const document = el.ownerDocument;
+    let eventHandler = options.handler;
+    let preventDefault = options.preventDefault !== false;
+
+    function onKey(event: KeyboardEvent) {
+        if (event.key === "Escape") {
+            if (preventDefault) event.preventDefault();
+            eventHandler(event);
+        }
+    }
+
+    document.addEventListener("keydown", onKey);
+
+    return {
+        destroy() {
+            document.removeEventListener("keydown", onKey);
+        },
+        update(newOptions: Partial<UseEscapeKeyOptions>) {
+            if (newOptions.handler) {
+                eventHandler = newOptions.handler;
+            }
+            if (newOptions.preventDefault !== undefined) {
+                preventDefault = newOptions.preventDefault;
             }
         }
     };

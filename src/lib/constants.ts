@@ -19,6 +19,15 @@ export const DEFAULT_SITE_MENUBAR_OPEN = false;
 export const DEFAULT_THEME = 'dark';
 
 export const FONTS = [
+    'JetBrainsMono',
+    'FiraCode',
+    'CascadiaCode',
+    'RobotoMono',
+    'GeistMono',
+    'monospace',
+] as const;
+
+export const FONTS_NAMED = [
     { name: 'JetBrains Mono', value: 'JetBrainsMono' },
     { name: 'Fira Code', value: 'FiraCode' },
     { name: 'Cascadia Code', value: 'CascadiaCode' },

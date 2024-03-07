@@ -60,7 +60,7 @@
   };
 
   $effect(() => {
-    debug.data = { selectedId: selectedId, selectedRepo: selectedRepo };
+    debug.setData({ selectedId: selectedId, selectedRepo: selectedRepo });
   });
 
   $effect(() => {

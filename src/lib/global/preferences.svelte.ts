@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { DEFAULT_FONT_FAMILY, DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME, FONTS } from '$lib/constants.js';
+import { DEFAULT_FONT_FAMILY, DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME, FONTS_NAMED } from '$lib/constants.js';
 import { getContext, setContext } from 'svelte';
 
 const PREFERENCES_KEY = 'PREFFERENCES_CTX_KEY';
@@ -14,7 +14,7 @@ type PreferencesState = {
     theme: {
         value: string;
     };
-    navbar: {
+    sitebar: {
         open: boolean;
     };
 };
@@ -22,7 +22,7 @@ type PreferencesState = {
 type PreferencesStateData = {
     font?: Partial<PreferencesState['font']>;
     theme?: Partial<PreferencesState['theme']>;
-    navbar?: Partial<PreferencesState['navbar']>;
+    sitebar?: Partial<PreferencesState['sitebar']>;
 };
 
 const DEFAULT_PREFERENCES: PreferencesState = {
@@ -30,12 +30,12 @@ const DEFAULT_PREFERENCES: PreferencesState = {
         family: DEFAULT_FONT_FAMILY,
         size: '16px',
         loading: false,
-        available: FONTS,
+        available: FONTS_NAMED,
     },
     theme: {
         value: DEFAULT_THEME,
     },
-    navbar: {
+    sitebar: {
         open: DEFAULT_SITE_MENUBAR_OPEN,
     },
 };
@@ -43,17 +43,19 @@ const DEFAULT_PREFERENCES: PreferencesState = {
 class Preferences implements PreferencesState {
     font = $state({ ...DEFAULT_PREFERENCES.font });
     theme = $state({ ...DEFAULT_PREFERENCES.theme });
-    navbar = $state({ ...DEFAULT_PREFERENCES.navbar });
+    sitebar = $state({ ...DEFAULT_PREFERENCES.sitebar });
     fullscreen = $state(false);
 
     setFontFamily: (family: string) => void;
+    setSitebarOpen: (open: boolean) => void;
 
     constructor(data: PreferencesStateData) {
         Object.assign(this.font, data.font);
         Object.assign(this.theme, data.theme);
-        Object.assign(this.navbar, data.navbar);
+        Object.assign(this.sitebar, data.sitebar);
 
         let timeoutFont: ReturnType<typeof setTimeout>;
+        let timeoutSitebar: ReturnType<typeof setTimeout>;
 
         this.setFontFamily = (family: string) => {
             this.font.family = family;
@@ -69,16 +71,44 @@ class Preferences implements PreferencesState {
             }, 1000);
         };
 
-        if (browser) {
-            $effect(() => {
-                document.body.setAttribute('data-font-family', this.font.family);
-                document.body.style.setProperty('--base-font-family', this.font.family);
-            });
+        this.setSitebarOpen = (open: boolean) => {
+            this.sitebar.open = open;
+            clearTimeout(timeoutSitebar);
+            timeoutSitebar = setTimeout(() => {
+                fetch('/api/user/prefs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sitebar: open ? 'true' : 'false' }),
+                }).catch(console.error);
+            }, 1000);
+        };
 
-            $effect(() => {
-                document.body.setAttribute('data-theme', this.theme.value);
-            });
+        if (!browser) {
+            return;
         }
+
+        $effect(() => {
+            const onFullscreenChange = () => {
+                this.fullscreen = !!document.fullscreenElement;
+            };
+
+            document.addEventListener('fullscreenchange', onFullscreenChange);
+
+            return () => {
+                document.removeEventListener('fullscreenchange', onFullscreenChange);
+            };
+        });
+
+        $effect(() => {
+            document.body.setAttribute('data-font-family', this.font.family);
+            document.body.style.setProperty('--base-font-family', this.font.family);
+        });
+
+        $effect(() => {
+            document.body.setAttribute('data-theme', this.theme.value);
+        });
     }
 }
 

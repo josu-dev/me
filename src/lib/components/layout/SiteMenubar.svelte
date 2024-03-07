@@ -15,8 +15,8 @@
     window.location.reload();
   }
 
-  function toggleNavbar() {
-    prefs.navbar.open = !prefs.navbar.open;
+  function toggleSitebar() {
+    prefs.setSitebarOpen(!prefs.sitebar.open);
   }
 
   function toggleFullscreen() {
@@ -60,7 +60,7 @@
 </script>
 
 <div class="relative h-full text-zinc-200">
-  {#if prefs.navbar.open}
+  {#if prefs.sitebar.open}
     <div
       in:fly={{ x: 1920, duration: 250 }}
       out:fly={{ x: 1920, duration: 250 }}
@@ -82,10 +82,10 @@
             <Menubar.Item
               class="menu-item"
               on:click={() => {
-                prefs.navbar.open = false;
+                prefs.setSitebarOpen(false);
               }}
             >
-              {#if prefs.navbar.open}
+              {#if prefs.sitebar.open}
                 <div class="icon-left p-0.5">
                   <IconCheck />
                 </div>
@@ -180,7 +180,9 @@
             in:slide={{ axis: 'x', duration: 250 }}
             class="relative h-full flex items-center max-w-full"
           >
-            <span class="text-sm font-light text-ellipsis overflow-hidden">{currentUrlPathname}</span>
+            <span class="text-sm font-light text-ellipsis overflow-hidden"
+              >{currentUrlPathname}</span
+            >
             {#if pageStatusError}
               <span
                 class="absolute top-1.5 left-full translate-x-1.5 text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500"
@@ -199,8 +201,8 @@
   {/if}
 
   <div class="absolute top-0 right-0 h-full">
-    <button on:click={toggleNavbar} class="text-zinc-200 h-full p-1">
-      {#if prefs.navbar.open}
+    <button on:click={toggleSitebar} class="text-zinc-200 h-full p-1">
+      {#if prefs.sitebar.open}
         <div
           in:fly={{ x: -32, duration: 250, delay: 250 }}
           out:fly={{ x: 32, duration: 250 }}

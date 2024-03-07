@@ -1,10 +1,12 @@
 import z from 'zod';
 import type { RequestHandler } from './$types';
+import { FONTS } from '$lib/constants';
 
 const configSchema = z.object({
     theme: z.enum(['dark', 'light']).optional(),
     font_size: z.enum(['8', '10', '12', '14', '16', '18', '20', '22', '24']).optional(),
-    font_family: z.enum(['JetBrainsMono', 'FiraCode', 'CascadiaCode', 'RobotoMono', 'GeistMono', 'monospace']).optional(),
+    font_family: z.enum(FONTS).optional(),
+    sitebar: z.enum(['true', 'false']).optional(),
 });
 
 export const POST: RequestHandler = async ({ cookies, request }) => {
@@ -18,7 +20,8 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
         if (value === undefined) {
             continue;
         }
-        cookies.set(key, value, { path: '/' });
+
+        cookies.set(key, value, { path: '/', httpOnly: true, maxAge: 60 * 60 * 24 * 365, sameSite: 'strict' });
     }
 
     return new Response(undefined, { status: 200 });

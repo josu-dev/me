@@ -9,13 +9,13 @@
   $: title = `${$page.status} | Error`;
   $: titleOG =
     (is404 && 'Pagina no disponible') ||
-    (is500s && 'Error en el servidor') ||
-    'Error en la solicitud';
+    (is500s && 'Error del servidor') ||
+    'Error con la solicitud';
   $: description =
     (is404 && `La pagina '${$page.url.pathname}' no se encuentra disponible`) ||
     (is500s &&
       `El servidor no proceso correctamente la solicitud de la pagina '${$page.url.pathname}'`) ||
-    `La pagina '${$page.url.pathname}' no se encuentra disponible, motivo desconocido`;
+    `Ocurrio un error desconocido con la solicitud de la pagina '${$page.url.pathname}'`;
 
   $: subtitle =
     $page.error?.message ??
