@@ -1,5 +1,11 @@
 <script lang="ts">
+  import Seo from '$comps/layout/Seo.svelte';
 </script>
+
+<Seo
+  title="Josu dev"
+  description="Personal website of Josu, a developer interested on general Software Development, Web Technologies and Developer Experience."
+/>
 
 <main class="flex flex-col md:px-4 h-full">
   <div

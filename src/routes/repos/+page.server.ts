@@ -19,6 +19,7 @@ type Repo = {
     language: OctokitRepo['language'];
     stars: OctokitRepo['stargazers_count'];
     forks: OctokitRepo['forks'];
+    issues: OctokitRepo['open_issues_count'];
     url: OctokitRepo['html_url'];
     createdAt: OctokitRepo['created_at'];
     updatedAt: OctokitRepo['updated_at'];
@@ -71,6 +72,10 @@ export const load: PageServerLoad = async () => {
     const repos: Repo[] = [];
 
     for (const repo of reposResponse.data) {
+        if (repo.fork) {
+            continue;
+        }
+
         repos.push({
             id: repo.id.toString(),
             name: repo.name,
@@ -78,6 +83,7 @@ export const load: PageServerLoad = async () => {
             language: repo.language,
             stars: repo.stargazers_count,
             forks: repo.forks,
+            issues: repo.open_issues_count,
             url: repo.html_url,
             createdAt: repo.created_at,
             updatedAt: repo.updated_at,
@@ -95,7 +101,6 @@ export const load: PageServerLoad = async () => {
 
 const highlightRepoReadmeSchema = z.object({
     repo: z.string(),
-    // path: z.string(),
 });
 
 export const actions: Actions = {

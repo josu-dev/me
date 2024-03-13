@@ -18,6 +18,8 @@ export const DEFAULT_SITE_MENUBAR_OPEN = false;
 
 export const DEFAULT_THEME = 'dark';
 
+export const DEFAULT_THEME_COLOR = '#082f49';
+
 export const FONTS = [
     'JetBrainsMono',
     'FiraCode',

@@ -9,23 +9,28 @@
   import IconStar from '$comps/icons/IconStar.svelte';
   import IconGitfork from '$comps/icons/IconGitfork.svelte';
   import IconFile from '$comps/icons/IconFile.svelte';
+  import IconCircledot from '$comps/icons/IconCircledot.svelte';
+  import Seo from '$comps/layout/Seo.svelte';
   import { slide } from 'svelte/transition';
 
   let { data } = $props();
-  let repoItems = $derived(
-    (data.repos ?? [])
-      .map((repo) => ({
-        id: repo.id.toString(),
+  let repoItems = $derived.by(() => {
+    const repos = [];
+    for (const repo of data.repos ?? []) {
+      repos.push({
+        id: repo.id,
         title: repo.name,
         description: repo.description,
         updatedAt: new Date(repo.updatedAt ?? repo.createdAt ?? 0).getTime(),
-      }))
-      .sort((a, b) => b.updatedAt - a.updatedAt),
-  );
+      });
+    }
+    repos.sort((a, b) => b.updatedAt - a.updatedAt);
+    return repos;
+  });
 
   let selectedId = $state('');
   let selectedRepo = $derived(
-    (data.repos ?? []).find((repo) => repo.id.toString() === selectedId),
+    (data.repos ?? []).find((repo) => repo.id === selectedId),
   );
   let repoInfoOpen = $state(true);
   let showRepositoryPage = $derived.by(() => {
@@ -91,6 +96,11 @@
   });
 </script>
 
+<Seo
+  title="Public projects - Josu dev"
+  description="Public projects of Josu on Github. All the repositories are open source and free to use."
+/>
+
 <main class="flex flex-col md:px-4 h-full">
   <header class="text-white">
     <h1 class="text-2xl font-bold mt-4">Repositorios publicos</h1>
@@ -103,9 +113,8 @@
       {#if !selectedRepo}
         <div class="grid place-items-center h-full">
           <p class="text-zinc-300 text-lg text-balance">
-            Intenta seleccionando un repositorio <span
-              class="animate-bounce inline-block">😉</span
-            >
+            Prueba seleccionando un repositorio
+            <span class="animate-bounce inline-block">😉</span>
           </p>
         </div>
       {:else}
@@ -157,7 +166,7 @@
               </Collapsible.Trigger>
               {#if selectedRepo.language}
                 <span
-                  class="ml-auto badge-lg bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
+                  class="ml-auto badge-lg text-2xl bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
                   style="font-size:inherit;">{selectedRepo.language}</span
                 >
               {/if}
@@ -179,7 +188,16 @@
                   <h4 class="sr-only">Estadisticas</h4>
                   <div class="flex gap-4">
                     <div
-                      title="Estrellas"
+                      title="Forks"
+                      class="flex items-center gap-1 text-neutral-400"
+                    >
+                      <IconGitfork />
+                      <span class="whitespace-pre text-zinc-300"
+                        >{selectedRepo.forks}</span
+                      >
+                    </div>
+                    <div
+                      title="Stars"
                       class="flex items-center gap-1 text-yellow-500"
                     >
                       <IconStar />
@@ -188,12 +206,12 @@
                       >
                     </div>
                     <div
-                      title="Forks"
-                      class="flex items-center gap-1 text-neutral-500"
+                      title="Issues"
+                      class="flex items-center gap-1 text-violet-500"
                     >
-                      <IconGitfork />
+                      <IconCircledot />
                       <span class="whitespace-pre text-zinc-300"
-                        >{selectedRepo.forks}</span
+                        >{selectedRepo.issues}</span
                       >
                     </div>
                     <div

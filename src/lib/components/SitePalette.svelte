@@ -1,131 +1,189 @@
 <script lang="ts" context="module">
-  import { createCommandPalette } from 'svelte-hypercommands';
+  import {
+    createPalette,
+    defineActionable,
+    defineNavigable,
+    HYPER_ITEM,
+  } from 'svelte-hypercommands';
   import { goto } from '$app/navigation';
 
-  const _state = createCommandPalette({
-    defaultOpen: false,
-    onNavigationLocal: goto,
+  const _palette = createPalette({
+    defaults: {
+      open: false,
+      placeholder: `Busca paginas... '>' para comandos...`,
+    },
+    modes: {
+      commands: {
+        type: HYPER_ITEM.ACTIONABLE,
+        prefix: '>',
+        mapToSearch: (c) => c.category + c.name,
+        closeAction: 'RESET_CLOSE',
+        closeOn: 'ALWAYS',
+        shortcut: ['$mod+Shift+P'],
+        sortMode: 'SORTED',
+      },
+      pages: {
+        type: HYPER_ITEM.NAVIGABLE,
+        prefix: '',
+        mapToSearch: (p) => p.urlHostPathname,
+        closeAction: 'RESET_CLOSE',
+        closeOn: 'ALWAYS',
+        sortBy: ['name', 'urlHostPathname'],
+        sortMode: 'SORTED',
+        shortcut: ['$mod+P'],
+        onNavigation: (p) => {
+          if (p.external) {
+            window.open(p.url, '_blank', 'noopener');
+          } else {
+            goto(p.url);
+          }
+        },
+      },
+    },
+    closeOnClickOutside: true,
+    closeOnEscape: true,
   });
 
-  export const states = _state.states;
-  export const helpers = _state.helpers;
+  function registerCommand<T extends [any, ...any]>(
+    ...items: ActionablesDefinition<T>
+  ) {
+    const commands = defineActionable(items);
+    return _palette.helpers.registerItem('commands', commands);
+  }
+
+  function registerPage(...items: NavigablesDefinition) {
+    const pages = defineNavigable(items);
+    return _palette.helpers.registerItem('pages', pages);
+  }
+
+  export const helpers = {
+    close: _palette.helpers.closePalette,
+    open: _palette.helpers.openPalette,
+    registerCommand: registerCommand,
+    registerPage: registerPage,
+    search: _palette.helpers.search,
+    toggleOpen: _palette.helpers.togglePalette,
+  };
+
+  export const states = _palette.states;
 </script>
 
 <script lang="ts">
-  import {
-    defineCommand,
-    definePage,
-    shortcutToKbd,
+  import { shortcutToKbd } from 'svelte-hypercommands';
+  import type {
+    ActionablesDefinition,
+    HyperActionable,
+    HyperNavigable,
+    NavigablesDefinition,
   } from 'svelte-hypercommands';
-  import IconGlobe from './icons/IconGlobe.svelte';
-  import IconHome from './icons/IconHome.svelte';
+  import IconGlobe from '$comps/icons/IconGlobe.svelte';
+  import IconHome from '$comps/icons/IconHome.svelte';
 
   type Props = {
-    commands: ReturnType<typeof defineCommand>;
-    pages: ReturnType<typeof definePage>;
+    commands: HyperActionable[];
+    pages: HyperNavigable[];
   };
 
   let { commands, pages } = $props<Props>();
 
-  const { portal, palette, panel, form, label, input, page, command } =
-    _state.elements;
-  const { open, paletteMode, matchingCommands, matchingPages } = states;
+  const { palette, panel, form, label, input, item } = _palette.elements;
+  const {
+    open,
+    mode,
+    modes: {
+      commands: { results: matchingCommands },
+      pages: { results: matchingPages },
+    },
+  } = states;
 
   $effect(() => {
-    const unregisterCommands = helpers.registerCommand(commands);
-    return unregisterCommands;
+    const clenaup = _palette.helpers.registerItem('commands', commands);
+    return clenaup;
   });
 
   $effect(() => {
-    const unregisterPages = helpers.registerPage(pages);
-    return unregisterPages;
+    const cleanup = _palette.helpers.registerItem('pages', pages);
+    return cleanup;
   });
 </script>
 
-<div use:portal>
-  <div {...$palette} use:palette class="palette-container">
-    {#if $open}
-      <div {...$panel} use:panel class="palette-panel">
-        <form {...$form} use:form class="palette-search">
-          <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->
-          <label {...$label} use:label>Paleta de commandos</label>
-          <input
-            {...$input}
-            use:input
-            placeholder="Busca paginas... '>' para comandos..."
-          />
-        </form>
-        <ul class="palette-results">
-          {#if $paletteMode === 'PAGES'}
-            {#each $matchingPages as p (p.id)}
-              <li class="result" {...$page} use:page={p}>
-                <div class="result-container">
-                  <div class="result-page-icon">
-                    {#if p.external}
-                      <IconGlobe />
-                    {:else}
-                      <IconHome />
-                    {/if}
-                  </div>
-                  <div class="result-label" title={p.url}>
-                    <span class="result-label-name">{p.name}</span
-                    >{#if p.name !== p.url}
-                      <span class="result-page-url">{p.urlHostPathname}</span>
-                    {/if}
-                  </div>
+<div {...$palette} use:palette class="palette-container">
+  {#if $open}
+    <div {...$panel} use:panel class="palette-panel">
+      <form {...$form} use:form class="palette-search">
+        <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->
+        <label {...$label} use:label>Paleta de commandos</label>
+        <input {...$input} use:input />
+      </form>
+      <ul class="palette-results">
+        {#if $mode === 'commands'}
+          {#each $matchingCommands as c (c.id)}
+            <li class="result" {...$item} use:item={c}>
+              <div class="result-container">
+                <div class="result-label" title={c.description}>
+                  {#if c.category}
+                    <span class="result-label-name">{c.category}: {c.name}</span
+                    >
+                  {:else}
+                    <span class="result-label-name">{c.name}</span>
+                  {/if}
                 </div>
-              </li>
-            {/each}
-            {#if $matchingPages.length === 0}
-              <li class="result">
-                <div class="result-name">No pages found</div>
-              </li>
-            {/if}
-          {:else}
-            {#each $matchingCommands as c (c.id)}
-              <li class="result" {...$command} use:command={c}>
-                <div class="result-container">
-                  <div class="result-label" title={c.description}>
-                    {#if c.category}
-                      <span class="result-label-name"
-                        >{c.category}: {c.name}</span
-                      >
-                    {:else}
-                      <span class="result-label-name">{c.name}</span>
-                    {/if}
-                  </div>
-                  <div class="keybindings">
-                    {#each c.shortcut as s (s)}
-                      <kbd class="keybinding">
-                        {#each shortcutToKbd(s) as kbd (kbd)}
-                          <kbd class="keybinding-key">{kbd}</kbd>
-                          <span class="keybinding-key-separator">+</span>
-                        {/each}
-                      </kbd>
-                    {/each}
-                  </div>
+                <div class="keybindings">
+                  {#each c.shortcut as s (s)}
+                    <kbd class="keybinding">
+                      {#each shortcutToKbd(s) as kbd (kbd)}
+                        <kbd class="keybinding-key">{kbd}</kbd>
+                        <span class="keybinding-key-separator">+</span>
+                      {/each}
+                    </kbd>
+                  {/each}
                 </div>
-              </li>
-            {/each}
-            {#if $matchingCommands.length === 0}
-              <li class="result">
-                <div class="result-name">No commands found</div>
-              </li>
-            {/if}
+              </div>
+            </li>
+          {/each}
+          {#if $matchingCommands.length === 0}
+            <li class="result">
+              <div class="result-name">Ningun comando encontrado</div>
+            </li>
           {/if}
-        </ul>
-      </div>
-    {/if}
-  </div>
+        {:else}
+          {#each $matchingPages as p (p.id)}
+            <li class="result" {...$item} use:item={p}>
+              <div class="result-container">
+                <div class="result-page-icon">
+                  {#if p.external}
+                    <IconGlobe />
+                  {:else}
+                    <IconHome />
+                  {/if}
+                </div>
+                <div class="result-label" title={p.url}>
+                  <span class="result-label-name">{p.name}</span
+                  >{#if p.name !== p.url}
+                    <span class="result-page-url">{p.urlHostPathname}</span>
+                  {/if}
+                </div>
+              </div>
+            </li>
+          {/each}
+          {#if $matchingPages.length === 0}
+            <li class="result">
+              <div class="result-name">Ninguna pagina encontrada</div>
+            </li>
+          {/if}
+        {/if}
+      </ul>
+    </div>
+  {/if}
 </div>
 
 <style lang="postcss">
   .palette-container {
-    @apply contents;
+    /* @apply contents z-10; */
   }
 
   .palette-panel {
-    @apply fixed top-[10vh] left-1/2 right-1/2 z-10 -translate-x-1/2
+    @apply fixed top-[10vh] left-1/2 right-1/2 z-[100] -translate-x-1/2
     flex flex-col w-[90vw] max-w-screen-sm max-h-[80vh] pointer-events-auto
     text-zinc-200 border-solid border border-zinc-500/25 rounded-md
     bg-zinc-900 overflow-y-hidden text-base shadow-lg shadow-zinc-950;

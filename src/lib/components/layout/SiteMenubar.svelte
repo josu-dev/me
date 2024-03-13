@@ -120,7 +120,7 @@
             <Menubar.Item
               class="menu-item"
               on:click={() => {
-                helpers.openPalette();
+                helpers.toggleOpen();
               }}
             >
               <span class="label">Paleta de comandos</span>

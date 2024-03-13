@@ -63,8 +63,8 @@ devDependencies:
     specifier: ^1.2.0
     version: 1.2.0(svelte@5.0.0-next.70)
   svelte-hypercommands:
-    specifier: ^0.0.12
-    version: 0.0.12(svelte@5.0.0-next.70)
+    specifier: ^0.1.1
+    version: 0.1.1(svelte@5.0.0-next.70)
   sveltekit-superforms:
     specifier: ^2.6.2
     version: 2.7.0(@sveltejs/kit@2.5.2)(@types/json-schema@7.0.15)(esbuild-runner@2.2.2)(esbuild@0.20.1)(svelte@5.0.0-next.70)
@@ -3146,8 +3146,8 @@ packages:
       svelte: 5.0.0-next.70
     dev: true
 
-  /svelte-hypercommands@0.0.12(svelte@5.0.0-next.70):
-    resolution: {integrity: sha512-n/z3rjKbiO5hPI2cboh1e3KCBvUaqTiTbOoHNeDpz05m4AHazuKIExp7uzqf7zy3iu0s4n9Ca8/YlkF2qIDhwg==}
+  /svelte-hypercommands@0.1.1(svelte@5.0.0-next.70):
+    resolution: {integrity: sha512-hoNqyHxmwtLYXuivHtN23LWmWCnRnhOloDgjRUMXKWymkXU9DPqv/OdkVd+Pm/E5h8uZRmy+dzl4ccam/mN+ag==}
     peerDependencies:
       svelte: 3.x || 4.x
     dependencies:

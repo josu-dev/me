@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { DEFAULT_OPEN_GRAPH } from '$lib/constants.js';
+  import { DEFAULT_OPEN_GRAPH, DEFAULT_THEME_COLOR } from '$lib/constants.js';
+  import type { Snippet } from 'svelte';
 
   type Props = {
     /**
@@ -39,6 +40,14 @@
      * The image related to the page
      */
     image?: { url: string; alt: string; width: string; height: string };
+    /**
+     * The theme color of the page
+     */
+    themeColor?: string;
+    /**
+     * The children of the component
+     */
+    children?: Snippet;
   };
 
   let {
@@ -56,6 +65,8 @@
       width: DEFAULT_OPEN_GRAPH.IMAGE_WIDTH,
       height: DEFAULT_OPEN_GRAPH.IMAGE_HEIGHT,
     },
+    themeColor= DEFAULT_THEME_COLOR,
+    children
   } = $props<Props>();
 
   let currentUrl = $derived(
@@ -82,5 +93,8 @@
     <meta property="og:image:width" content={image.width} />
     <meta property="og:image:height" content={image.height} />
   {/if}
-  <slot />
+  <meta name="theme-color" content={themeColor}>
+  {#if children}
+    {@render children()}
+  {/if}
 </svelte:head>

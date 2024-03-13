@@ -55,7 +55,7 @@
       name: 'Datos de depuracion',
       category: 'Dev',
       description: 'Alternar la visibilidad de los datos de depuracion',
-      shortcut: '$mod+D',
+      shortcut: ['$mod+D'],
       onAction: () => {
         debug.toggle();
       },

@@ -8,6 +8,7 @@ declare global {
             userPrefs: {
                 fontFamily?: string;
                 sitebar?: boolean;
+                theme?: string;
             }
         }
 

@@ -1,16 +1,16 @@
 import { getUserPreferencesGlobal } from '$lib/global/preferences.svelte.js';
-import { defineCommand, definePage } from 'svelte-hypercommands';
+import { defineActionable, defineNavigable } from 'svelte-hypercommands';
 import { log, toast } from '$lib/utils/index.js';
 import { GITHUB_REPOSITORY } from '$lib/constants.js';
 
 function noop() { }
 
-const commandsNoCategory = defineCommand([
+const commandsNoCategory = defineActionable([
     {
         id: 'global:copy_current_url',
         name: 'Copiar URL actual',
         description: 'Copia la URL actual al portapapeles',
-        shortcut: '$mod+Shift+C',
+        shortcut: ['$mod+Shift+C'],
         onAction: () => {
             const currentURL = window.location.href;
             navigator.clipboard.writeText(currentURL).then(() => {
@@ -30,13 +30,13 @@ const commandsNoCategory = defineCommand([
     }
 ]);
 
-const commandsView = defineCommand([
+const commandsView = defineActionable([
     {
         id: 'global:toggle-site-menubar',
         name: 'Barra del sitio',
         category: 'Vista',
         description: 'Abre/cierra la barra de menus del sitio',
-        shortcut: '$mod+Shift+M',
+        shortcut: ['$mod+Shift+M'],
         onAction: () => {
             const p = getUserPreferencesGlobal();
             if (!p) {
@@ -50,7 +50,7 @@ const commandsView = defineCommand([
         name: 'Pantalla completa',
         category: 'Vista',
         description: 'Activa/desactiva el modo pantalla completa',
-        shortcut: 'F11',
+        shortcut: ['F11'],
         onAction: () => {
             if (document.fullscreenElement) {
                 document.exitFullscreen().catch(noop);
@@ -66,13 +66,13 @@ const commandsView = defineCommand([
 ]);
 
 
-const commandsDev = defineCommand([
+const commandsDev = defineActionable([
     {
         id: 'global:reload_window',
         name: 'Recargar ventana',
         category: 'Dev',
         description: 'Recargar la ventana actual',
-        shortcut: '$mod+Shift+R',
+        shortcut: ['$mod+Shift+R'],
         onAction: () => {
             window.location.reload();
         }
@@ -95,7 +95,7 @@ export const globalCommands = [
     ...commandsDev
 ];
 
-const localPages = definePage([
+const localPages = defineNavigable([
     {
         url: '/',
         name: 'Inicio'
