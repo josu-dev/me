@@ -171,8 +171,8 @@
     "id": "23",
     "author": "Alguien",
     "quote": {
-      "en": "Late is better than never",
-      "es": "Tarde es mejor que nunca"
+      "en": "Better late than never",
+      "es": "Mejor tarde que nunca"
     }
   },
   {
@@ -213,6 +213,14 @@
     "quote": {
       "en": "Ensometimes life is not as we want",
       "es": "Enveces la vida no es como queremos"
+    }
+  },
+  {
+    "id": "29",
+    "author": "Josu",
+    "quote": {
+      "en": "Programming is state handling",
+      "es": "Programar es manejar estados"
     }
   }
 ]

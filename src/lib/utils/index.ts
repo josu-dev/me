@@ -103,10 +103,6 @@ export function createLogger(level: number, dev: boolean = false, formatter: Int
 
 export const { logger: log } = createLogger(logLevel, dev);
 
-export function copyToClipboard(text: string) {
-    navigator.clipboard.writeText(text).catch(log.error);
-}
-
 type AnyTuple = [] | [any, ...any[]];
 
 export function debounced<A extends AnyTuple, EA extends AnyTuple>(

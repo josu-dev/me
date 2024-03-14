@@ -9,6 +9,9 @@
   import { Menubar } from 'bits-ui';
   import { fly, slide } from 'svelte/transition';
   import { helpers } from '$comps/SitePalette.svelte';
+  import { userViewTime } from '$lib/stores/user_view_time.js';
+  import { Popover, Separator } from 'bits-ui';
+
   const prefs = getUserPreferences();
 
   function reloadWindow() {
@@ -195,9 +198,40 @@
         {/key}
       </div>
 
-      <div
-        class="min-w-0 grow w-1/5 h-full flex items-center justify-end"
-      ></div>
+      <div class="min-w-0 grow w-1/5 h-full pr-8 flex items-center justify-end">
+        <div class="hidden sm:block">
+          <Popover.Root disableFocusTrap open={false}>
+            <Popover.Trigger
+              title="Tiempo en la pagina"
+              class="px-3 text-sm font-light text-zinc-400 leading-6 hover:text-zinc-300"
+            >
+              {$userViewTime.human}
+            </Popover.Trigger>
+            <Popover.Content
+              class="menu-content min-w-64 max-w-max"
+              align="end"
+              sideOffset={1}
+            >
+              <div class="flex flex-col px-2">
+                <div class="py-px">Primer visita</div>
+                <div class="pl-2">
+                  - {$userViewTime.firstVisit.getUTCDate()}/{$userViewTime.firstVisit.getUTCMonth()}/{$userViewTime.firstVisit.getUTCFullYear()}
+                </div>
+              </div>
+              <Separator.Root class="menu-separator" />
+              <div class="flex flex-col px-2">
+                <div class="py-px">Tiempo en la pagina</div>
+                <div class="pl-2">
+                  - <span>{$userViewTime.days}</span>d
+                  <span>{$userViewTime.hours}</span>h
+                  <span>{$userViewTime.mins}</span>m
+                  <span>{$userViewTime.secs}</span>s
+                </div>
+              </div>
+            </Popover.Content>
+          </Popover.Root>
+        </div>
+      </div>
     </div>
   {/if}
 

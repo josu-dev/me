@@ -1,6 +1,8 @@
 <script lang="ts">
   import { untrack } from 'svelte';
 
+  const VOLUME = 0.33 * 0.33;
+
   type Props = {
     text: string;
     interval?: number;
@@ -13,8 +15,6 @@
     [k: string]: any;
   };
 
-  function noop() {}
-
   let {
     text,
     start = false,
@@ -22,9 +22,10 @@
     initialDelay = 0,
     initialText = '',
     vanishCursorOnEnd = false,
+    vanishDuration = 10 * 1000,
     sound = true,
-    onend = noop,
-    onstart = noop,
+    onend,
+    onstart,
   } = $props<Props>();
 
   let audio: HTMLAudioElement;
@@ -55,19 +56,31 @@
 
     audio.pause();
     audio.currentTime = 0;
-    onend();
 
     if (vanishCursorOnEnd) {
       setTimeout(() => {
         ended = true;
-      }, 10 * 1000);
-    } else {
-      ended = true;
+        onend?.();
+      }, vanishDuration);
+      return;
     }
+
+    ended = true;
+    onend?.();
+  }
+
+  function startTyping() {
+    audio.play().catch(() => {
+      failedToPlay = true;
+    });
+    onstart?.();
+    untrack(typeNextLetter);
   }
 
   $effect(() => {
     audio = new Audio('/audio/typewriter.m4a');
+    audio.loop = true;
+    audio.playbackRate = 1.5;
 
     return () => {
       audio.pause();
@@ -75,21 +88,18 @@
     };
   });
 
-  function startTyping() {
-    if (sound) {
-      audio.currentTime = 0;
-      audio.loop = true;
-      audio.volume = 0.33 * 0.33;
-      audio.playbackRate = 1.5;
-      audio.play().catch(() => {
-        failedToPlay = true;
-      });
+  // Should be called after audio initialization
+  $effect(() => {
+    if (!audio) {
+      return;
     }
 
-    onstart();
-
-    typeNextLetter();
-  }
+    if (sound) {
+      audio.volume = VOLUME;
+    } else {
+      audio.volume = 0;
+    }
+  });
 
   $effect(() => {
     if (!start) {
@@ -97,7 +107,7 @@
     }
 
     if (initialDelay <= 0) {
-      untrack(startTyping);
+      startTyping();
       return;
     }
 

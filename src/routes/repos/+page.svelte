@@ -112,7 +112,7 @@
     <section class="flex flex-col h-full overflow-hidden">
       {#if !selectedRepo}
         <div class="grid place-items-center h-full">
-          <p class="text-zinc-300 text-lg text-balance">
+          <p class="text-zinc-300 text-lg text-center text-balance">
             Prueba seleccionando un repositorio
             <span class="animate-bounce inline-block">😉</span>
           </p>
