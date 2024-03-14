@@ -1,4 +1,8 @@
 import { browser, dev } from '$app/environment';
+import IconCirclealert from '$comps/icons/IconCirclealert.svelte';
+import IconCirclecheck from '$comps/icons/IconCirclecheck.svelte';
+import IconCirclex from '$comps/icons/IconCirclex.svelte';
+import IconInfo from '$comps/icons/IconInfo.svelte';
 import { env } from '$env/dynamic/public';
 import { DEFAULT_LOG_FORMATTER, DEFAULT_LOG_LEVEL_CLIENT, TOAST } from '$lib/constants.js';
 import * as sftoast from 'svelte-french-toast';
@@ -186,9 +190,49 @@ export function toastFormLevelErrors<T extends Record<string, unknown>>(errors: 
 }
 
 export const toast = {
-    error: (message: sftoast.Renderable) => sftoast.toast.error(message, { duration: TOAST.DURATION_ERROR }),
-    info: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_INFO, icon: '📨' }),
-    success: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_SUCCESS }),
-    warn: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_WARNING, icon: '🚧' }),
+    error: (message: sftoast.Renderable) => sftoast.toast.error(message, { duration: TOAST.DURATION_ERROR, icon: IconCirclex }),
+    info: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_INFO, icon: IconInfo }),
+    success: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_SUCCESS, icon: IconCirclecheck }),
+    warn: (message: sftoast.Renderable) => sftoast.toast.success(message, { duration: TOAST.DURATION_WARNING, icon: IconCirclealert }),
     formLevelErrors: toastFormLevelErrors,
 };
+
+export function createSeededRandom(seed?: number) {
+    seed = seed ?? 13032024;
+
+    return {
+        next() {
+            seed = (seed! * 16807) % 2147483647;
+            return (seed - 1) / 2147483646;
+        },
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    seed = (seed! * 16807) % 2147483647;
+                    return {
+                        value: (seed - 1) / 2147483646,
+                        done: false
+                    };
+                }
+            };
+        }
+    };
+}
+
+export function predictableShuffle<T>(array: T[], seed?: number): T[] {
+    const random = createSeededRandom(seed);
+
+    let currentIndex = array.length;
+    let temporaryValue: T;
+    let randomIndex: number;
+
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(random.next() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}

@@ -102,7 +102,7 @@
 />
 
 <main class="flex flex-col md:px-4 h-full">
-  <header class="text-white">
+  <header class="text-zinc-50">
     <h1 class="text-2xl font-bold mt-4">Repositorios publicos</h1>
   </header>
 

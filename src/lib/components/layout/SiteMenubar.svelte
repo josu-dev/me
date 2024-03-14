@@ -49,6 +49,7 @@
   const localPages = [
     { name: 'Inicio', url: '/' },
     { name: 'Blog', url: '/blog' },
+    { name: 'Cita diaria', url: '/daily_quote' },
     { name: 'Proyectos publicos', url: '/repos' },
     { name: 'Sobre mi', url: '/about' },
   ];

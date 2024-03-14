@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { DEFAULT_OPEN_GRAPH, DEFAULT_THEME_COLOR } from '$lib/constants.js';
+  import { DEFAULT_OPEN_GRAPH } from '$lib/constants.js';
   import type { Snippet } from 'svelte';
 
   type Props = {
@@ -14,8 +14,10 @@
     description: string;
     /**
      * The canonical URL of the page
+     * 
+     * @default 'current'
      */
-    canonical?: 'current' | string;
+    canonical?: 'current' | string & {};
     /**
      * The locale of the page
      */
@@ -34,8 +36,10 @@
     type?: 'article' | 'website';
     /**
      * The URL of the page
+     * 
+     * @default 'current'
      */
-    url?: 'current' | string;
+    url?: 'current' | string & {};
     /**
      * The image related to the page
      */
@@ -45,7 +49,7 @@
      */
     themeColor?: string;
     /**
-     * The children of the component
+     * Additional meta tags or links to be added to the head
      */
     children?: Snippet;
   };
@@ -53,19 +57,19 @@
   let {
     title,
     description,
-    canonical,
-    locale,
-    siteName,
+    canonical = 'current',
+    locale = DEFAULT_OPEN_GRAPH.LOCALE,
+    siteName = DEFAULT_OPEN_GRAPH.SITE_NAME,
     titleOG,
-    type,
-    url,
+    type = 'website',
+    url = 'current',
     image = {
       url: DEFAULT_OPEN_GRAPH.IMAGE_URL,
       alt: DEFAULT_OPEN_GRAPH.IMAGE_ALT,
       width: DEFAULT_OPEN_GRAPH.IMAGE_WIDTH,
       height: DEFAULT_OPEN_GRAPH.IMAGE_HEIGHT,
     },
-    themeColor= DEFAULT_THEME_COLOR,
+    themeColor= DEFAULT_OPEN_GRAPH.THEME_COLOR,
     children
   } = $props<Props>();
 

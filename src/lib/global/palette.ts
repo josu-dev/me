@@ -105,6 +105,10 @@ const localPages = defineNavigable([
         name: 'Blog'
     },
     {
+        url: '/daily_quote',
+        name: 'Cita diaria'
+    },
+    {
         url: '/repos',
         name: 'Proyectos publicos'
     },

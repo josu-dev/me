@@ -49,7 +49,7 @@ type UseEscapeKeyOptions = {
     preventDefault?: boolean;
 };
 
-export function escapekey(el: HTMLElement, options:UseEscapeKeyOptions) {
+export function escapekey(el: HTMLElement, options: UseEscapeKeyOptions) {
     const document = el.ownerDocument;
     let eventHandler = options.handler;
     let preventDefault = options.preventDefault !== false;
@@ -73,6 +73,38 @@ export function escapekey(el: HTMLElement, options:UseEscapeKeyOptions) {
             }
             if (newOptions.preventDefault !== undefined) {
                 preventDefault = newOptions.preventDefault;
+            }
+        }
+    };
+}
+
+type UseCopytoclipboardOptions = {
+    text: string;
+    onsuccess?: () => void;
+    onerror?: (error: unknown) => void;
+};
+
+export function copytoclipboard(el: HTMLElement, options: UseCopytoclipboardOptions) {
+    function onclick() {
+        navigator.clipboard.writeText(options.text).then(options.onsuccess, onerror);
+    }
+
+    const config = { passive: false, capture: true };
+    el.addEventListener("click", onclick, config);
+
+    return {
+        destroy() {
+            el.removeEventListener("click", onclick, config);
+        },
+        update(updated: Partial<UseCopytoclipboardOptions>) {
+            if (updated.text) {
+                options.text = updated.text;
+            }
+            if (updated.onsuccess) {
+                options.onsuccess = updated.onsuccess;
+            }
+            if (updated.onerror) {
+                options.onerror = updated.onerror;
             }
         }
     };

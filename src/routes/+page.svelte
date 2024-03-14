@@ -13,7 +13,7 @@
   >
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-6xl font-bold text-white text-center leading-tight">
+        <h1 class="text-6xl font-bold text-zinc-50 text-center leading-tight">
           Listo?
         </h1>
         <p

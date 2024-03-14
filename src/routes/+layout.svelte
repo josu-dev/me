@@ -30,9 +30,9 @@
 {/if}
 
 <Toaster
-  position="bottom-left"
-  containerClassName="omc-toast-container"
-  toastOptions={{ className: 'omc-toast' }}
+  position="bottom-right"
+  containerClassName="french-toast-container"
+  toastOptions={{ className: 'french-toast-message' }}
 />
 
 <div class="relative flex flex-col h-full overflow-x-hidden overflow-y-auto">  

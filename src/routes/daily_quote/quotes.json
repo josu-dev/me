@@ -1,0 +1,218 @@
+[
+  {
+    "id": "1",
+    "author": "Josu",
+    "quote": {
+      "en": "Cry less, code more",
+      "es": "Llora menos, programa mas"
+    }
+  },
+  {
+    "id": "2",
+    "author": "Meme",
+    "quote": {
+      "en": "Frontend is just showing pretty jsons",
+      "es": "Frontend es solo mostrar jsons lindos"
+    }
+  },
+  {
+    "id": "3",
+    "author": "Bugs",
+    "quote": {
+      "en": "You learn more from errors than from successes",
+      "es": "Aprendes mas de los errores que de los aciertos"
+    }
+  },
+  {
+    "id": "4",
+    "author": "Josu",
+    "quote": {
+      "en": "Dont overthink, just start doing it",
+      "es": "No pienses demasiado, solo empieza a hacerlo"
+    }
+  },
+  {
+    "id": "5",
+    "author": "Josu",
+    "quote": {
+      "en": "Don't think from inside/outside the box, think like being the box",
+      "es": "No pienses desde dentro/fuera de la caja, piensa como si fueras la caja"
+    }
+  },
+  {
+    "id": "6",
+    "author": "Josu",
+    "quote": {
+      "en": "Sleep is good",
+      "es": "Dormir hace bien"
+    }
+  },
+  {
+    "id": "7",
+    "author": "Alguien",
+    "quote": {
+      "en": "Good defaults makes a library good",
+      "es": "Buenos valores por defecto hacen a una libreria buena"
+    }
+  },
+  {
+    "id": "8",
+    "author": "Josu",
+    "quote": {
+      "en": "Coding is like math, the simpler the solution, the beutiful it is",
+      "es": "Programar es como matematicas, la solucion mas simple, mas bonita es"
+    }
+  },
+  {
+    "id": "9",
+    "author": "Josu",
+    "quote": {
+      "en": "If there is no code, there is no bug ;)",
+      "es": "Si no hay codigo, no hay bug ;)"
+    }
+  },
+  {
+    "id": "10",
+    "author": "Josu",
+    "quote": {
+      "en": "Just think about now and the near future, not in every possible parallel universe",
+      "es": "Solo piensa en el ahora y el futuro cercano, no en cada posible universo paralelo"
+    }
+  },
+  {
+    "id": "12",
+    "author": "Alguien",
+    "quote": {
+      "en": "Anything on excess is bad",
+      "es": "Cualquier cosa en exceso es mala"
+    }
+  },
+  {
+    "id": "13",
+    "author": "Josu",
+    "quote": {
+      "en": "All is funny until bugs appear",
+      "es": "Todo es divertido hasta que aparecen los bugs"
+    }
+  },
+  {
+    "id": "14",
+    "author": "Josu",
+    "quote": {
+      "en": "There is nothing that some boiling mates and 'Cigarret After Sex' can't fix",
+      "es": "No hay nada que unos mates hirviendo y 'Cigarret After Sex' no puedan arreglar"
+    }
+  },
+  {
+    "id": "15",
+    "author": "Josu",
+    "quote": {
+      "en": "You can, you just need to spend time",
+      "es": "Vos podes, solo necesitas dedicarle tiempo"
+    }
+  },
+  {
+    "id": "16",
+    "author": "Josu",
+    "quote": {
+      "en": "A good programmer isn't the one who knows more but the one who knows how to use the little he knows in the best way",
+      "es": "Un buen programador no es el que mas sabe sino el que sabe usar lo poco que sabe de la mejor forma"
+    }
+  },
+  {
+    "id": "17",
+    "author": "The Primeagen",
+    "quote": {
+      "en": "Noneone cares about how hard you worked, just if you delivered or not",
+      "es": "A nadie le importa cuan duro trabajaste, solo si entregaste o no"
+    }
+  },
+  {
+    "id": "18",
+    "author": "Alguien",
+    "quote": {
+      "en": "Give time to time",
+      "es": "Dale tiempo al tiempo"
+    }
+  },
+  {
+    "id": "19",
+    "author": "Josu",
+    "quote": {
+      "en": "If you want to do something, spend time on it every day and sooner or later you will achieve it",
+      "es": "Si queres hacer algo dedicale un tiempo todos los dias y tarde o temprano lo vas a conseguir"
+    }
+  },
+  {
+    "id": "20",
+    "author": "Josu",
+    "quote": {
+      "en": "Something is hard until you understand it",
+      "es": "Algo es dificil hasta que lo entendes"
+    }
+  },
+  {
+    "id": "21",
+    "author": "Josu",
+    "quote": {
+      "en": "If the door doesn't open, try with a window and if not, make a hole",
+      "es": "Si la puerta no abre, intenta con una ventana y si no, hace un agujero"
+    }
+  },
+  {
+    "id": "22",
+    "author": "Josu",
+    "quote": {
+      "en": "If you don't know what to do, just pick anything without thinking",
+      "es": "Si no sabes por donde empezar, solo elegi cualquier cosa sin pensar"
+    }
+  },
+  {
+    "id": "23",
+    "author": "Alguien",
+    "quote": {
+      "en": "Late is better than never",
+      "es": "Tarde es mejor que nunca"
+    }
+  },
+  {
+    "id": "24",
+    "author": "Josu",
+    "quote": {
+      "en": "Some things just don't have an explanation, and it's better that way",
+      "es": "Algunas cosas simplemente no tienen explicacion, y es mejor asi"
+    }
+  },
+  {
+    "id": "25",
+    "author": "Josu",
+    "quote": {
+      "en": "Sometime you just need to take a deep breath and keep going",
+      "es": "A veces solo necesitas respirar profundo y seguir"
+    }
+  },
+  {
+    "id": "26",
+    "author": "Josu",
+    "quote": {
+      "en": "A little bit of your time can mean a lot to someone else",
+      "es": "Un poquito de tu tiempo puede significar mucho para otra persona"
+    }
+  },
+  {
+    "id": "27",
+    "author": "Alguien",
+    "quote": {
+      "en": "Don't do what you don't like to be done to you",
+      "es": "No hagas lo que no te gusta que te hagan"
+    }
+  },
+  {
+    "id": "28",
+    "author": "Meme",
+    "quote": {
+      "en": "Ensometimes life is not as we want",
+      "es": "Enveces la vida no es como queremos"
+    }
+  }
+]
