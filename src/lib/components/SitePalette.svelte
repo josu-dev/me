@@ -8,6 +8,7 @@
   import { goto } from '$app/navigation';
 
   const _palette = createPalette({
+    debounce: 250,
     defaults: {
       open: false,
       placeholder: `Busca paginas... '>' para comandos...`,
@@ -17,20 +18,15 @@
         type: HYPER_ITEM.ACTIONABLE,
         prefix: '>',
         mapToSearch: (c) => c.category + c.name,
-        closeAction: 'RESET_CLOSE',
         closeOn: 'ALWAYS',
+        openAction: 'RESET',
         shortcut: ['$mod+Shift+P'],
         sortMode: 'SORTED',
       },
       pages: {
         type: HYPER_ITEM.NAVIGABLE,
         prefix: '',
-        mapToSearch: (p) => p.urlHostPathname,
-        closeAction: 'RESET_CLOSE',
-        closeOn: 'ALWAYS',
-        sortBy: ['name', 'urlHostPathname'],
-        sortMode: 'SORTED',
-        shortcut: ['$mod+P'],
+        mapToSearch: (p) => p.name + p.urlHostPathname,
         onNavigation: (p) => {
           if (p.external) {
             window.open(p.url, '_blank', 'noopener');
@@ -38,6 +34,11 @@
             goto(p.url);
           }
         },
+        closeOn: 'ALWAYS',
+        openAction: 'UPDATE',
+        shortcut: ['$mod+P'],
+        sortBy: ['name', 'urlHostPathname'],
+        sortMode: 'SORTED',
       },
     },
     closeOnClickOutside: true,
