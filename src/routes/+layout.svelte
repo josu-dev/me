@@ -50,3 +50,21 @@
   <div class="h-8 flex-none">
   </div>
 </div>
+
+<style lang="postcss">
+  :global(.french-toast-container div.french-toast-message ){
+    @apply text-zinc-100 bg-primary-950 border border-base-500/25;
+  }
+  :global(.french-toast-container svg.lucide-circle-x ){
+    @apply size-5 fill-red-700;
+  }
+  :global(.french-toast-container svg.lucide-circle-alert ){
+    @apply size-5 fill-amber-700;
+  }
+  :global(.french-toast-container svg.lucide-circle-check ){
+    @apply size-5 fill-green-700;
+  }
+  :global(.french-toast-container svg.lucide-info ){
+    @apply size-5 fill-blue-700;
+  }
+</style>

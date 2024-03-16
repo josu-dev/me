@@ -163,35 +163,22 @@ body {
     overflow-x: hidden;
 }
 
-body * {
+/* Globals for scrollbar */
+* {
     @apply scrollbar-2 sb-thumb-primary-800/25 sb-thumb-hover-primary-800/75;
 }
-body[data-theme="light"] * {
+
+[data-theme="light"] * {
     @apply sb-thumb-primary-300/50 sb-thumb-hover-primary-300/75;
 }
 
-body *::-webkit-scrollbar-corner {
+*::-webkit-scrollbar-corner {
     background-color: transparent;
 }
 
+/* Globals for icons */
 .lucide {
     @apply size-full;
-}
-
-.french-toast-container div.french-toast-message {
-    @apply bg-sky-950 text-zinc-100 border border-zinc-500/25;
-}
-.french-toast-container svg.lucide-info {
-    @apply size-5 fill-blue-700;
-}
-.french-toast-container svg.lucide-circle-x {
-    @apply size-5 fill-red-700;
-}
-.french-toast-container svg.lucide-circle-check {
-    @apply size-5 fill-green-700;
-}
-.french-toast-container svg.lucide-circle-alert {
-    @apply size-5 fill-amber-700;
 }
 
 @layer components {

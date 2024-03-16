@@ -291,12 +291,22 @@
 </main>
 
 <style>
+  /* For the variable prefix @see {$lib/server/shiki.ts@highlightMarkdown} */
+  :global([data-theme='dark'] .shiki),
+  :global([data-theme='dark'] .shiki span) {
+    background-color: var(--dark-bg);
+    color: var(--dark);
+    font-style: var(--dark-font-style);
+    font-weight: var(--dark-font-weight);
+    text-decoration: var(--dark-text-decoration);
+  }
+
   :global([data-theme='light'] .shiki),
   :global([data-theme='light'] .shiki span) {
-    background-color: var(--shiki-light-bg) !important;
-    color: var(--shiki-light) !important;
-    font-style: var(--shiki-light-font-style) !important;
-    font-weight: var(--shiki-light-font-weight) !important;
-    text-decoration: var(--shiki-light-text-decoration) !important;
+    background-color: var(--light-bg);
+    color: var(--light);
+    font-style: var(--light-font-style);
+    font-weight: var(--light-font-weight);
+    text-decoration: var(--light-text-decoration);
   }
 </style>

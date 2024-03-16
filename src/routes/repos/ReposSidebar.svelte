@@ -26,11 +26,11 @@
     >
       <Accordion.Header>
         <Accordion.Trigger
-          class="flex w-full flex-1 items-center justify-between py-2 text-base text-base-200 font-medium transition-all [&[data-state=open]>span>div]:rotate-180 "
+          class="group flex w-full flex-1 items-center justify-between py-2 text-base text-base-200 font-medium transition-all [&[data-state=open]>span>div]:rotate-180 "
         >
           {item.title}
           <span
-            class="inline-flex size-8 items-center justify-center rounded-[7px] bg-transparent transition-all hover:bg-dark-10"
+            class="inline-flex size-8 items-center justify-center bg-transparent rounded-md transition-all group-hover:bg-base-500/25"
           >
             <div class="size-[18px] transition-all duration-200">
               <IconChevrondown />
