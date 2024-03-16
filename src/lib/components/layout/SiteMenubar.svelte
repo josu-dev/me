@@ -11,6 +11,9 @@
   import { helpers } from '$comps/SitePalette.svelte';
   import { userViewTime } from '$lib/stores/user_view_time.js';
   import { Popover, Separator } from 'bits-ui';
+  import IconSun from '$comps/icons/IconSun.svelte';
+  import IconMoon from '$comps/icons/IconMoon.svelte';
+  import { untrack } from 'svelte';
 
   const prefs = getUserPreferences();
 
@@ -58,22 +61,35 @@
   ];
 
   const externalPages = [
-    { name: 'Repositorio', url: GITHUB_REPOSITORY },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/j-josu/' },
+    { name: 'Repositorio', url: GITHUB_REPOSITORY },
   ];
+  let themeIsDark = $derived(prefs.theme.value === 'dark');
+  let selectedFont = $state(prefs.font.family);
+  $effect(() => {
+    if (untrack(() => prefs.font.family) === selectedFont) {
+      return;
+    }
+
+    prefs.setFontFamily(selectedFont);
+  });
 </script>
 
-<div class="relative h-full text-zinc-200">
+<div class="relative h-full text-base-200">
   {#if prefs.sitebar.open}
     <div
       in:fly={{ x: 1920, duration: 250 }}
       out:fly={{ x: 1920, duration: 250 }}
-      class="h-full flex flex-row border-b border-zinc-500/25 bg-zinc-950/95 px-[3px] shadow-sm"
+      class="h-full flex flex-row border-b border-base-500/25 bg-base-950 px-[3px] shadow-sm"
     >
       <Menubar.Root class="grow w-1/5 h-full flex items-center justify-start ">
         <Menubar.Menu>
           <Menubar.Trigger class="menu-trigger">General</Menubar.Trigger>
-          <Menubar.Content class="menu-content" align="start" sideOffset={1}>
+          <Menubar.Content
+            class="menu-content  light:bg-base-950"
+            align="start"
+            sideOffset={1}
+          >
             <Menubar.Item class="menu-item">
               <span class="label">Nada</span>
             </Menubar.Item>
@@ -82,7 +98,11 @@
 
         <Menubar.Menu>
           <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
-          <Menubar.Content class="menu-content" align="start" sideOffset={1}>
+          <Menubar.Content
+            class="menu-content  light:bg-base-950"
+            align="start"
+            sideOffset={1}
+          >
             <Menubar.Item
               class="menu-item"
               on:click={() => {
@@ -104,11 +124,11 @@
                 </div>
               </Menubar.SubTrigger>
               <Menubar.SubContent
-                class="menu-content"
+                class="menu-content  light:bg-base-950"
                 align="start"
                 sideOffset={0}
               >
-                <Menubar.RadioGroup bind:value={prefs.font.family}>
+                <Menubar.RadioGroup bind:value={selectedFont}>
                   {#each prefs.font.available as family (family)}
                     <Menubar.RadioItem value={family.value} class="menu-item">
                       <Menubar.RadioIndicator class="icon-left p-0.5">
@@ -120,6 +140,26 @@
                 </Menubar.RadioGroup>
               </Menubar.SubContent>
             </Menubar.Sub>
+            <Menubar.CheckboxItem
+              class="menu-item"
+              checked={themeIsDark}
+              on:click={(e) => {
+                e.preventDefault();
+                prefs.toggleTheme();
+              }}
+            >
+              <div class="icon-left p-0.5">
+                {#if !themeIsDark}
+                  <IconSun />
+                {/if}
+                <Menubar.CheckboxIndicator>
+                  <IconMoon />
+                </Menubar.CheckboxIndicator>
+              </div>
+              <span class="label">
+                {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
+              </span>
+            </Menubar.CheckboxItem>
             <Menubar.Separator class="menu-separator" />
             <Menubar.Item
               class="menu-item"
@@ -145,7 +185,11 @@
 
         <Menubar.Menu>
           <Menubar.Trigger class="menu-trigger">Paginas</Menubar.Trigger>
-          <Menubar.Content class="menu-content" align="start" sideOffset={1}>
+          <Menubar.Content
+            class="menu-content  light:bg-base-950"
+            align="start"
+            sideOffset={1}
+          >
             {#each localPages as page (page.url)}
               {@const current = currentUrlPathname === page.url}
               <Menubar.Item
@@ -189,7 +233,7 @@
             >
             {#if pageStatusError}
               <span
-                class="absolute top-1.5 left-full translate-x-1.5 text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500"
+                class="absolute top-1.5 left-full translate-x-1.5 text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
               >
                 {pageStatusError}
               </span>
@@ -203,12 +247,12 @@
           <Popover.Root disableFocusTrap open={false}>
             <Popover.Trigger
               title="Tiempo en la pagina"
-              class="px-3 text-sm font-light text-zinc-400 leading-6 hover:text-zinc-300"
+              class="px-3 text-sm font-light text-base-400 leading-6 hover:text-base-300"
             >
               {$userViewTime.human}
             </Popover.Trigger>
             <Popover.Content
-              class="menu-content min-w-64 max-w-max"
+              class="menu-content min-w-64 max-w-max light:bg-base-950"
               align="end"
               sideOffset={1}
             >
@@ -236,7 +280,7 @@
   {/if}
 
   <div class="absolute top-0 right-0 h-full">
-    <button on:click={toggleSitebar} class="text-zinc-200 h-full p-1">
+    <button on:click={toggleSitebar} class="text-base-200 h-full p-1">
       {#if prefs.sitebar.open}
         <div
           in:fly={{ x: -32, duration: 250, delay: 250 }}
@@ -263,14 +307,14 @@
     @apply inline-flex items-center justify-center rounded px-3 cursor-pointer text-base font-light;
   }
   :global(.menu-trigger[data-state='open']) {
-    @apply bg-zinc-500/25;
+    @apply bg-base-500/25;
   }
   :global(.menu-trigger[data-highlighted]) {
-    @apply bg-zinc-500/25;
+    @apply bg-base-500/25;
   }
 
   :global(.menu-content) {
-    @apply z-50 w-full max-w-[min(24rem,90vw)] rounded border border-zinc-500/50 bg-zinc-900 px-1 py-1.5 shadow-sm text-gray-100;
+    @apply z-50 w-full max-w-[min(24rem,90vw)] rounded border border-base-500/50 bg-base-900 px-1 py-1.5 shadow-sm text-base-100;
   }
 
   :global(.menu-item) {
@@ -286,10 +330,13 @@
     @apply col-start-3;
   }
   :global(.menu-item[data-highlighted]) {
-    @apply bg-zinc-500/25;
+    @apply bg-base-500/25;
+  }
+  :global([data-theme='light'] .menu-item[data-highlighted]) {
+    @apply bg-base-500/10;
   }
 
   :global(.menu-separator) {
-    @apply my-1 -ml-1 -mr-1 block h-px bg-zinc-500/50;
+    @apply my-1 -ml-1 -mr-1 block h-px bg-base-500/50;
   }
 </style>

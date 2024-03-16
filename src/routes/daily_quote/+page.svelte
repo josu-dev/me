@@ -56,11 +56,11 @@
   >
     <div class="row-start-2 row-span-4 grid">
       <div class="flex flex-col">
-        <h1 class="text-6xl font-bold text-zinc-50 text-center leading-tight">
+        <h1 class="text-6xl font-bold text-base-50 text-center leading-tight">
           Cita del dia
         </h1>
         <div
-          class="flex flex-col mt-8 p-1 rounded-2xl transition-[box-shadow,background-color] duration-500 uniform-shadow hover:shadow-sky-500/[0.01] hover:bg-sky-500/[0.01] md:p-4 md:mt-16 xl:mt-24"
+          class="flex flex-col mt-8 p-1 rounded-2xl transition-[box-shadow,background-color] duration-500 uniform-shadow hover:shadow-primary-500/[0.01] hover:bg-primary-500/[0.01] md:p-4 md:mt-16 xl:mt-24"
           role="button"
           use:copytoclipboard={{
             text: quoteCopy,
@@ -72,7 +72,7 @@
             },
           }}
         >
-          <p class="text-4xl font-bold text-zinc-100 self-start">
+          <p class="text-4xl font-bold text-base-100 self-start">
             <TypeWritter
               text={quoteMessage}
               start
@@ -82,7 +82,7 @@
             />
           </p>
           <p
-            class="text-lg text-zinc-300 italic self-end {showAuthor
+            class="text-lg text-base-300 italic self-end {showAuthor
               ? 'mt-[1em]'
               : ''}"
           >
@@ -101,7 +101,7 @@
 
   <div class="absolute right-2 bottom-0 flex md:right-4">
     <button
-      class="size-8 p-px text-zinc-200 rounded-md"
+      class="size-8 p-px text-base-200 rounded-md"
       title={soundEnabledLabel}
       on:click={toggleSoundEffect}
     >

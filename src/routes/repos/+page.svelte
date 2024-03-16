@@ -102,7 +102,7 @@
 />
 
 <main class="flex flex-col md:px-4 h-full">
-  <header class="text-zinc-50">
+  <header class="text-base-50">
     <h1 class="text-2xl font-bold mt-4">Repositorios publicos</h1>
   </header>
 
@@ -112,13 +112,15 @@
     <section class="flex flex-col h-full overflow-hidden">
       {#if !selectedRepo}
         <div class="grid place-items-center h-full">
-          <p class="text-zinc-300 text-lg text-center text-balance">
+          <p class="text-base-300 text-lg text-center text-balance">
             Prueba seleccionando un repositorio
             <span class="animate-bounce inline-block">😉</span>
           </p>
         </div>
       {:else}
-        <div class="flex-1 rounded-md overflow-y-auto">
+        <div
+          class="flex-1 rounded-md overflow-y-auto border border-base-500/25"
+        >
           {#if selectedRepoError}
             <div class="grid place-items-center h-full">
               <p class="text-red-500 text-balance">{selectedRepoError}</p>
@@ -134,17 +136,17 @@
           {:else}
             <code
               title="{selectedRepo.name} README.md"
-              class="flex-1 overflow-auto [&>pre]:p-4 [&_pre.shiki]:whitespace-pre-wrap"
+              class="[&>pre]:min-h-full overflow-auto [&>pre]:p-4 [&_pre.shiki]:whitespace-pre-wrap break-words"
               >{@html repoReadmeHtml}</code
             >
           {/if}
         </div>
-        <div class="h-max mt-4" class:opacity-75={!repoInfoOpen}>
+        <div class="h-max mt-4">
           <Collapsible.Root
             bind:open={repoInfoOpen}
-            class="rounded-md p-4 border border-zinc-500/25 bg-zinc-950/75 shadow"
+            class="rounded-md p-4 border border-base-500/25 bg-base-950/75 shadow light:bg-base-950"
           >
-            <div class="flex items-center gap-4 text-zinc-200">
+            <div class="flex items-center gap-4 text-base-200">
               <h3 class="text-xl font-medium">{selectedRepo.name}</h3>
               <Collapsible.Trigger
                 title={repoInfoOpen
@@ -166,24 +168,24 @@
               </Collapsible.Trigger>
               {#if selectedRepo.language}
                 <span
-                  class="ml-auto badge-lg text-2xl bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
+                  class="ml-auto badge-lg text-2xl bg-base-950 ring-1 ring-primary-950 light:ring-primary-600 text-base-200"
                   style="font-size:inherit;">{selectedRepo.language}</span
                 >
               {/if}
             </div>
-            <Collapsible.Content class="mt-2 space-y-4" transition={slide}>
+            <Collapsible.Content class="pt-2 space-y-4" transition={slide}>
               {#if selectedRepo.topics.length}
                 <div class="flex flex-wrap gap-1">
                   {#each selectedRepo.topics as tag (tag)}
                     <span
-                      class="badge bg-zinc-950 ring-1 ring-sky-950 text-zinc-300"
+                      class="badge bg-base-950 ring-1 ring-primary-950 light:ring-primary-600 text-base-300"
                       >{tag}</span
                     >
                   {/each}
                 </div>
               {/if}
               <div class="space-y-2 text-base">
-                <p class="text-zinc-300">{selectedRepo.description}</p>
+                <p class="text-base-300">{selectedRepo.description}</p>
                 <div class="flex flex-col gap-2">
                   <h4 class="sr-only">Estadisticas</h4>
                   <div class="flex gap-4">
@@ -192,7 +194,7 @@
                       class="flex items-center gap-1 text-neutral-400"
                     >
                       <IconGitfork />
-                      <span class="whitespace-pre text-zinc-300"
+                      <span class="whitespace-pre text-base-300"
                         >{selectedRepo.forks}</span
                       >
                     </div>
@@ -201,7 +203,7 @@
                       class="flex items-center gap-1 text-yellow-500"
                     >
                       <IconStar />
-                      <span class="whitespace-pre text-zinc-300"
+                      <span class="whitespace-pre text-base-300"
                         >{selectedRepo.stars}</span
                       >
                     </div>
@@ -210,7 +212,7 @@
                       class="flex items-center gap-1 text-violet-500"
                     >
                       <IconCircledot />
-                      <span class="whitespace-pre text-zinc-300"
+                      <span class="whitespace-pre text-base-300"
                         >{selectedRepo.issues}</span
                       >
                     </div>
@@ -219,18 +221,18 @@
                       class="flex items-center gap-1 text-neutral-400"
                     >
                       <IconFile />
-                      <span class="whitespace-pre text-zinc-300"
+                      <span class="whitespace-pre text-base-300"
                         >{selectedRepo.size} kb</span
                       >
                     </div>
                   </div>
                   <div class="flex flex-wrap gap-x-8">
-                    <div class="text-zinc-300">
+                    <div class="text-base-300">
                       Creado: {new Date(
                         selectedRepo.createdAt ?? '',
                       ).toLocaleString()}
                     </div>
-                    <div class="text-zinc-300">
+                    <div class="text-base-300">
                       Actualizado: {new Date(
                         selectedRepo.updatedAt ?? '',
                       ).toLocaleString()}
@@ -245,7 +247,7 @@
                         href={selectedRepo.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-sky-500 a">Github</a
+                        class="text-primary-500 a">Github</a
                       >
                     </li>
                     {#if selectedRepo.homepage}<li>
@@ -253,7 +255,7 @@
                           href={selectedRepo.homepage}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="text-sky-500 a">Pagina</a
+                          class="text-primary-500 a">Pagina</a
                         >
                       </li>{/if}
                     {#if selectedRepo.license}<li>
@@ -261,7 +263,7 @@
                           href={selectedRepo.license.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="text-sky-500 a">Licencia</a
+                          class="text-primary-500 a">Licencia</a
                         >
                       </li>{/if}
                   </ul>
@@ -287,3 +289,14 @@
     </aside>
   </div>
 </main>
+
+<style>
+  :global([data-theme='light'] .shiki),
+  :global([data-theme='light'] .shiki span) {
+    background-color: var(--shiki-light-bg) !important;
+    color: var(--shiki-light) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+</style>

@@ -110,16 +110,24 @@
 
 <div {...$palette} use:palette class="palette-container">
   {#if $open}
-    <div {...$panel} use:panel class="palette-panel">
+    <div
+      {...$panel}
+      use:panel
+      class="palette-panel light:bg-base-950 light:shadow-base-600"
+    >
       <form {...$form} use:form class="palette-search">
         <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->
         <label {...$label} use:label>Paleta de commandos</label>
-        <input {...$input} use:input />
+        <input {...$input} use:input class="light:!bg-base-900" />
       </form>
       <ul class="palette-results">
         {#if $mode === 'commands'}
           {#each $matchingCommands as c (c.id)}
-            <li class="result" {...$item} use:item={c}>
+            <li
+              class="result light:data-[selected]:bg-primary-300"
+              {...$item}
+              use:item={c}
+            >
               <div class="result-container">
                 <div class="result-label" title={c.description}>
                   {#if c.category}
@@ -149,7 +157,11 @@
           {/if}
         {:else}
           {#each $matchingPages as p (p.id)}
-            <li class="result" {...$item} use:item={p}>
+            <li
+              class="result light:data-[selected]:bg-primary-300"
+              {...$item}
+              use:item={p}
+            >
               <div class="result-container">
                 <div class="result-page-icon">
                   {#if p.external}
@@ -186,8 +198,8 @@
   .palette-panel {
     @apply fixed top-[10vh] left-1/2 right-1/2 z-[100] -translate-x-1/2
     flex flex-col w-[90vw] max-w-screen-sm max-h-[80vh] pointer-events-auto
-    text-zinc-200 border-solid border border-zinc-500/25 rounded-md
-    bg-zinc-900 overflow-y-hidden text-base shadow-lg shadow-zinc-950;
+    text-base-200 border-solid border border-base-500/25 rounded-md
+    bg-base-900 overflow-y-hidden text-base shadow-lg shadow-base-950;
   }
 
   .palette-search {
@@ -195,12 +207,12 @@
   }
 
   .palette-search input {
-    @apply w-full py-1 px-2 rounded-sm border-none text-base bg-zinc-800 ring-1 ring-zinc-500/25 focus:ring-sky-600;
+    @apply w-full py-1 px-2 rounded-sm border-none text-base bg-base-800 ring-1 ring-base-500/25 focus:ring-primary-600;
   }
 
   .palette-results {
     /* 0.5px preventes for triggering hover on siblings when pointer hover between them */
-    @apply flex flex-col gap-[0.5px] pb-2.5 px-2 overflow-y-auto sm:max-h-[40vh] scrollbar-2.5 sb-transparent sb-thumb-zinc-600/25 sb-thumb-hover-zinc-600/50;
+    @apply flex flex-col gap-[0.5px] pb-2.5 px-2 overflow-y-auto sm:max-h-[40vh] scrollbar-2.5 sb-transparent sb-thumb-base-600/25 sb-thumb-hover-base-600/50;
   }
 
   .result {
@@ -208,10 +220,10 @@
   }
 
   .result:hover {
-    @apply opacity-100 bg-zinc-700/25;
+    @apply opacity-100 bg-base-700/25;
   }
   .result[data-selected] {
-    @apply opacity-100 bg-sky-950;
+    @apply opacity-100 bg-primary-950;
   }
 
   .result-container {
@@ -251,7 +263,7 @@
   }
 
   .keybinding-key {
-    @apply inline-block border border-zinc-700 rounded bg-zinc-800;
+    @apply inline-block border border-base-700 rounded bg-base-800;
     box-shadow: inset 0 -1px 0 hsl(206, 100%, 20%);
     vertical-align: middle;
     font-size: 11px;

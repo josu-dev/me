@@ -17,16 +17,16 @@
 
 <Accordion.Root
   bind:value={selected}
-  class="w-full rounded-md p-4 border border-zinc-500/25 bg-zinc-950/75 shadow"
+  class="w-full rounded-md p-4 border border-base-500/25 bg-base-950/75 light:bg-base-950 shadow"
 >
   {#each items as item (item.id)}
     <Accordion.Item
       value={item.id}
-      class="group border-b border-zinc-500/25 last:border-none px-1.5 opacity-75 data-[state=open]:opacity-100"
+      class="group border-b border-base-500/25 last:border-none opacity-75 data-[state=open]:opacity-100"
     >
       <Accordion.Header>
         <Accordion.Trigger
-          class="flex w-full flex-1 items-center justify-between py-2 text-base text-zinc-200 font-medium transition-all [&[data-state=open]>span>div]:rotate-180 "
+          class="flex w-full flex-1 items-center justify-between py-2 text-base text-base-200 font-medium transition-all [&[data-state=open]>span>div]:rotate-180 "
         >
           {item.title}
           <span
@@ -41,7 +41,7 @@
       <Accordion.Content
         transition={slide}
         transitionConfig={{ duration: 200 }}
-        class="pb-4 text-sm tracking-[-0.01em] text-zinc-300"
+        class="pb-4 text-sm tracking-[-0.01em] text-base-300"
       >
         {item.description || 'Sin descripcion'}
       </Accordion.Content>

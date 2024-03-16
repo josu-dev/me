@@ -40,22 +40,22 @@
     >
       <div class="flex flex-col justify-center items-center">
         <h1
-          class="mt-[0.5em] text-6xl font-bold text-white text-center leading-tight"
+          class="mt-[0.5em] text-6xl font-bold text-white light:text-black text-center leading-tight"
         >
           hum... <span class="animate-bounce inline-block">🫠</span>
         </h1>
         <p
-          class="mt-4 text-2xl font-semibold text-zinc-100 text-center text-pretty"
+          class="mt-4 text-2xl font-semibold text-base-100 text-center text-pretty"
         >
           {subtitle}
         </p>
         <p
-          class="mt-4 text-zinc-300 text-lg text-balance text-center text-ellipsis"
+          class="mt-4 text-base-300 text-lg text-balance text-center text-ellipsis"
         >
           {#if is404}
             La pagina
             <span
-              class="ring-1 ring-sky-950 bg-zinc-950 py-0.5 px-1 rounded-md font-medium break-all"
+              class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1 rounded-md font-medium break-all"
               >{safePathname}</span
             > no se encuentra disponible. Asegurate de que la URL este bien, se ser
             asi puede que la hayamos movido o eliminado 🥲.
@@ -65,7 +65,7 @@
         </p>
         {#if is500s}
           <p
-            class="mt-[1em] text-zinc-300 text-sm text-balance text-center text-ellipsis"
+            class="mt-[1em] text-base-300 text-sm text-balance text-center text-ellipsis"
           >
             Si piensas que no deberia estar pasando esto puedes comunicarlo en
             el repositorio de
@@ -73,7 +73,7 @@
               href={GITHUB_REPOSITORY}
               target="_blank"
               rel="noopener noreferrer"
-              class="font-semibold underline underline-offset-2 transition-all hover:underline-offset-4 hover:decoration-2 hover:text-white"
+              class="font-semibold underline underline-offset-2 transition-all hover:underline-offset-4 hover:decoration-2 hover:text-white light:hover:text-black"
             >
               Github
             </a>
@@ -85,7 +85,7 @@
     <div class="row-start-6 justify-self-center">
       <a
         href="/"
-        class="a text-zinc-300 text-lg font-semibold hover:text-zinc-100"
+        class="a text-base-300 text-lg font-semibold hover:text-base-100"
         >Volver al inicio</a
       >
     </div>

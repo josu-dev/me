@@ -94,39 +94,34 @@
   });
 </script>
 
-<div class="fixed inset-0 -z-10" style={lightsStyles} />
+<div class="absolute inset-0 -z-10" style={lightsStyles} />
 
 <style>
   div {
-    background-color: hsla(199, 89%, 1%);
+    background-color: var(--site-bg-color);
     background-image: radial-gradient(
         circle var(--light-0-at),
-        hsla(199, 89%, 48%, 0.1) 0%,
-        hsla(199, 89%, 48%, 0.05) 25%,
+        var(--site-bg-image-color) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle var(--light-1-at),
-        hsla(199, 89%, 48%, 0.1) 0%,
-        hsla(199, 89%, 48%, 0.05) 25%,
+        var(--site-bg-image-color) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle var(--light-2-at),
-        hsla(199, 89%, 48%, 0.1) 0%,
-        hsla(199, 89%, 48%, 0.05) 25%,
+        var(--site-bg-image-color) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle var(--light-3-at),
-        hsla(199, 89%, 48%, 0.1) 0%,
-        hsla(199, 89%, 48%, 0.05) 25%,
+        var(--site-bg-image-color) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle var(--light-4-at),
-        hsla(199, 89%, 48%, 0.1) 0%,
-        hsla(199, 89%, 48%, 0.05) 25%,
+        var(--site-bg-image-color) 0%,
         transparent 50%
       );
   }

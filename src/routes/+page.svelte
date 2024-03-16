@@ -13,11 +13,11 @@
   >
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-6xl font-bold text-zinc-50 text-center leading-tight">
+        <h1 class="text-6xl font-bold text-base-50 text-center leading-tight">
           Listo?
         </h1>
         <p
-          class="mt-[1em] text-zinc-300 text-lg text-balance text-center text-ellipsis"
+          class="mt-[1em] text-base-300 text-lg text-balance text-center text-ellipsis"
         >
           Presiona 'Ctrl + P' para empezar <span
             class="animate-bounce inline-block">😎</span

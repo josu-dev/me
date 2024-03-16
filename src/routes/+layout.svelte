@@ -4,7 +4,7 @@
   import SiteBackground from '$comps/SiteBackground.svelte';
   import SitePalette from '$comps/SitePalette.svelte';
   import SiteMenubar from '$comps/layout/SiteMenubar.svelte';
-  import { DEFAULT_SITE_MENUBAR_OPEN } from '$lib/constants.js';
+  import { DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME } from '$lib/constants.js';
   import { globalCommands, globalPages } from '$lib/global/palette.js';
   import { setUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Toaster } from 'svelte-french-toast';
@@ -18,6 +18,9 @@
     },
     sitebar: {
       open: data.userPrefs?.sitebar ?? DEFAULT_SITE_MENUBAR_OPEN
+    },
+    theme: {
+      value: data.userPrefs?.theme ?? DEFAULT_THEME
     }
   });
 </script>

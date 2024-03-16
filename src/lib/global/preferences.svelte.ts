@@ -48,14 +48,21 @@ class Preferences implements PreferencesState {
 
     setFontFamily: (family: string) => void;
     setSitebarOpen: (open: boolean) => void;
+    toggleTheme = () => {
+        this.theme.value = this.theme.value === 'dark' ? 'light' : 'dark';
+    };
 
     constructor(data: PreferencesStateData) {
-        Object.assign(this.font, data.font);
+        if (data.font?.family) {
+            this.font.family = data.font.family;
+        }
         Object.assign(this.theme, data.theme);
         Object.assign(this.sitebar, data.sitebar);
 
+
         let timeoutFont: ReturnType<typeof setTimeout>;
         let timeoutSitebar: ReturnType<typeof setTimeout>;
+        let timeoutTheme: ReturnType<typeof setTimeout>;
 
         this.setFontFamily = (family: string) => {
             this.font.family = family;
@@ -85,6 +92,20 @@ class Preferences implements PreferencesState {
             }, 1000);
         };
 
+        this.toggleTheme = () => {
+            this.theme.value = this.theme.value === 'dark' ? 'light' : 'dark';
+            clearTimeout(timeoutTheme);
+            timeoutTheme = setTimeout(() => {
+                fetch('/api/user/prefs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ theme: this.theme.value }),
+                }).catch(console.error);
+            }, 1000);
+        };
+
         if (!browser) {
             return;
         }
@@ -102,8 +123,8 @@ class Preferences implements PreferencesState {
         });
 
         $effect(() => {
-            document.body.setAttribute('data-font-family', this.font.family);
-            document.body.style.setProperty('--base-font-family', this.font.family);
+            document.body.setAttribute('data-font', this.font.family);
+            document.body.style.setProperty('--base-font', this.font.family);
         });
 
         $effect(() => {
