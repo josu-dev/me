@@ -62,6 +62,20 @@ const commandsView = defineActionable([
                 toast.error('Error al activar el modo pantalla completa');
             });
         },
+    },
+    {
+        id: 'global:toggle-theme',
+        name: 'Alternar tema',
+        category: 'Vista',
+        description: 'Cambia entre el tema claro y oscuro',
+        shortcut: ['$mod+Shift+T'],
+        onAction: () => {
+            const p = getUserPreferencesGlobal();
+            if (!p) {
+                return;
+            }
+            p.toggleTheme();
+        }
     }
 ]);
 

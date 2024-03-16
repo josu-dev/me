@@ -37,7 +37,7 @@ export default {
                 },
             },
             screens: {
-                'xs': '360px',
+                'xs': '480px',
             }
         }
     },
