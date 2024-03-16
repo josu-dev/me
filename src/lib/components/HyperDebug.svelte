@@ -23,7 +23,7 @@
 
 <script lang="ts">
   import { clickoutside, escapekey } from '$lib/actions.js';
-  import { helpers } from '$comps/SitePalette.svelte';
+  import { helpers } from '$comps/site/SitePalette.svelte';
   import SuperDebug from 'sveltekit-superforms';
 
   let {

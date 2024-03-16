@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Seo from '$comps/layout/Seo.svelte';
+  import Seo from '$comps/site/Seo.svelte';
 </script>
 
 <Seo

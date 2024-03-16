@@ -10,7 +10,7 @@
   import IconGitfork from '$comps/icons/IconGitfork.svelte';
   import IconFile from '$comps/icons/IconFile.svelte';
   import IconCircledot from '$comps/icons/IconCircledot.svelte';
-  import Seo from '$comps/layout/Seo.svelte';
+  import Seo from '$comps/site/Seo.svelte';
   import { slide } from 'svelte/transition';
 
   let { data } = $props();

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import Seo from '$comps/layout/Seo.svelte';
+  import Seo from '$comps/site/Seo.svelte';
   import { GITHUB_REPOSITORY } from '$lib/constants.js';
 
   $: is404 = $page.status === 404;

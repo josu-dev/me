@@ -1,9 +1,9 @@
 <script lang="ts">
   import IconVolume2 from '$comps/icons/IconVolume2.svelte';
   import IconVolumex from '$comps/icons/IconVolumex.svelte';
-  import { helpers } from '$comps/SitePalette.svelte';
+  import { helpers } from '$comps/site/SitePalette.svelte';
   import TypeWritter from '$comps/TypeWritter.svelte';
-  import Seo from '$comps/layout/Seo.svelte';
+  import Seo from '$comps/site/Seo.svelte';
   import { copytoclipboard } from '$lib/actions.js';
   import { toast } from '$lib/utils/index.js';
   import { getLocallySyncqued } from '$lib/utils/local_storage.js';

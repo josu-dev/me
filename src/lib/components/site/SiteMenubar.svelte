@@ -8,7 +8,7 @@
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Menubar } from 'bits-ui';
   import { fly, slide } from 'svelte/transition';
-  import { helpers } from '$comps/SitePalette.svelte';
+  import { helpers } from '$comps/site/SitePalette.svelte';
   import { userViewTime } from '$lib/stores/user_view_time.js';
   import { Popover, Separator } from 'bits-ui';
   import IconSun from '$comps/icons/IconSun.svelte';
