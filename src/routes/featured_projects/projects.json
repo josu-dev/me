@@ -1,125 +1,112 @@
 [
   {
-    "id": "987654",
-    "name": "OpenAI Codex Playground",
-    "nameShort": "Codex Playground",
+    "id": "1",
+    "name": "RobotScript",
+    "nameShort": "RS",
     "description": [
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time."
+      "RobotScript es una reversion del entorno de programacion R-Info usada en la facultad UNLP Informatica para la enseñanza de las nociones basicas de programacion como tambien el paradigma de programacion concurrente. Este entorno cuenta con un editor de texto para escribir el codigo del programa y un interprete que ejecuta el programa desarrollado viendo el comportamiento de los robots graficamente.",
+      "El objetivo de este proyecto fue modernizar la aplicacion de escritorio existente realizada en Java reemplazandola por una pagina web autocontenida de manera que pueda ser utilizada en cualquier navegador sin la necesidad de descargar ni instalar algo.",
+      "El editor de texto ademas de las funcionalidades de su predecesor, cuenta con sugerencias de sintaxis, resaltado de sintaxis mejorado, consola dedicada a mensajes del editor y validaciones al momento de compilacion. Ademas de auto-guardado y subida/descarga de archivos.",
+      "Ademas del entorno de desarrollo tambien esta disponible una documentacion de la sintaxis del lenguaje de programacion como tambien un diagrama de flujo de la gramatica del lenguaje."
     ],
     "tags": [
-      "AI",
-      "Machine Learning",
-      "Programming"
+      "Open Source",
+      "IDE",
+      "Lenguaje de Programacion",
+      "Documentacion"
     ],
-    "homepage": "https://playground.openai.com/codex",
+    "repository": "https://github.com/J-Josu/RobotScript",
+    "homepage": "https://j-josu.github.io/RobotScript/",
     "preview": {
       "gif": "https://media.giphy.com/media/yoJC2moeoztObJhtM4/giphy.gif",
       "caption": "OpenAI Codex Playground in action"
     }
   },
   {
-    "id": "123456",
-    "name": "TensorFlow",
-    "nameShort": "TF",
+    "id": "2",
+    "name": "One More Chance",
+    "nameShort": "OMC",
     "description": [
-      "TensorFlow is an open-source machine learning framework developed by Google.",
-      "It provides a comprehensive ecosystem of tools, libraries, and resources for building and deploying machine learning models."
+      "One More Chance es un juego de chistes multijugador en tiempo real para jugar con tus amigos por llamada de voz o incluso en persona. El juego consiste en una serie de rondas en las que cada jugador tiene que completar los espacios vacios de una frase para intentar hacer un chiste. Luego todos los jugadores califican las frases y el que mas puntos obenga al final de la partida es el ganador.",
+      "Este proyecto nacio como una entrada a la Global Game Jam 2024 de Globant. La idea de la jam era crear un juego dentro de la tematica de \"Risas\" en un plazo de 48 horas. Durante la jam se desarrollo el concepto del juego y la primera version del mismo con un equipo de 4 personas. Luego de la jam continue el desarrollo del juego por mi cuenta hasta llegar a la version actual.",
+      "El juego permite crear salas donde los jugadores pueden unirse para jugar, como tambien la creacion de \"mazos\" que son el conjunto de frases las cuales se usan para jugar. Ademas de un ranking global de los jugadores mas graciosos."
     ],
     "tags": [
-      "Machine Learning",
-      "Deep Learning",
-      "Framework"
+      "Open Source",
+      "Juego de mesa",
+      "Game jam",
+      "Humor"
     ],
-    "homepage": "https://www.tensorflow.org/",
+    "repository": "https://github.com/J-Josu/onemorechance",
+    "homepage": "https://omc.eventitos.com.ar/",
     "preview": {
       "gif": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif",
       "caption": "TensorFlow logo animation"
     }
   },
   {
-    "id": "234567",
-    "name": "PyTorch",
-    "nameShort": "PyTorch",
+    "id": "3",
+    "name": "Hypercommands",
+    "nameShort": "HC",
     "description": [
-      "PyTorch is an open-source machine learning library developed by Facebook's AI Research lab (FAIR).",
-      "It provides a flexible and dynamic framework for building and training neural networks."
+      "Hypercommands es una libreria para crear Paletas de comandos dentro de tu aplicacion web. Estas paletas son como \"ventanas emergentes\" que aparecen en la pantalla y permiten ejecutar comandos u otras acciones.",
+      "Esta libreria tiene un enfoque headless, es decir, no tiene estilos ni componentes visuales predefinidos, sino que se encarga de la logica y la interaccion con el usuario, aunque provee una implementacion de ejemplo para que puedas usarla directamente. El objetivo es que sea altamente customizable para adaptarse a las necesidades de tu aplicacion.",
+      "Esta desarrollada para el ecosistema de Svelte siendo compatible con SvelteKit. Es altamente extensible ademas de ofreser una API sencilla y tipos de TypeScript."
     ],
     "tags": [
-      "Machine Learning",
-      "Deep Learning",
-      "Framework"
+      "Open Source",
+      "Libreria",
+      "Commmand Palette",
+      "Svelte - SvelteKit"
     ],
-    "homepage": "https://pytorch.org/",
+    "repository": "https://github.com/J-Josu/svelte-hypercommands",
     "preview": {
       "gif": "https://media.giphy.com/media/3o7TKz5vVUzY9v6w2A/giphy.gif",
       "caption": "PyTorch logo animation"
     }
   },
   {
-    "id": "345678",
-    "name": "Scikit-learn",
-    "nameShort": "Scikit-learn",
+    "id": "4",
+    "name": "Pinta Service",
+    "nameShort": "PS",
     "description": [
-      "Scikit-learn is a simple and efficient tool for data mining and data analysis.",
-      "It provides a wide range of supervised and unsupervised learning algorithms for classification, regression, clustering, dimensionality reduction, and more."
+      "Pinta Service es un sistema web para gestionar los servicios ofrecidos por instituciones o centros de \"Investigación y Desarrollo en Tecnologia de Pinturas\". Fue desarrollado como trabajo final para la materia \"Proyecto de Software\" de la Facultad de Informatica de la UNLP.",
+      "El sistema consta de dos paginas, una publica donde los usuarios pueden ver los servicios ofrecidos y realizar las solicitudes de los mismos, y otra privada donde los administradores pueden gestionar las solicitudes y los servicios.",
+      "La pagina privada esta bajo el patron de \"Server Side Rendering\" implementada con Flask y Jinja2",
+      "La pagina publica esta bajo el patron de \"Single Page Application\" implementada con Vue.js."
     ],
     "tags": [
-      "Machine Learning",
-      "Data Science",
-      "Library"
+      "Open Source",
+      "Gestion de Servicios",
+      "Full Stack",
+      "Universidad"
     ],
-    "homepage": "https://scikit-learn.org/stable/",
+    "repository": "https://github.com/J-Josu/pintaservice",
+    "homepage": "https://pintaservice.onrender.com/",
     "preview": {
       "gif": "https://i.pinimg.com/originals/0b/8c/08/0b8c081b7b05dcc0aad6238856ea87d2.gif",
       "caption": "Scikit-learn logo animation"
     }
   },
   {
-    "id": "456789",
-    "name": "React",
-    "nameShort": "React",
+    "id": "5",
+    "name": "Student Bot",
+    "nameShort": "SB",
     "description": [
-      "React is a JavaScript library for building user interfaces, developed by Facebook.",
-      "It enables developers to create reusable UI components and efficiently manage the state of their applications."
+      "Student Bot es un bot de Discord para la comunidad \"Devs Overflow\". Este bot fue desarrollado para la gestion del servidor de Discord de la comunidad, como tambien brindar utilidades para los miembros.",
+      "El bot cuenta con comandos para la gestion de canales, mensajes entre otros. Ademas cuenta con funcionalidades relacionadas a la Facultad de Informatica de la UNLP para facilitar la busqueda de informacion relacionada a la misma port parte de los miembros que pertenecen a la facultad.",
+      "Este bot esta basado en la libreria Discord.js extendiendola con declaracion de comandos y eventos mediante el \"File system\". Ofrece una API sencilla para la extension. Los planes a futuro son desarollador una libreria con la funcionalidad principal del bot de manera que pueda ser reutilizada en otros proyectos."
     ],
     "tags": [
-      "JavaScript",
-      "Frontend",
-      "Library"
+      "Open Source",
+      "Bot de Discord",
+      "TypeScript",
+      "Administacion"
     ],
     "homepage": "https://reactjs.org/",
     "preview": {
       "gif": "https://www.educaciontrespuntocero.com/wp-content/uploads/2019/06/homer.gif",
       "caption": "Homer Simpson dancing with React logo"
-    }
-  },
-  {
-    "id": "567890",
-    "name": "Django",
-    "nameShort": "Django",
-    "description": [
-      "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.",
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time.",
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time.",
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time.",
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time.",
-      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
-      "Users can input code in various programming languages and observe the model's responses in real-time."
-    ],
-    "tags": [
-      "Python",
-      "Web Development",
-      "Framework"
-    ],
-    "homepage": "https://www.djangoproject.com/",
-    "preview": {
-      "gif": "https://s.yimg.com/ny/api/res/1.2/P.DWCshAPKtqo0r7p0duaQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2Mg--/https://media.zenfs.com/es/levelup_525/e944ed05ad593f453fa0fdcc93cc244d",
-      "caption": "Django logo animation"
     }
   }
 ]

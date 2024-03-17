@@ -113,7 +113,7 @@
     <div
       {...$panel}
       use:panel
-      class="palette-panel light:bg-base-950 light:shadow-base-600"
+      class="palette-panel light:bg-base-950 light:shadow-black/25"
     >
       <form {...$form} use:form class="palette-search">
         <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->

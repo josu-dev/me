@@ -1,0 +1,49 @@
+code.rawfile {
+    counter-reset: step;
+    counter-increment: step 0;
+    overflow-wrap: break-word;
+}
+
+code.rawfile pre {
+    min-height: 100%;
+    padding-block: 0.5rem;
+    padding-inline: 0.25rem;
+}
+
+code.rawfile .line {
+    position: relative;
+    margin-left: 5ch;
+    white-space: pre-wrap;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+code.rawfile .line::before {
+    position: absolute;
+    left: -5ch;
+    width: 3ch;
+    content: counter(step);
+    counter-increment: step;
+    display: inline-block;
+    white-space: pre;
+    text-align: right;
+    color: color-mix(in srgb, currentColor, transparent)
+}
+
+[data-theme='dark'] .shiki,
+[data-theme='dark'] .shiki span {
+    background-color: var(--dark-bg);
+    color: var(--dark);
+    font-style: var(--dark-font-style);
+    font-weight: var(--dark-font-weight);
+    text-decoration: var(--dark-text-decoration);
+}
+
+[data-theme='light'] .shiki,
+[data-theme='light'] .shiki span {
+    background-color: var(--light-bg);
+    color: var(--light);
+    font-style: var(--light-font-style);
+    font-weight: var(--light-font-weight);
+    text-decoration: var(--light-text-decoration);
+}

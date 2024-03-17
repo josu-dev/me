@@ -12,6 +12,7 @@
   import IconCircledot from '$comps/icons/IconCircledot.svelte';
   import Seo from '$comps/site/Seo.svelte';
   import { slide } from 'svelte/transition';
+  import './code_as_rawfile.css';
 
   let { data } = $props();
   let repoItems = $derived.by(() => {
@@ -34,10 +35,7 @@
   );
   let repoInfoOpen = $state(true);
   let showRepositoryPage = $derived.by(() => {
-    if (!selectedRepo) {
-      return false;
-    }
-    if (!selectedRepo.homepage) {
+    if (!selectedRepo || !selectedRepo.homepage) {
       return false;
     }
     for (let hosts of ['github.com', 'pypi.org', 'npmjs.com']) {
@@ -69,11 +67,12 @@
   });
 
   $effect(() => {
-    if (!selectedRepo || !selectedRepo.homepage) {
+    if (!showRepositoryPage) {
       return;
     }
 
-    fetch(selectedRepo.homepage)
+    // selectedRepo is guarder by showRepositoryPage
+    fetch(selectedRepo!.homepage!)
       .then((response) => {
         if (!response.ok) {
           throw new Error('HTTP error ' + response.status);
@@ -136,8 +135,7 @@
           {:else}
             <code
               title="{selectedRepo.name} README.md"
-              class="[&>pre]:min-h-full overflow-auto [&>pre]:p-4 [&_pre.shiki]:whitespace-pre-wrap break-words"
-              >{@html repoReadmeHtml}</code
+              class="rawfile overflow-auto">{@html repoReadmeHtml}</code
             >
           {/if}
         </div>
@@ -289,24 +287,3 @@
     </aside>
   </div>
 </main>
-
-<style>
-  /* For the variable prefix @see {$lib/server/shiki.ts@highlightMarkdown} */
-  :global([data-theme='dark'] .shiki),
-  :global([data-theme='dark'] .shiki span) {
-    background-color: var(--dark-bg);
-    color: var(--dark);
-    font-style: var(--dark-font-style);
-    font-weight: var(--dark-font-weight);
-    text-decoration: var(--dark-text-decoration);
-  }
-
-  :global([data-theme='light'] .shiki),
-  :global([data-theme='light'] .shiki span) {
-    background-color: var(--light-bg);
-    color: var(--light);
-    font-style: var(--light-font-style);
-    font-weight: var(--light-font-weight);
-    text-decoration: var(--light-text-decoration);
-  }
-</style>
