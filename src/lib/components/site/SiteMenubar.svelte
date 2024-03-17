@@ -56,7 +56,7 @@
     { name: 'Inicio', url: '/' },
     { name: 'Blog', url: '/blog' },
     { name: 'Cita diaria', url: '/daily_quote' },
-    { name: 'Proyectos destacados', url: '/featured_projects' },
+    { name: 'Proyectos destacados', url: '/featured' },
     { name: 'Proyectos publicos', url: '/repos' },
     { name: 'Sobre mi', url: '/about' },
   ];

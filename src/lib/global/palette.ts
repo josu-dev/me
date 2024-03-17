@@ -123,7 +123,7 @@ const localPages = defineNavigable([
         name: 'Cita diaria'
     },
     {
-        url: '/featured_projects',
+        url: '/featured',
         name: 'Proyectos destacados'
     },
     {
