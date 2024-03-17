@@ -39,11 +39,11 @@
 />
 
 <div class="relative flex flex-col h-full overflow-x-hidden overflow-y-auto">  
-  <header class="block sticky top-0 h-8 flex-none">
+  <header class="block sticky top-0 z-10 h-8 flex-none">
     <SiteMenubar />
   </header>
 
-  <div class="h-[calc(100%-4rem)] [&:has(main.page-scroll)]:h-max">
+  <div class="flex-1" style="--subtract-height: 4rem;">
     {@render children()}
   </div>
   

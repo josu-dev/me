@@ -119,7 +119,17 @@ export default {
                     '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
                     '--tw-ring-shadow': 'var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
                     'boxShadow': 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)',
-                }
+                },
+                '.underline-effect': {
+                    '@apply underline underline-offset-2 transition-all': {},
+                    '&:hover': {
+                        '@apply underline-offset-4 decoration-2': {},
+                    },
+                },
+                '.h-screen-sub': {
+                    '--dheight': 'calc(100dvh - var(--subtract-height, 0px))',
+                    height: 'var(--dheight, calc(100vh - var(--subtract-height, 0px)))',
+                },
             });
         }),
         plugin(({ addVariant }) => {

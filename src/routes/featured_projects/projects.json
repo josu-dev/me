@@ -1,0 +1,125 @@
+[
+  {
+    "id": "987654",
+    "name": "OpenAI Codex Playground",
+    "nameShort": "Codex Playground",
+    "description": [
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time."
+    ],
+    "tags": [
+      "AI",
+      "Machine Learning",
+      "Programming"
+    ],
+    "homepage": "https://playground.openai.com/codex",
+    "preview": {
+      "gif": "https://media.giphy.com/media/yoJC2moeoztObJhtM4/giphy.gif",
+      "caption": "OpenAI Codex Playground in action"
+    }
+  },
+  {
+    "id": "123456",
+    "name": "TensorFlow",
+    "nameShort": "TF",
+    "description": [
+      "TensorFlow is an open-source machine learning framework developed by Google.",
+      "It provides a comprehensive ecosystem of tools, libraries, and resources for building and deploying machine learning models."
+    ],
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Framework"
+    ],
+    "homepage": "https://www.tensorflow.org/",
+    "preview": {
+      "gif": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif",
+      "caption": "TensorFlow logo animation"
+    }
+  },
+  {
+    "id": "234567",
+    "name": "PyTorch",
+    "nameShort": "PyTorch",
+    "description": [
+      "PyTorch is an open-source machine learning library developed by Facebook's AI Research lab (FAIR).",
+      "It provides a flexible and dynamic framework for building and training neural networks."
+    ],
+    "tags": [
+      "Machine Learning",
+      "Deep Learning",
+      "Framework"
+    ],
+    "homepage": "https://pytorch.org/",
+    "preview": {
+      "gif": "https://media.giphy.com/media/3o7TKz5vVUzY9v6w2A/giphy.gif",
+      "caption": "PyTorch logo animation"
+    }
+  },
+  {
+    "id": "345678",
+    "name": "Scikit-learn",
+    "nameShort": "Scikit-learn",
+    "description": [
+      "Scikit-learn is a simple and efficient tool for data mining and data analysis.",
+      "It provides a wide range of supervised and unsupervised learning algorithms for classification, regression, clustering, dimensionality reduction, and more."
+    ],
+    "tags": [
+      "Machine Learning",
+      "Data Science",
+      "Library"
+    ],
+    "homepage": "https://scikit-learn.org/stable/",
+    "preview": {
+      "gif": "https://i.pinimg.com/originals/0b/8c/08/0b8c081b7b05dcc0aad6238856ea87d2.gif",
+      "caption": "Scikit-learn logo animation"
+    }
+  },
+  {
+    "id": "456789",
+    "name": "React",
+    "nameShort": "React",
+    "description": [
+      "React is a JavaScript library for building user interfaces, developed by Facebook.",
+      "It enables developers to create reusable UI components and efficiently manage the state of their applications."
+    ],
+    "tags": [
+      "JavaScript",
+      "Frontend",
+      "Library"
+    ],
+    "homepage": "https://reactjs.org/",
+    "preview": {
+      "gif": "https://www.educaciontrespuntocero.com/wp-content/uploads/2019/06/homer.gif",
+      "caption": "Homer Simpson dancing with React logo"
+    }
+  },
+  {
+    "id": "567890",
+    "name": "Django",
+    "nameShort": "Django",
+    "description": [
+      "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.",
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time.",
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time.",
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time.",
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time.",
+      "The OpenAI Codex Playground provides an interactive environment to explore and experiment with the capabilities of OpenAI's Codex model.",
+      "Users can input code in various programming languages and observe the model's responses in real-time."
+    ],
+    "tags": [
+      "Python",
+      "Web Development",
+      "Framework"
+    ],
+    "homepage": "https://www.djangoproject.com/",
+    "preview": {
+      "gif": "https://s.yimg.com/ny/api/res/1.2/P.DWCshAPKtqo0r7p0duaQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2Mg--/https://media.zenfs.com/es/levelup_525/e944ed05ad593f453fa0fdcc93cc244d",
+      "caption": "Django logo animation"
+    }
+  }
+]

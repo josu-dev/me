@@ -20,7 +20,7 @@
           class="mt-[1em] text-base-300 text-lg text-balance text-center text-ellipsis"
         >
           Cuando la seccion del <span
-            class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1 rounded-md font-medium break-all"
+            class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1.5 rounded-md font-medium break-all"
             >blog</span
           > este lista sera el lugar para compartir experiencias, opiniones, tutoriales
           y otras cosas sobre codigo, desarrollo y la vida.

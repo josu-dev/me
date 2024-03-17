@@ -55,7 +55,7 @@
           {#if is404}
             La pagina
             <span
-              class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1 rounded-md font-medium break-all"
+              class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1.5 rounded-md font-medium break-all"
               >{safePathname}</span
             > no se encuentra disponible. Asegurate de que la URL este bien, se ser
             asi puede que la hayamos movido o eliminado 🥲.

@@ -101,9 +101,9 @@
   description="Public projects of Josu on Github. All the repositories are open source and free to use."
 />
 
-<main class="flex flex-col md:px-4 h-full">
+<main class="flex flex-col md:px-4 h-screen-sub overflow-hidden">
   <header class="text-base-50">
-    <h1 class="text-2xl font-bold mt-4">Repositorios publicos</h1>
+    <h1 class="text-2xl font-bold mt-4">Proyectos publicos</h1>
   </header>
 
   <div
