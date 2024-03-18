@@ -118,7 +118,7 @@
         </div>
       {:else}
         <div
-          class="flex-1 rounded-md overflow-y-auto border border-base-500/25"
+          class="flex-1 rounded-md overflow-y-auto overflow-x-hidden border border-base-500/25"
         >
           {#if selectedRepoError}
             <div class="grid place-items-center h-full">
@@ -135,7 +135,7 @@
           {:else}
             <code
               title="{selectedRepo.name} README.md"
-              class="rawfile overflow-auto">{@html repoReadmeHtml}</code
+              class="rawfile">{@html repoReadmeHtml}</code
             >
           {/if}
         </div>

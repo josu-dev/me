@@ -6,7 +6,7 @@
   $: is404 = $page.status === 404;
   $: is500s = $page.status === 500;
 
-  $: title = `${$page.status} | Error`;
+  $: title = `${$page.status} - Error`;
   $: titleOG =
     (is404 && 'Pagina no disponible') ||
     (is500s && 'Error del servidor') ||

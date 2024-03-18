@@ -13,6 +13,7 @@
   import { Popover, Separator } from 'bits-ui';
   import IconSun from '$comps/icons/IconSun.svelte';
   import IconMoon from '$comps/icons/IconMoon.svelte';
+  import Logo from '$comps/site/Logo.svelte';
   import { untrack } from 'svelte';
 
   const prefs = getUserPreferences();
@@ -83,143 +84,152 @@
       out:fly={{ x: 1920, duration: 250 }}
       class="h-full flex flex-row border-b border-base-500/25 bg-base-950 px-[3px] shadow-sm"
     >
-      <Menubar.Root class="grow w-1/5 h-full flex items-center justify-start ">
-        <Menubar.Menu>
-          <Menubar.Trigger class="menu-trigger">General</Menubar.Trigger>
-          <Menubar.Content
-            class="menu-content  light:bg-base-950"
-            align="start"
-            sideOffset={1}
-          >
-            <Menubar.Item class="menu-item">
-              <span class="label">Nada</span>
-            </Menubar.Item>
-          </Menubar.Content>
-        </Menubar.Menu>
+      <div class="grow w-1/5 h-full flex items-center justify-start">
+        <button title="Abrir menus" class="h-full p-1 lg:hidden">
+          <Logo class="size-6 border border-base-500/50" />
+        </button>
+        <div class="hidden h-full p-1 lg:block">
+          <Logo class="size-6 border border-base-500/50" />
+        </div>
 
-        <Menubar.Menu>
-          <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
-          <Menubar.Content
-            class="menu-content  light:bg-base-950"
-            align="start"
-            sideOffset={1}
-          >
-            <Menubar.Item
-              class="menu-item"
-              on:click={() => {
-                prefs.setSitebarOpen(false);
-              }}
+        <Menubar.Root class="hidden h-full ml-1 lg:flex lg:items-center">
+          <Menubar.Menu>
+            <Menubar.Trigger class="menu-trigger">General</Menubar.Trigger>
+            <Menubar.Content
+              class="menu-content  light:bg-base-950"
+              align="start"
+              sideOffset={1}
             >
-              {#if prefs.sitebar.open}
-                <div class="icon-left p-0.5">
-                  <IconCheck />
-                </div>
-              {/if}
-              <span class="label">Barra principal</span>
-            </Menubar.Item>
-            <Menubar.Sub>
-              <Menubar.SubTrigger class="menu-item">
-                <span class="label">Fuente</span>
-                <div class="icon-right p-0.5">
-                  <IconChevronright />
-                </div>
-              </Menubar.SubTrigger>
-              <Menubar.SubContent
-                class="menu-content  light:bg-base-950"
-                align="start"
-                sideOffset={0}
-              >
-                <Menubar.RadioGroup bind:value={selectedFont}>
-                  {#each prefs.font.available as family (family)}
-                    <Menubar.RadioItem value={family.value} class="menu-item">
-                      <Menubar.RadioIndicator class="icon-left p-0.5">
-                        <IconCheck />
-                      </Menubar.RadioIndicator>
-                      <span class="label">{family.name}</span>
-                    </Menubar.RadioItem>
-                  {/each}
-                </Menubar.RadioGroup>
-              </Menubar.SubContent>
-            </Menubar.Sub>
-            <Menubar.CheckboxItem
-              class="menu-item"
-              checked={themeIsDark}
-              on:click={(e) => {
-                e.preventDefault();
-                prefs.toggleTheme();
-              }}
-            >
-              <div class="icon-left p-0.5">
-                {#if !themeIsDark}
-                  <IconSun />
-                {/if}
-                <Menubar.CheckboxIndicator>
-                  <IconMoon />
-                </Menubar.CheckboxIndicator>
-              </div>
-              <span class="label">
-                {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
-              </span>
-            </Menubar.CheckboxItem>
-            <Menubar.Separator class="menu-separator" />
-            <Menubar.Item
-              class="menu-item"
-              on:click={() => {
-                helpers.toggleOpen();
-              }}
-            >
-              <span class="label">Paleta de comandos</span>
-            </Menubar.Item>
-            <Menubar.Item class="menu-item" on:click={toggleFullscreen}>
-              {#if prefs.fullscreen}
-                <div class="icon-left p-0.5">
-                  <IconCheck />
-                </div>
-              {/if}
-              <span class="label">Pantalla completa</span>
-            </Menubar.Item>
-            <Menubar.Item class="menu-item" on:click={reloadWindow}>
-              <span class="label">Recargar pagina</span>
-            </Menubar.Item>
-          </Menubar.Content>
-        </Menubar.Menu>
-
-        <Menubar.Menu>
-          <Menubar.Trigger class="menu-trigger">Paginas</Menubar.Trigger>
-          <Menubar.Content
-            class="menu-content  light:bg-base-950"
-            align="start"
-            sideOffset={1}
-          >
-            {#each localPages as page (page.url)}
-              {@const current = currentUrlPathname === page.url}
-              <Menubar.Item
-                class="menu-item aria-[current=page]:underline underline-offset-2"
-                href={page.url}
-                aria-current={current ? 'page' : undefined}
-              >
-                {#if current}
-                  <div class="icon-left p-0.5">
-                    <IconChevronright />
-                  </div>
-                {/if}
-                <span class="label">{page.name}</span>
+              <Menubar.Item class="menu-item">
+                <span class="label">Nada</span>
               </Menubar.Item>
-            {/each}
-            <Menubar.Separator class="menu-separator" />
-            {#each externalPages as page (page.url)}
+            </Menubar.Content>
+          </Menubar.Menu>
+
+          <Menubar.Menu>
+            <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
+            <Menubar.Content
+              class="menu-content  light:bg-base-950"
+              align="start"
+              sideOffset={1}
+            >
               <Menubar.Item
                 class="menu-item"
-                href={page.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                on:click={() => {
+                  prefs.setSitebarOpen(false);
+                }}
               >
-                <span class="label">{page.name}</span>
+                {#if prefs.sitebar.open}
+                  <div class="icon-left p-0.5">
+                    <IconCheck />
+                  </div>
+                {/if}
+                <span class="label">Barra de menus</span>
               </Menubar.Item>
-            {/each}
-          </Menubar.Content>
-        </Menubar.Menu>
-      </Menubar.Root>
+              <Menubar.Sub>
+                <Menubar.SubTrigger class="menu-item">
+                  <span class="label">Fuente</span>
+                  <div class="icon-right p-0.5">
+                    <IconChevronright />
+                  </div>
+                </Menubar.SubTrigger>
+                <Menubar.SubContent
+                  class="menu-content  light:bg-base-950"
+                  align="start"
+                  sideOffset={0}
+                >
+                  <Menubar.RadioGroup bind:value={selectedFont}>
+                    {#each prefs.font.available as family (family)}
+                      <Menubar.RadioItem value={family.value} class="menu-item">
+                        <Menubar.RadioIndicator class="icon-left p-0.5">
+                          <IconCheck />
+                        </Menubar.RadioIndicator>
+                        <span class="label">{family.name}</span>
+                      </Menubar.RadioItem>
+                    {/each}
+                  </Menubar.RadioGroup>
+                </Menubar.SubContent>
+              </Menubar.Sub>
+              <Menubar.CheckboxItem
+                class="menu-item"
+                checked={themeIsDark}
+                on:click={(e) => {
+                  e.preventDefault();
+                  prefs.toggleTheme();
+                }}
+              >
+                <div class="icon-left p-0.5">
+                  {#if !themeIsDark}
+                    <IconSun />
+                  {/if}
+                  <Menubar.CheckboxIndicator>
+                    <IconMoon />
+                  </Menubar.CheckboxIndicator>
+                </div>
+                <span class="label">
+                  {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
+                </span>
+              </Menubar.CheckboxItem>
+              <Menubar.Separator class="menu-separator" />
+              <Menubar.Item
+                class="menu-item"
+                on:click={() => {
+                  helpers.toggleOpen();
+                }}
+              >
+                <span class="label">Paleta de comandos</span>
+              </Menubar.Item>
+              <Menubar.Item class="menu-item" on:click={toggleFullscreen}>
+                {#if prefs.fullscreen}
+                  <div class="icon-left p-0.5">
+                    <IconCheck />
+                  </div>
+                {/if}
+                <span class="label">Pantalla completa</span>
+              </Menubar.Item>
+              <Menubar.Item class="menu-item" on:click={reloadWindow}>
+                <span class="label">Recargar pagina</span>
+              </Menubar.Item>
+            </Menubar.Content>
+          </Menubar.Menu>
+
+          <Menubar.Menu>
+            <Menubar.Trigger class="menu-trigger">Paginas</Menubar.Trigger>
+            <Menubar.Content
+              class="menu-content  light:bg-base-950"
+              align="start"
+              sideOffset={1}
+            >
+              {#each localPages as page (page.url)}
+                {@const current = currentUrlPathname === page.url}
+                <Menubar.Item
+                  class="menu-item aria-[current=page]:underline underline-offset-2"
+                  href={page.url}
+                  aria-current={current ? 'page' : undefined}
+                >
+                  {#if current}
+                    <div class="icon-left p-0.5">
+                      <IconChevronright />
+                    </div>
+                  {/if}
+                  <span class="label">{page.name}</span>
+                </Menubar.Item>
+              {/each}
+              <Menubar.Separator class="menu-separator" />
+              {#each externalPages as page (page.url)}
+                <Menubar.Item
+                  class="menu-item"
+                  href={page.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="label">{page.name}</span>
+                </Menubar.Item>
+              {/each}
+            </Menubar.Content>
+          </Menubar.Menu>
+        </Menubar.Root>
+      </div>
 
       <div
         class="max-w-fit min-w-0 w-3/5 h-full flex items-center justify-center mx-2"
@@ -234,7 +244,7 @@
             >
             {#if pageStatusError}
               <span
-                class="absolute top-1.5 left-full translate-x-1.5 text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
+                class="absolute top-1.5 left-full translate-x-1.5 select-none text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
               >
                 {pageStatusError}
               </span>
@@ -281,7 +291,13 @@
   {/if}
 
   <div class="absolute top-0 right-0 h-full">
-    <button on:click={toggleSitebar} class="text-base-200 h-full p-1">
+    <button
+      on:click={toggleSitebar}
+      title={prefs.sitebar.open
+        ? 'Ocultar barra de menus'
+        : 'Ver barra de menus'}
+      class="text-base-200 h-full p-1"
+    >
       {#if prefs.sitebar.open}
         <div
           in:fly={{ x: -32, duration: 250, delay: 250 }}
