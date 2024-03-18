@@ -15,8 +15,8 @@
       "Lenguaje de Programacion",
       "Documentacion"
     ],
-    "repository": "https://github.com/J-Josu/RobotScript",
-    "homepage": "https://j-josu.github.io/RobotScript/",
+    "repository": "https://github.com/josu-dev/RobotScript",
+    "homepage": "https://josu-dev.github.io/RobotScript/",
     "preview": {
       "gif": "https://media.giphy.com/media/yoJC2moeoztObJhtM4/giphy.gif",
       "caption": "OpenAI Codex Playground in action"
@@ -37,7 +37,7 @@
       "Game jam",
       "Humor"
     ],
-    "repository": "https://github.com/J-Josu/onemorechance",
+    "repository": "https://github.com/josu-dev/onemorechance",
     "homepage": "https://omc.eventitos.com.ar/",
     "preview": {
       "gif": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/5eeea355389655.59822ff824b72.gif",
@@ -59,7 +59,7 @@
       "Commmand Palette",
       "Svelte - SvelteKit"
     ],
-    "repository": "https://github.com/J-Josu/svelte-hypercommands",
+    "repository": "https://github.com/josu-dev/svelte-hypercommands",
     "preview": {
       "gif": "https://media.giphy.com/media/3o7TKz5vVUzY9v6w2A/giphy.gif",
       "caption": "PyTorch logo animation"
@@ -81,7 +81,7 @@
       "Full Stack",
       "Universidad"
     ],
-    "repository": "https://github.com/J-Josu/pintaservice",
+    "repository": "https://github.com/josu-dev/pintaservice",
     "homepage": "https://pintaservice.onrender.com/",
     "preview": {
       "gif": "https://i.pinimg.com/originals/0b/8c/08/0b8c081b7b05dcc0aad6238856ea87d2.gif",

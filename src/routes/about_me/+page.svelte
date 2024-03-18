@@ -18,7 +18,7 @@
     {
       name: 'LinkedIn',
       username: '',
-      href: 'https://www.linkedin.com/in/j-josu/',
+      href: 'https://www.linkedin.com/in/josu-dev/',
       icon: IconLinkedin,
     },
     {

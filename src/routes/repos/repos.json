@@ -7,7 +7,7 @@
     "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/advent-of-code",
+    "url": "https://github.com/josu-dev/advent-of-code",
     "createdAt": "2023-12-11T20:05:29Z",
     "updatedAt": "2023-12-11T22:27:54Z",
     "license": {
@@ -30,7 +30,7 @@
     "stars": 3,
     "forks": 0,
     "issues": 1,
-    "url": "https://github.com/J-Josu/brb-screen",
+    "url": "https://github.com/josu-dev/brb-screen",
     "createdAt": "2023-08-17T14:02:57Z",
     "updatedAt": "2024-03-05T08:38:39Z",
     "license": {
@@ -55,7 +55,7 @@
     "stars": 1,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/Computer-Science",
+    "url": "https://github.com/josu-dev/Computer-Science",
     "createdAt": "2022-03-23T20:59:28Z",
     "updatedAt": "2023-07-13T00:02:39Z",
     "license": {
@@ -74,7 +74,7 @@
     "stars": 1,
     "forks": 1,
     "issues": 0,
-    "url": "https://github.com/J-Josu/do-discord-bot",
+    "url": "https://github.com/josu-dev/do-discord-bot",
     "createdAt": "2023-06-06T01:04:24Z",
     "updatedAt": "2024-01-11T23:06:24Z",
     "license": {
@@ -99,7 +99,7 @@
     "stars": 2,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/Enunciados-Extractor",
+    "url": "https://github.com/josu-dev/Enunciados-Extractor",
     "createdAt": "2022-06-14T02:45:08Z",
     "updatedAt": "2022-06-18T03:37:11Z",
     "license": {
@@ -118,7 +118,7 @@
     "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/facturacion_llamadas",
+    "url": "https://github.com/josu-dev/facturacion_llamadas",
     "createdAt": "2023-05-24T20:08:17Z",
     "updatedAt": "2023-05-24T20:11:08Z",
     "topics": [],
@@ -133,7 +133,7 @@
     "stars": 4,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/FiguRace",
+    "url": "https://github.com/josu-dev/FiguRace",
     "createdAt": "2023-01-24T17:56:17Z",
     "updatedAt": "2023-07-13T03:42:54Z",
     "license": {
@@ -159,7 +159,7 @@
     "stars": 2,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/flask-livetw",
+    "url": "https://github.com/josu-dev/flask-livetw",
     "createdAt": "2023-09-11T13:24:20Z",
     "updatedAt": "2024-03-12T15:18:33Z",
     "license": {
@@ -180,20 +180,20 @@
   },
   {
     "id": "419376936",
-    "name": "J-Josu",
+    "name": "josu-dev",
     "description": "Config files for my GitHub profile.",
     "language": null,
     "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/J-Josu",
+    "url": "https://github.com/josu-dev/josu-dev",
     "createdAt": "2021-10-20T15:00:35Z",
     "updatedAt": "2021-10-20T15:03:30Z",
     "topics": [
       "config",
       "github-config"
     ],
-    "homepage": "https://github.com/J-Josu",
+    "homepage": "https://github.com/josu-dev",
     "size": 4
   },
   {
@@ -204,7 +204,7 @@
     "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/me",
+    "url": "https://github.com/josu-dev/me",
     "createdAt": "2024-02-28T02:55:09Z",
     "updatedAt": "2024-03-04T16:07:02Z",
     "license": {
@@ -223,7 +223,7 @@
     "stars": 2,
     "forks": 0,
     "issues": 1,
-    "url": "https://github.com/J-Josu/onemorechance",
+    "url": "https://github.com/josu-dev/onemorechance",
     "createdAt": "2024-01-27T02:59:30Z",
     "updatedAt": "2024-02-25T20:11:49Z",
     "license": {
@@ -242,12 +242,12 @@
   {
     "id": "765441189",
     "name": "PintaService",
-    "description": "Sistema que permite registrar y gestionar los servicios ofrecidos por instituciones o centros de \"Investigación y Desarrollo en Tecnología de Pinturas\".",     
+    "description": "Sistema que permite registrar y gestionar los servicios ofrecidos por instituciones o centros de \"Investigación y Desarrollo en Tecnología de Pinturas\".",
     "language": "Python",
     "stars": 2,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/PintaService",
+    "url": "https://github.com/josu-dev/PintaService",
     "createdAt": "2024-02-29T23:25:49Z",
     "updatedAt": "2024-03-01T05:22:08Z",
     "license": {
@@ -266,7 +266,7 @@
     "stars": 1,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/pyday-datos-de-color",
+    "url": "https://github.com/josu-dev/pyday-datos-de-color",
     "createdAt": "2023-09-09T04:11:41Z",
     "updatedAt": "2023-09-09T17:28:20Z",
     "license": {
@@ -285,7 +285,7 @@
     "stars": 3,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/Quiz-FOD",
+    "url": "https://github.com/josu-dev/Quiz-FOD",
     "createdAt": "2022-07-09T04:02:46Z",
     "updatedAt": "2022-07-12T10:38:10Z",
     "license": {
@@ -293,7 +293,7 @@
       "url": "https://api.github.com/licenses/mit"
     },
     "topics": [],
-    "homepage": "https://j-josu.github.io/Quiz-FOD/",
+    "homepage": "https://josu-dev.github.io/Quiz-FOD/",
     "size": 715
   },
   {
@@ -304,7 +304,7 @@
     "stars": 8,
     "forks": 1,
     "issues": 0,
-    "url": "https://github.com/J-Josu/RobotScript",
+    "url": "https://github.com/josu-dev/RobotScript",
     "createdAt": "2022-01-05T15:46:34Z",
     "updatedAt": "2023-02-01T23:01:53Z",
     "license": {
@@ -317,7 +317,7 @@
       "open-source",
       "student-project"
     ],
-    "homepage": "https://J-Josu.github.io/RobotScript/",
+    "homepage": "https://josu-dev.github.io/RobotScript/",
     "size": 6139
   },
   {
@@ -328,7 +328,7 @@
     "stars": 1,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/svelte-hypercommands",
+    "url": "https://github.com/josu-dev/svelte-hypercommands",
     "createdAt": "2023-10-24T22:45:36Z",
     "updatedAt": "2024-02-12T14:35:32Z",
     "license": {
@@ -352,7 +352,7 @@
     "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/J-Josu/yadw",
+    "url": "https://github.com/josu-dev/yadw",
     "createdAt": "2024-02-26T00:12:29Z",
     "updatedAt": "2024-02-26T18:27:51Z",
     "license": {

@@ -38,9 +38,9 @@ export const FONTS_NAMED = [
     { name: 'monospace', value: 'monospace' }
 ];
 
-export const GITHUB_USERNAME = 'J-Josu';
+export const GITHUB_USERNAME = 'josu-dev';
 
-export const GITHUB_REPOSITORY = 'https://github.com/J-Josu/me';
+export const GITHUB_REPOSITORY = 'https://github.com/josu-dev/me';
 
 export const TOAST = {
     DURATION_ERROR: 5000,
