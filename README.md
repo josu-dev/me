@@ -1,38 +1,49 @@
-# create-svelte
+# Me
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Repository for my personal website. Builded how I want it to be.
 
-## Creating a project
+The design was made taking in consideration the following:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Dark first
+- Desktop first
+- Minimalist
+- Command Palette centric
+- VS Code vibes
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Available at [name.vercel.app](https://nameA.vercel.app)
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
 
-## Developing
+## Stack
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Meta framework:
 
-```bash
-npm run dev
+- [SvelteKit][svelte-kit]
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+UI related:
 
-## Building
+- [Bits UI][bits-ui]
+- [Hypercommands][svelte-hypercommands]
+- [Svelte][svelte]
+- [TailwindCSS][tailwindcss]
 
-To create a production version of your app:
+Deployment:
 
-```bash
-npm run build
-```
+- [Vercel][vercel]
 
-You can preview the production build with `npm run preview`.
+Package manager:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [pnpm][pnpm]
+
+
+## License
+
+[MIT](./LICENSE)
+
+
+[bits-ui]: https://github.com/huntabyte/bits-ui
+[pnpm]: https://pnpm.io
+[svelte]: https://svelte.dev/
+[svelte-hypercommands]: https://github.com/J-Josu/svelte-hypercommands
+[svelte-kit]: https://kit.svelte.dev/
+[tailwindcss]: https://tailwindcss.com
+[vercel]: https://vercel.com
