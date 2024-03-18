@@ -17,7 +17,7 @@
           Proximamente... <span class="animate-bounce inline-block">🏗️</span>
         </h1>
         <p
-          class="mt-[1em] text-base-300 text-lg text-balance text-center text-ellipsis"
+          class="mt-[1em] text-base-300 text-xl text-balance text-center text-ellipsis"
         >
           Cuando la seccion del <span
             class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1.5 rounded-md font-medium break-all"

@@ -86,7 +86,7 @@ type UseCopytoclipboardOptions = {
 
 export function copytoclipboard(el: HTMLElement, options: UseCopytoclipboardOptions) {
     function onclick() {
-        navigator.clipboard.writeText(options.text).then(options.onsuccess, onerror);
+        navigator.clipboard.writeText(options.text).then(options.onsuccess, options.onerror);
     }
 
     const config = { passive: false, capture: true };

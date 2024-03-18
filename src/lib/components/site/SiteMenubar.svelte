@@ -58,7 +58,7 @@
     { name: 'Cita diaria', url: '/daily_quote' },
     { name: 'Proyectos destacados', url: '/featured' },
     { name: 'Proyectos publicos', url: '/repos' },
-    { name: 'Sobre mi', url: '/about' },
+    { name: 'Sobre mi', url: '/about_me' },
   ];
 
   const externalPages = [

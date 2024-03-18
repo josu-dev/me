@@ -72,7 +72,7 @@
             },
           }}
         >
-          <p class="text-4xl font-bold text-base-100 self-start">
+          <p class="text-4xl font-bold text-base-100">
             <TypeWritter
               text={quoteMessage}
               start
@@ -82,7 +82,7 @@
             />
           </p>
           <p
-            class="text-lg text-base-300 italic self-end {showAuthor
+            class="text-xl text-base-300 italic self-end {showAuthor
               ? 'mt-[1em]'
               : ''}"
           >

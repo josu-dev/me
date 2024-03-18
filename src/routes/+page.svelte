@@ -16,9 +16,7 @@
         <h1 class="text-6xl font-bold text-base-50 text-center leading-tight">
           Listo?
         </h1>
-        <p
-          class="mt-[1em] text-base-300 text-lg text-balance text-center text-ellipsis"
-        >
+        <p class="mt-[1em] text-base-300 text-xl text-balance text-center">
           Presiona 'Ctrl + P' para empezar <span
             class="animate-bounce inline-block">😎</span
           >

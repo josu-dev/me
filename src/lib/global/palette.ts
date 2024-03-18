@@ -131,7 +131,7 @@ const localPages = defineNavigable([
         name: 'Proyectos publicos'
     },
     {
-        url: '/about',
+        url: '/about_me',
         name: 'Sobre mi'
     }
 ]);
