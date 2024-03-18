@@ -3,23 +3,9 @@ import IconCirclealert from '$comps/icons/IconCirclealert.svelte';
 import IconCirclecheck from '$comps/icons/IconCirclecheck.svelte';
 import IconCirclex from '$comps/icons/IconCirclex.svelte';
 import IconInfo from '$comps/icons/IconInfo.svelte';
-import { env } from '$env/dynamic/public';
 import { DEFAULT_LOG_FORMATTER, DEFAULT_LOG_LEVEL_CLIENT, TOAST } from '$lib/constants.js';
 import * as sftoast from 'svelte-french-toast';
 import type { ValidationErrors } from 'sveltekit-superforms';
-
-export function safeInt(str: string | undefined, defaultValue: number): number {
-    if (!str) {
-        return defaultValue;
-    }
-    const value = parseInt(str);
-    if (isNaN(value)) {
-        return defaultValue;
-    }
-    return value;
-}
-
-const logLevel = safeInt(env.PUBLIC_LOG_LEVEL_SK_CLIENT, DEFAULT_LOG_LEVEL_CLIENT);
 
 export function createLogger(level: number, dev: boolean = false, formatter: Intl.DateTimeFormat = DEFAULT_LOG_FORMATTER) {
     function setFormatter(value: Intl.DateTimeFormat) {
@@ -101,7 +87,7 @@ export function createLogger(level: number, dev: boolean = false, formatter: Int
     };
 }
 
-export const { logger: log } = createLogger(logLevel, dev);
+export const { logger: log } = createLogger(DEFAULT_LOG_LEVEL_CLIENT, dev);
 
 type AnyTuple = [] | [any, ...any[]];
 
