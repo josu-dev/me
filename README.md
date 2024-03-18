@@ -10,7 +10,7 @@ The design was made taking in consideration the following:
 - Command Palette centric
 - VS Code vibes
 
-Available at [name.vercel.app](https://nameA.vercel.app)
+Available at [josudev.vercel.app](https://josudev.vercel.app)
 
 
 ## Stack
