@@ -58,12 +58,12 @@
     { name: 'Blog', url: '/blog' },
     { name: 'Cita diaria', url: '/daily_quote' },
     { name: 'Proyectos destacados', url: '/featured' },
-    { name: 'Proyectos publicos', url: '/repos' },
+    { name: 'Proyectos publicos', url: '/repositories' },
     { name: 'Sobre mi', url: '/about_me' },
   ];
 
   const externalPages = [
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/josu-dev/' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/j-josu/' },
     { name: 'Repositorio', url: GITHUB_REPOSITORY },
   ];
   let themeIsDark = $derived(prefs.theme.value === 'dark');

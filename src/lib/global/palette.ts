@@ -127,7 +127,7 @@ const localPages = defineNavigable([
         name: 'Proyectos destacados'
     },
     {
-        url: '/repos',
+        url: '/repositories',
         name: 'Proyectos publicos'
     },
     {
