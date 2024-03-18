@@ -113,18 +113,18 @@
     <div
       {...$panel}
       use:panel
-      class="palette-panel light:bg-base-950 light:shadow-black/25"
+      class="palette-panel bg-base-900 shadow-base-950 light:bg-base-950 light:shadow-black/25"
     >
       <form {...$form} use:form class="palette-search">
         <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->
         <label {...$label} use:label>Paleta de commandos</label>
-        <input {...$input} use:input class="light:!bg-base-900" />
+        <input {...$input} use:input class="bg-base-800 light:bg-base-900" />
       </form>
       <ul class="palette-results">
         {#if $mode === 'commands'}
           {#each $matchingCommands as c (c.id)}
             <li
-              class="result light:data-[selected]:bg-primary-300"
+              class="result data-[selected]:opacity-100 data-[selected]:bg-primary-950 light:data-[selected]:bg-primary-300"
               {...$item}
               use:item={c}
             >
@@ -158,7 +158,7 @@
         {:else}
           {#each $matchingPages as p (p.id)}
             <li
-              class="result light:data-[selected]:bg-primary-300"
+              class="result data-[selected]:opacity-100 data-[selected]:bg-primary-950 light:data-[selected]:bg-primary-300"
               {...$item}
               use:item={p}
             >
@@ -199,7 +199,7 @@
     @apply fixed top-[10vh] left-1/2 right-1/2 z-[100] -translate-x-1/2
     flex flex-col w-[90vw] max-w-screen-sm max-h-[80vh] pointer-events-auto
     text-base-200 border-solid border border-base-500/25 rounded-md
-    bg-base-900 overflow-y-hidden text-base shadow-lg shadow-base-950;
+    overflow-y-hidden text-base shadow-lg;
   }
 
   .palette-search {
@@ -207,7 +207,7 @@
   }
 
   .palette-search input {
-    @apply w-full py-1 px-2 rounded-sm border-none text-base bg-base-800 ring-1 ring-base-500/25 focus:ring-primary-600;
+    @apply w-full py-1 px-2 rounded-sm border-none text-base ring-1 ring-base-500/25 focus:ring-primary-600;
   }
 
   .palette-results {
@@ -221,9 +221,6 @@
 
   .result:hover {
     @apply opacity-100 bg-base-700/25;
-  }
-  .result[data-selected] {
-    @apply opacity-100 bg-primary-950;
   }
 
   .result-container {
