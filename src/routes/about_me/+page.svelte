@@ -29,7 +29,7 @@
   ];
 
   const cv = {
-    name: 'cd.pdf',
+    name: 'Josue_Suarez_CV.pdf',
     href: '/cv/Josue_Suarez_CV.pdf',
   };
 </script>
@@ -101,12 +101,14 @@
             <span class="size-7 mr-4">
               <IconFileplus />
             </span>
+            <span class="sr-only">{cv.name}</span>
             <a
               href={cv.href}
               target="_blank"
               rel="noopener noreferrer"
               title="CV de Josu"
               class="underline-effect"
+              aria-hidden="true"
             >
               {cv.href}
             </a>
