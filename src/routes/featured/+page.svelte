@@ -10,7 +10,7 @@
 </script>
 
 <Seo
-  title="Public projects - Josu dev"
+  title="Public projects - Josudev"
   description="Public projects of Josu on Github. All the repositories are open source and free to use."
 />
 

@@ -12,7 +12,7 @@ export const DEFAULT_OPEN_GRAPH = {
     IMAGE_WIDTH: '', /* '1200' */
     IMAGE_HEIGHT: '', /* '630' */
     LOCALE: 'es_AR',
-    SITE_NAME: 'Josu dev',
+    SITE_NAME: 'Josudev',
     THEME_COLOR: '#082f49',
 };
 

@@ -4,6 +4,6 @@
 
 <img
   src="/logo/logo.svg"
-  alt="Logo de Josu Dev"
+  alt="Logo de Josudev"
   {...restProps}
 />

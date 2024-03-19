@@ -285,7 +285,7 @@
 
               <div class="h-10 flex flex-col text-nowrap">
                 <div class="flex items-center h-full text-base-400">
-                  <span class="text-sm">© 2024 Josu dev</span>
+                  <span class="text-sm">© 2024 Josudev</span>
                 </div>
               </div>
             </Dialog.Content>

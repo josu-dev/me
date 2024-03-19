@@ -3,7 +3,7 @@
 </script>
 
 <Seo
-  title="Blog - Josu dev"
+  title="Blog - Josudev"
   description="Personal blog of Josu, a place to share thoughts, ideas and experiences about Software Development, Web Technologies and Developer Experience."
 />
 

@@ -18,7 +18,7 @@
     {
       name: 'LinkedIn',
       username: '',
-      href: 'https://www.linkedin.com/in/josu-dev/',
+      href: 'https://www.linkedin.com/in/j-josu/',
       icon: IconLinkedin,
     },
     {
@@ -35,7 +35,7 @@
 </script>
 
 <Seo
-  title="Daily quote - Josu dev"
+  title="Daily quote - Josudev"
   description="A daily quote because why not?. It comes from Josu or something that he heard and liked."
 />
 

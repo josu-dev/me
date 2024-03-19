@@ -96,7 +96,7 @@
 </script>
 
 <Seo
-  title="Public projects - Josu dev"
+  title="Public projects - Josudev"
   description="Public projects of Josu on Github. All the repositories are open source and free to use."
 />
 
@@ -133,9 +133,8 @@
               class="w-full h-full"
             />
           {:else}
-            <code
-              title="{selectedRepo.name} README.md"
-              class="rawfile">{@html repoReadmeHtml}</code
+            <code title="{selectedRepo.name} README.md" class="rawfile"
+              >{@html repoReadmeHtml}</code
             >
           {/if}
         </div>

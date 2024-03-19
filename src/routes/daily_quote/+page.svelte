@@ -46,7 +46,7 @@
 </script>
 
 <Seo
-  title="Daily quote - Josu dev"
+  title="Daily quote - Josudev"
   description="A daily quote because why not?. It comes from Josu or something that he heard and liked."
 />
 
