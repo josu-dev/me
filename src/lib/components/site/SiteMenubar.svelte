@@ -1,20 +1,22 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import IconArrowlefttoline from '$comps/icons/IconArrowefttoline.svelte';
+  import IconArrowlefttoline from '$comps/icons/IconArrowlefttoline.svelte';
   import IconArrowrighttoline from '$comps/icons/IconArrowrighttoline.svelte';
   import IconCheck from '$comps/icons/IconCheck.svelte';
   import IconChevronright from '$comps/icons/IconChevronright.svelte';
   import { GITHUB_REPOSITORY } from '$lib/constants.js';
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
-  import { Menubar } from 'bits-ui';
+  import { Combobox, Menubar } from 'bits-ui';
   import { fly, slide } from 'svelte/transition';
   import { helpers } from '$comps/site/SitePalette.svelte';
   import { userViewTime } from '$lib/stores/user_view_time.js';
-  import { Popover, Separator } from 'bits-ui';
+  import { Popover, Separator, Dialog } from 'bits-ui';
   import IconSun from '$comps/icons/IconSun.svelte';
   import IconMoon from '$comps/icons/IconMoon.svelte';
+  import IconMenu from '$comps/icons/IconMenu.svelte';
   import Logo from '$comps/site/Logo.svelte';
   import { untrack } from 'svelte';
+  import { fade } from 'svelte/transition';
 
   const prefs = getUserPreferences();
 
@@ -75,6 +77,12 @@
 
     prefs.setFontFamily(selectedFont);
   });
+
+  let mobileOpen = $state(false);
+
+  function closeMobileMenu() {
+    mobileOpen = false;
+  }
 </script>
 
 <div class="relative h-full text-base-200">
@@ -85,27 +93,206 @@
       class="h-full flex flex-row border-b border-base-500/25 bg-base-950 px-[3px] shadow-sm"
     >
       <div class="grow w-1/5 h-full flex items-center justify-start">
-        <button title="Abrir menus" class="h-full p-1 lg:hidden">
-          <Logo class="size-6 border border-base-500/50" />
-        </button>
-        <div class="hidden h-full p-1 lg:block">
-          <Logo class="size-6 border border-base-500/50" />
+        <div class="h-full p-1">
+          <Logo
+            class="size-6 border border-base-500/50 light:border-transparent"
+          />
         </div>
 
-        <Menubar.Root class="hidden h-full ml-1 lg:flex lg:items-center">
-          <Menubar.Menu>
-            <Menubar.Trigger class="menu-trigger">General</Menubar.Trigger>
-            <Menubar.Content
-              class="menu-content  light:bg-base-950"
-              align="start"
-              sideOffset={1}
-            >
-              <Menubar.Item class="menu-item">
-                <span class="label">Nada</span>
-              </Menubar.Item>
-            </Menubar.Content>
-          </Menubar.Menu>
+        <Dialog.Root bind:open={mobileOpen}>
+          <Dialog.Trigger title="Ver menus" class="h-full p-1 lg:hidden">
+            <span class="sr-only">Ver menus</span>
+            <IconMenu />
+          </Dialog.Trigger>
 
+          <Dialog.Portal>
+            <Dialog.Overlay
+              transition={fade}
+              transitionConfig={{ duration: 250 }}
+              class="fixed inset-0 z-50 bg-black/50 backdrop-blur-[1px]"
+            />
+
+            <Dialog.Content
+              transition={slide}
+              transitionConfig={{ duration: 250, axis: 'x' }}
+              class="fixed top-0 left-0 z-50 flex flex-col py-6 pl-4 h-full w-full max-w-md bg-base-950 border-r border-base-500/25"
+            >
+              <Dialog.Close
+                title="Ocultar menus"
+                class="absolute right-2 top-2 text-base-100 size-8 p-1"
+              >
+                <IconArrowlefttoline />
+                <span class="sr-only">Ocultar menus</span>
+              </Dialog.Close>
+
+              <div class="h-10 flex flex-col text-nowrap">
+                <h2 class="sr-only">Menus disponibles</h2>
+                <div class="flex items-end h-full">
+                  <Logo
+                    class="h-full border border-base-500/50 light:border-transparent"
+                  />
+                  <span class="ml-4 text-2xl font-bold text-base-50">Menus</span
+                  >
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col gap-4 h-[calc(100%-5rem)] mr-4 xs:mr-8 px-2 py-4 overflow-y-auto overflow-x-hidden text-nowrap"
+              >
+                <div>
+                  <h3 class="text-lg font-semibold text-base-100">Vista</h3>
+                  <div class="text-base-100">
+                    <div class="menu-item-mobile">
+                      {#if prefs.sitebar.open}
+                        <div class="p-0.5">
+                          <IconCheck />
+                        </div>
+                      {/if}
+                      <button
+                        on:click={() => {
+                          closeMobileMenu();
+                          prefs.setSitebarOpen(false);
+                        }}
+                        class="center text-left"
+                      >
+                        Barra de menus
+                      </button>
+                    </div>
+                    <div class="menu-item-mobile">
+                      <div class="col-start-2 flex">
+                        <Combobox.Root bind:inputValue={selectedFont} required>
+                          <Combobox.Label
+                            class="pl-2 pt-1 pb-0.5 text-base !leading-none"
+                          >
+                            Fuente
+                          </Combobox.Label>
+                          <Combobox.Input
+                            spellcheck="false"
+                            class="bg-base-950 ml-4 px-2 pt-0.5 pb-0 align-text-bottom text-sm inline-block rounded !leading-none [&_*]:leading-none border-0 text-base-200 ring-1 ring-base-200 focus:ring-base-100 focus:bg-primary-800/50 light:focus:bg-primary-200"
+                          />
+                          <Combobox.Content
+                            side="bottom"
+                            class="bg-base-950 border border-base-500/50 rounded shadow-sm fill-base-500"
+                          >
+                            {#each prefs.font.available as family (family)}
+                              <Combobox.Item
+                                value={family.value}
+                                class="flex items-center justify-between py-1.5 px-2 text-base-100 text-sm cursor-pointer hover:bg-base-500/25"
+                              >
+                                {family.name}
+                                {#if selectedFont === family.value}
+                                  <div class="size-4">
+                                    <IconCheck />
+                                  </div>
+                                {/if}
+                              </Combobox.Item>
+                            {/each}
+                          </Combobox.Content>
+                        </Combobox.Root>
+                      </div>
+                    </div>
+                    <div class="menu-item-mobile">
+                      <div class="p-0.5">
+                        <div class="light:hidden">
+                          <IconMoon />
+                        </div>
+                        <div class="dark:hidden">
+                          <IconSun />
+                        </div>
+                      </div>
+                      <button
+                        class="center text-left"
+                        on:click={(e) => {
+                          e.preventDefault();
+                          prefs.toggleTheme();
+                        }}
+                      >
+                        {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
+                      </button>
+                    </div>
+                    <div class="menu-separator-mobile"></div>
+                    <div class="menu-item-mobile">
+                      <button
+                        class="center text-left"
+                        on:click={() => {
+                          closeMobileMenu();
+                          helpers.toggleOpen();
+                        }}
+                      >
+                        Paleta de comandos
+                      </button>
+                    </div>
+                    <div class="menu-item-mobile">
+                      {#if prefs.fullscreen}
+                        <div class="p-0.5">
+                          <IconCheck />
+                        </div>
+                      {/if}
+                      <button
+                        class="center text-left"
+                        on:click={toggleFullscreen}
+                      >
+                        Pantalla completa
+                      </button>
+                    </div>
+                    <div class="menu-item-mobile">
+                      <button class="center text-left" on:click={reloadWindow}>
+                        Recargar pagina
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="text-lg font-semibold text-base-100">Paginas</h3>
+                  <nav class="text-base-100">
+                    <ul class="flex flex-col">
+                      {#each localPages as page (page.url)}
+                        {@const current = currentUrlPathname === page.url}
+                        <li class="menu-item-mobile">
+                          {#if current}
+                            <div class="icon-left p-0.5">
+                              <IconChevronright />
+                            </div>
+                          {/if}
+                          <a
+                            class="center aria-[current=page]:underline underline-offset-2"
+                            href={page.url}
+                            aria-current={current ? 'page' : undefined}
+                            on:click={closeMobileMenu}
+                          >
+                            {page.name}
+                          </a>
+                        </li>
+                      {/each}
+                      <div class="menu-separator-mobile" />
+                      {#each externalPages as page (page.url)}
+                        <li class="menu-item-mobile">
+                          <a
+                            class="center"
+                            href={page.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {page.name}
+                          </a>
+                        </li>
+                      {/each}
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+
+              <div class="h-10 flex flex-col text-nowrap">
+                <div class="flex items-center h-full text-base-400">
+                  <span class="text-sm">© 2024 Josu dev</span>
+                </div>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
+
+        <Menubar.Root class="hidden h-full ml-1 lg:flex lg:items-center">
           <Menubar.Menu>
             <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
             <Menubar.Content
@@ -254,14 +441,15 @@
       </div>
 
       <div class="min-w-0 grow w-1/5 h-full pr-8 flex items-center justify-end">
-        <div class="hidden sm:block">
-          <Popover.Root disableFocusTrap open={false}>
+        <div class="">
+          <Popover.Root disableFocusTrap>
             <Popover.Trigger
               title="Tiempo en la pagina"
-              class="px-3 text-sm font-light text-base-400 leading-6 hover:text-base-300"
+              class="px-1 lg:px-3 text-sm font-light text-base-400 leading-6 hover:text-base-300"
             >
               {$userViewTime.human}
             </Popover.Trigger>
+
             <Popover.Content
               class="menu-content min-w-64 max-w-max light:bg-base-950"
               align="end"
@@ -304,6 +492,7 @@
           out:fly={{ x: 32, duration: 250 }}
           class="h-full"
         >
+          <span class="sr-only">Ocultar barra de menus</span>
           <IconArrowrighttoline />
         </div>
       {:else}
@@ -312,6 +501,7 @@
           out:fly={{ x: -32, duration: 250 }}
           class="h-full"
         >
+          <span class="sr-only">Ver barra de menus</span>
           <IconArrowlefttoline />
         </div>
       {/if}
@@ -354,6 +544,22 @@
   }
 
   :global(.menu-separator) {
-    @apply my-1 -ml-1 -mr-1 block h-px bg-base-500/50;
+    @apply my-1 -mx-1 block h-px bg-base-500/50;
+  }
+
+  :global(.menu-item-mobile) {
+    @apply grid grid-cols-[1.5rem,1fr,1.5rem] gap-0.5 items-center h-7 rounded p-0.5 select-none text-base leading-none font-light hover:bg-base-500/25;
+  }
+  :global(.menu-item-mobile > .center) {
+    @apply col-start-2 px-2 pt-1 pb-0.5 outline-none;
+  }
+  :global(.menu-item-mobile:has(.center:focus)) {
+    @apply bg-primary-800/50;
+  }
+  :global([data-theme='light'] .menu-item-mobile:has(.center:focus)) {
+    @apply bg-primary-200;
+  }
+  :global(.menu-separator-mobile) {
+    @apply my-1 block h-px bg-base-500/50;
   }
 </style>
