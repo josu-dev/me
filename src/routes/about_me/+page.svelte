@@ -30,7 +30,7 @@
 
   const cv = {
     name: 'Josue_Suarez_CV.pdf',
-    href: '/cv/Josue_Suarez_CV.pdf',
+    href: '/blob/Josue_Suarez_CV.pdf',
   };
 </script>
 
