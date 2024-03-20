@@ -10,6 +10,7 @@
   const _palette = createPalette({
     debounce: 250,
     defaults: {
+      mode: 'pages',
       open: false,
       placeholder: `Busca paginas... '>' para comandos...`,
     },
@@ -79,6 +80,7 @@
   } from 'svelte-hypercommands';
   import IconGlobe from '$comps/icons/IconGlobe.svelte';
   import IconHome from '$comps/icons/IconHome.svelte';
+  import { touchsequence } from '$lib/actions.js';
 
   type Props = {
     commands: HyperActionable[];
@@ -108,7 +110,19 @@
   });
 </script>
 
-<div {...$palette} use:palette class="palette-container">
+<div
+  {...$palette}
+  use:palette
+  use:touchsequence={{
+    handler: (e) => {
+      e.preventDefault();
+      helpers.toggleOpen();
+    },
+    touches: 4,
+    threshold: 350,
+  }}
+  class="palette-container"
+>
   {#if $open}
     <div
       {...$panel}

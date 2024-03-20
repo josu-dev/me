@@ -15,27 +15,27 @@ export function clickoutside<K extends keyof ClickTypeMap>(el: HTMLElement, opti
     let eventType = (options.type || "click") as K;
     let eventHandler = options.handler;
 
-    function onPointer(event: ClickTypeMap[K]) {
+    function on_event(event: ClickTypeMap[K]) {
         if (!el.contains(event.target as Node) && !event.defaultPrevented && (!options.exclude || !options.exclude.contains(event.target as Node))) {
             eventHandler(event);
         }
     }
 
     const config = { passive: false, capture: true };
-    document.addEventListener(eventType, onPointer, config);
+    document.addEventListener(eventType, on_event, config);
 
     return {
         destroy() {
-            document.removeEventListener(eventType, onPointer, config);
+            document.removeEventListener(eventType, on_event, config);
         },
         update(newOptions: Partial<UseClickOutsideOptions<K>>) {
             if (!newOptions.type) {
                 newOptions.type = eventType;
             }
             if (newOptions.type !== eventType) {
-                document.removeEventListener(eventType, onPointer, config);
+                document.removeEventListener(eventType, on_event, config);
                 eventType = newOptions.type;
-                document.addEventListener(eventType, onPointer, config);
+                document.addEventListener(eventType, on_event, config);
             }
             if (newOptions.handler) {
                 eventHandler = newOptions.handler;
@@ -50,29 +50,27 @@ type UseEscapeKeyOptions = {
 };
 
 export function escapekey(el: HTMLElement, options: UseEscapeKeyOptions) {
-    const document = el.ownerDocument;
-    let eventHandler = options.handler;
-    let preventDefault = options.preventDefault !== false;
-
-    function onKey(event: KeyboardEvent) {
+    function on_keydown(event: KeyboardEvent) {
         if (event.key === "Escape") {
-            if (preventDefault) event.preventDefault();
-            eventHandler(event);
+            if (options.preventDefault) {
+                event.preventDefault();
+            }
+            options.handler(event);
         }
     }
 
-    document.addEventListener("keydown", onKey);
+    el.ownerDocument.addEventListener("keydown", on_keydown);
 
     return {
         destroy() {
-            document.removeEventListener("keydown", onKey);
+            el.ownerDocument.removeEventListener("keydown", on_keydown);
         },
-        update(newOptions: Partial<UseEscapeKeyOptions>) {
-            if (newOptions.handler) {
-                eventHandler = newOptions.handler;
+        update(updated: Partial<UseEscapeKeyOptions>) {
+            if (updated.handler) {
+                options.handler = updated.handler;
             }
-            if (newOptions.preventDefault !== undefined) {
-                preventDefault = newOptions.preventDefault;
+            if (updated.preventDefault !== undefined) {
+                options.preventDefault = updated.preventDefault;
             }
         }
     };
@@ -85,19 +83,23 @@ type UseCopytoclipboardOptions = {
 };
 
 export function copytoclipboard(el: HTMLElement, options: UseCopytoclipboardOptions) {
-    function onclick() {
-        navigator.clipboard.writeText(options.text).then(options.onsuccess, options.onerror);
+    function on_click() {
+        navigator
+            .clipboard
+            .writeText(options.text)
+            .then(options.onsuccess, options.onerror);
     }
 
     const config = { passive: false, capture: true };
-    el.addEventListener("click", onclick, config);
+
+    el.addEventListener("click", on_click, config);
 
     return {
         destroy() {
-            el.removeEventListener("click", onclick, config);
+            el.removeEventListener("click", on_click, config);
         },
         update(updated: Partial<UseCopytoclipboardOptions>) {
-            if (updated.text) {
+            if (updated.text !== undefined) {
                 options.text = updated.text;
             }
             if (updated.onsuccess) {
@@ -105,6 +107,84 @@ export function copytoclipboard(el: HTMLElement, options: UseCopytoclipboardOpti
             }
             if (updated.onerror) {
                 options.onerror = updated.onerror;
+            }
+        }
+    };
+}
+
+type UseTouchsequenceOptions = {
+    handler: (event: TouchEvent) => void;
+    /**
+     * Number of touches to trigger the handler.
+     * 
+     * Minimum value is 1.
+     * 
+     * @default 2
+     */
+    touches: number;
+    /**
+     * Maximum time between touches to consider them part of the same sequence
+     * in milliseconds.
+     * 
+     * Minimum value is 0.
+     * 
+     * @default 300
+     */
+    threshold?: number;
+};
+
+export function touchsequence(el: HTMLElement, options: UseTouchsequenceOptions) {
+    const DEFAULT_TOUCHES = 2;
+    const DEFAULT_THRESHOLD = 300;
+
+    if (options.touches < 1) {
+        options.touches = DEFAULT_TOUCHES;
+    }
+    if (!options.threshold || options.threshold < 0) {
+        options.threshold = DEFAULT_THRESHOLD;
+    }
+
+    let acc_touches = 0;
+    let last_ts = 0;
+
+    function on_touchstart(event: TouchEvent) {
+        if (event.defaultPrevented) {
+            return;
+        }
+
+        if ((event.timeStamp - last_ts) > options.threshold!) {
+            acc_touches = 1;
+            last_ts = event.timeStamp;
+            return;
+        }
+
+        acc_touches += 1;
+        last_ts = event.timeStamp;
+        if (acc_touches < options.touches) {
+            return;
+        }
+
+        options.handler(event);
+        acc_touches = 0;
+    }
+
+    const config = { passive: false, capture: true };
+
+    el.ownerDocument.addEventListener("touchstart", on_touchstart, config);
+
+    return {
+        destroy() {
+            el.ownerDocument.removeEventListener("touchstart", on_touchstart, config);
+        },
+        update(updated: Partial<UseTouchsequenceOptions>) {
+            if (updated.handler) {
+                options.handler = updated.handler;
+            }
+            if (updated.touches !== undefined) {
+                options.touches = updated.touches > 0 ? updated.touches : DEFAULT_TOUCHES;
+            }
+            if (updated.threshold !== undefined) {
+                options.threshold = updated.threshold < 0 ? DEFAULT_THRESHOLD : updated.threshold;
             }
         }
     };

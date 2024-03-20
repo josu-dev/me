@@ -9,7 +9,7 @@
 
 <main class="flex flex-col md:px-4 h-full">
   <div
-    class="h-full w-full grid grid-rows-6 max-w-md my-auto mx-auto lg:max-w-screen-md"
+    class="h-full w-full grid grid-rows-6 max-w-[min(90vw,28rem)] my-auto mx-auto lg:max-w-screen-md"
   >
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">
@@ -17,9 +17,8 @@
           Listo?
         </h1>
         <p class="mt-[1em] text-base-300 text-xl text-balance text-center">
-          Presiona 'Ctrl + P' para empezar <span
-            class="animate-bounce inline-block">😎</span
-          >
+          Presiona 'Ctrl + P' o <span class="text-nowrap">'4 taps'</span> en
+          mobil para empezar <span class="animate-bounce inline-block">😎</span>
         </p>
       </div>
     </div>
