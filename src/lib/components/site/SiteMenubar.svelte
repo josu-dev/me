@@ -431,7 +431,7 @@
             >
             {#if pageStatusError}
               <span
-                class="absolute top-1.5 left-full translate-x-1.5 select-none text-xs leading-none rounded font-extralight px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
+                class="absolute top-1.5 left-full translate-x-1.5 select-none text-xs leading-none rounded font-light px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
               >
                 {pageStatusError}
               </span>
@@ -445,7 +445,7 @@
           <Popover.Root disableFocusTrap>
             <Popover.Trigger
               title="Tiempo en la pagina"
-              class="px-1 lg:px-3 text-sm font-light text-base-400 leading-6 hover:text-base-300"
+              class="px-1 lg:px-3 text-sm font-light text-base-300 leading-6 hover:text-base-200"
             >
               {$userViewTime.human}
             </Popover.Trigger>

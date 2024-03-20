@@ -6,6 +6,7 @@ import IconInfo from '$comps/icons/IconInfo.svelte';
 import { DEFAULT_LOG_FORMATTER, DEFAULT_LOG_LEVEL_CLIENT, TOAST } from '$lib/constants.js';
 import * as sftoast from 'svelte-french-toast';
 import type { ValidationErrors } from 'sveltekit-superforms';
+import { MersenneTwister } from './mersenne_twister.js';
 
 export function createLogger(level: number, dev: boolean = false, formatter: Intl.DateTimeFormat = DEFAULT_LOG_FORMATTER) {
     function setFormatter(value: Intl.DateTimeFormat) {
@@ -179,37 +180,15 @@ export const toast = {
     formLevelErrors: toastFormLevelErrors,
 };
 
-export function createSeededRandom(seed?: number) {
-    seed = seed ?? 13032024;
-
-    return {
-        next() {
-            seed = (seed! * 16807) % 2147483647;
-            return (seed - 1) / 2147483646;
-        },
-        [Symbol.iterator]() {
-            return {
-                next() {
-                    seed = (seed! * 16807) % 2147483647;
-                    return {
-                        value: (seed - 1) / 2147483646,
-                        done: false
-                    };
-                }
-            };
-        }
-    };
-}
-
 export function predictableShuffle<T>(array: T[], seed?: number): T[] {
-    const random = createSeededRandom(seed);
+    const random = new MersenneTwister(seed);
 
     let currentIndex = array.length;
     let temporaryValue: T;
     let randomIndex: number;
 
     while (0 !== currentIndex) {
-        randomIndex = Math.floor(random.next() * currentIndex);
+        randomIndex = Math.floor(random.random() * currentIndex);
         currentIndex -= 1;
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];

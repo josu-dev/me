@@ -2,7 +2,7 @@ import { predictableShuffle } from '$lib/utils/index.js';
 import type { PageServerLoad } from './$types.js';
 import rawQuotes from './quotes.json';
 
-const quotes = predictableShuffle(rawQuotes, 13_03_2024);
+const quotes = predictableShuffle([...rawQuotes], 13_03_2024);
 
 export const load: PageServerLoad = async () => {
     // Get the current day since the Unix epoch
