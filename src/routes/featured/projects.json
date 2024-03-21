@@ -20,7 +20,7 @@
     "homepage": "https://josu-dev.github.io/RobotScript/",
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710978839/me/preview_rs_by7bvr.gif",
-      "caption": "Vista previa de uso del entorno de desarrollo"
+      "caption": "Vista previa del uso del entorno de desarrollo y la documentacion."
     }
   },
   {
@@ -43,7 +43,7 @@
     "homepage": "https://omc.eventitos.com.ar/",
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710978566/me/preview_omc_czl5me.gif",
-      "caption": "Vista previa de algunas funcionalidades del juego."
+      "caption": "Vista previa de algunas secciones del juego."
     }
   },
   {
@@ -65,7 +65,7 @@
     "repository": "https://github.com/josu-dev/svelte-hypercommands",
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710980486/me/preview_hc_sdhwt4.gif",
-      "caption": "Vista previa de uso de la palata de comandos en esta pagina."
+      "caption": "Vista previa de la paleta con su uso en esta pagina."
     }
   },
   {
