@@ -58,8 +58,8 @@
   </div>
 {/snippet}
 
-<main class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub md:overflow-hidden">
-  <div class="max-w-screen-md mx-auto lg:mx-0 lg:h-full lg:max-w-full flex flex-col">
+<main class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub lg:overflow-hidden">
+  <div class=" flex flex-col max-w-screen-md mx-auto lg:mx-0 lg:h-full lg:max-w-full">
     <header class="text-base-50">
       <h1 class="text-2xl font-bold mt-4">Proyectos destacados</h1>
     </header>
