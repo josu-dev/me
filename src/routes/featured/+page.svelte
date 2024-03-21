@@ -4,7 +4,7 @@
   import rawProjects from './projects.json';
   import { Tabs } from 'bits-ui';
 
-  let projects = $state(rawProjects);
+  let projects = $state(rawProjects.sort((a, b) => a.order - b.order));
 
   let selectedId = $state(projects[0]?.id ?? '');
 </script>
