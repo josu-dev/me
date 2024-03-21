@@ -1,6 +1,6 @@
 # Me
 
-Repository for my personal website. Builded how I want it to be.
+Repository for my personal website, built how I want it to be.
 
 The design was made taking in consideration the following:
 

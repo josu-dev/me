@@ -18,7 +18,7 @@
         </h1>
         <p class="mt-[1em] text-base-300 text-xl text-balance text-center">
           Presiona 'Ctrl + P' o <span class="text-nowrap">'4 taps'</span> en
-          mobil para empezar <span class="animate-bounce inline-block">😎</span>
+          movil para empezar <span class="animate-bounce inline-block">😎</span>
         </p>
       </div>
     </div>
