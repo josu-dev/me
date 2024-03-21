@@ -78,7 +78,7 @@
   }
 
   $effect(() => {
-    audio = new Audio('/audio/typewriter.m4a');
+    audio = new Audio('/blob/typewriter.m4a');
     audio.loop = true;
     audio.playbackRate = 1.5;
 
