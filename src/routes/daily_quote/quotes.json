@@ -230,5 +230,37 @@
       "en": "When you let yourself go you have to know when to stop",
       "es": "Cuando te dejas llevar tenes que saber cuando parar"
     }
+  },
+  {
+    "id": "31",
+    "author": "Josu",
+    "quote": {
+      "en": "One has to live with the consequences of their actions",
+      "es": "Uno tiene que vivir con la consecuencias de sus actos"
+    }
+  },
+  {
+    "id": "32",
+    "author": "Josu",
+    "quote": {
+      "en": "If it wasn't for you before, it probably isn't for you now",
+      "es": "Si antes no era para vos, ahora probablemente tampoco lo sea"
+    }
+  },
+  {
+    "id": "33",
+    "author": "Iñaki",
+    "quote": {
+      "en": "The low level is for high level people",
+      "es": "El bajo nivel es para gente con alto nivel"
+    }
+  },
+  {
+    "id": "34",
+    "author": "Josu",
+    "quote": {
+      "en": "The low level is for high level people",
+      "es": "A veces no es cuestion de querer o no querer hacer, sino simplemente de hacerlo"
+    }
   }
 ]
