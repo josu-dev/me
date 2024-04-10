@@ -22,15 +22,11 @@
 </script>
 
 <script lang="ts">
-  import { clickoutside, escapekey } from '$lib/actions.js';
   import { helpers } from '$comps/site/SitePalette.svelte';
+  import { clickoutside, escapekey } from '$lib/actions.js';
   import SuperDebug from 'sveltekit-superforms';
 
-  let {
-    label,
-    truncate,
-    functions = true,
-  } = $props<{
+  type Props = {
     /**
      * Whether to show functions in the debug output
      */
@@ -43,7 +39,9 @@
      * The maximum length of strings to show in the debug output
      */
     truncate?: number;
-  }>();
+  };
+
+  let { label, truncate, functions = true }: Props = $props();
 
   function closeDialog() {
     debug.setVisible(false);
@@ -69,20 +67,13 @@
     use:escapekey={{ handler: closeDialog }}
     class="fixed inset-0 z-10 my-auto mx-auto h-max max-h-[90vh] max-w-[95vw] sm:max-w-[min(90vw,1024px)] overflow-y-auto"
   >
-    <SuperDebug
-      data={debug.data}
-      {label}
-      stringTruncate={truncate}
-      {functions}
-      theme="vscode"
-    />
+    <SuperDebug data={debug.data} {label} stringTruncate={truncate} {functions} theme="vscode" />
   </div>
 {/if}
 
 <style>
   div :global(pre),
   div :global(span) {
-    font-family: 'JetBrains Mono', Inconsolata, Monaco, Consolas,
-      'Lucida Console', 'Courier New', Courier, monospace;
+    font-family: 'JetBrains Mono', Inconsolata, Monaco, Consolas, 'Lucida Console', 'Courier New', Courier, monospace;
   }
 </style>

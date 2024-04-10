@@ -71,7 +71,7 @@
     },
     themeColor= DEFAULT_OPEN_GRAPH.THEME_COLOR,
     children
-  } = $props<Props>();
+  } :Props= $props();
 
   let currentUrl = $derived(
     $page.url.origin + ($page.url.pathname === '/' ? '' : $page.url.pathname),

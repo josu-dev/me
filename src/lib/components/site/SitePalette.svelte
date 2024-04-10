@@ -1,11 +1,6 @@
 <script lang="ts" context="module">
-  import {
-    createPalette,
-    defineActionable,
-    defineNavigable,
-    HYPER_ITEM,
-  } from 'svelte-hypercommands';
   import { goto } from '$app/navigation';
+  import { createPalette, defineActionable, defineNavigable, HYPER_ITEM } from 'svelte-hypercommands';
 
   const _palette = createPalette({
     debounce: 250,
@@ -46,9 +41,7 @@
     closeOnEscape: true,
   });
 
-  function registerCommand<T extends [any, ...any]>(
-    ...items: ActionablesDefinition<T>
-  ) {
+  function registerCommand<T extends [any, ...any]>(...items: ActionablesDefinition<T>) {
     const commands = defineActionable(items);
     return _palette.helpers.registerItem('commands', commands);
   }
@@ -71,23 +64,23 @@
 </script>
 
 <script lang="ts">
-  import { shortcutToKbd } from 'svelte-hypercommands';
+  import IconGlobe from '$comps/icons/IconGlobe.svelte';
+  import IconHome from '$comps/icons/IconHome.svelte';
+  import { touchsequence } from '$lib/actions.js';
   import type {
     ActionablesDefinition,
     HyperActionable,
     HyperNavigable,
     NavigablesDefinition,
   } from 'svelte-hypercommands';
-  import IconGlobe from '$comps/icons/IconGlobe.svelte';
-  import IconHome from '$comps/icons/IconHome.svelte';
-  import { touchsequence } from '$lib/actions.js';
+  import { shortcutToKbd } from 'svelte-hypercommands';
 
   type Props = {
     commands: HyperActionable[];
     pages: HyperNavigable[];
   };
 
-  let { commands, pages } = $props<Props>();
+  let { commands, pages }: Props = $props();
 
   const { palette, panel, form, label, input, item } = _palette.elements;
   const {
@@ -145,8 +138,7 @@
               <div class="result-container">
                 <div class="result-label" title={c.description}>
                   {#if c.category}
-                    <span class="result-label-name">{c.category}: {c.name}</span
-                    >
+                    <span class="result-label-name">{c.category}: {c.name}</span>
                   {:else}
                     <span class="result-label-name">{c.name}</span>
                   {/if}
@@ -185,8 +177,7 @@
                   {/if}
                 </div>
                 <div class="result-label" title={p.url}>
-                  <span class="result-label-name">{p.name}</span
-                  >{#if p.name !== p.url}
+                  <span class="result-label-name">{p.name}</span>{#if p.name !== p.url}
                     <span class="result-page-url">{p.urlHostPathname}</span>
                   {/if}
                 </div>

@@ -12,7 +12,7 @@
     selected: string;
   };
 
-  let { repos: items, selected } = $props<Props>();
+  let { repos: items, selected }: Props = $props();
 </script>
 
 <Accordion.Root

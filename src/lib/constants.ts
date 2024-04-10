@@ -14,7 +14,7 @@ export const DEFAULT_OPEN_GRAPH = {
     LOCALE: 'es_AR',
     SITE_NAME: 'Josudev',
     THEME_COLOR: '#082f49',
-};
+} as const;
 
 export const DEFAULT_SITE_MENUBAR_OPEN = false;
 

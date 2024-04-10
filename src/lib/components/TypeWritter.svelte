@@ -26,7 +26,7 @@
     sound = true,
     onend,
     onstart,
-  } = $props<Props>();
+  }: Props = $props();
 
   let audio: HTMLAudioElement;
   let failedToPlay = false;
@@ -47,9 +47,7 @@
     }
 
     if (typedIdx < text.length) {
-      const nextDelay = Math.floor(
-        Math.random() * interval * 0.75 + interval * 0.75,
-      );
+      const nextDelay = Math.floor(Math.random() * interval * 0.75 + interval * 0.75);
       timeoutId = setTimeout(typeNextLetter, nextDelay);
       return;
     }
