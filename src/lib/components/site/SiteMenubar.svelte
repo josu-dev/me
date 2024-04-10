@@ -4,21 +4,46 @@
   import IconArrowrighttoline from '$comps/icons/IconArrowrighttoline.svelte';
   import IconCheck from '$comps/icons/IconCheck.svelte';
   import IconChevronright from '$comps/icons/IconChevronright.svelte';
+  import IconMenu from '$comps/icons/IconMenu.svelte';
+  import IconMoon from '$comps/icons/IconMoon.svelte';
+  import IconSun from '$comps/icons/IconSun.svelte';
+  import Logo from '$comps/site/Logo.svelte';
+  import { helpers } from '$comps/site/SitePalette.svelte';
   import { GITHUB_REPOSITORY } from '$lib/constants.js';
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
-  import { Combobox, Menubar } from 'bits-ui';
-  import { fly, slide } from 'svelte/transition';
-  import { helpers } from '$comps/site/SitePalette.svelte';
   import { userViewTime } from '$lib/stores/user_view_time.js';
-  import { Popover, Separator, Dialog } from 'bits-ui';
-  import IconSun from '$comps/icons/IconSun.svelte';
-  import IconMoon from '$comps/icons/IconMoon.svelte';
-  import IconMenu from '$comps/icons/IconMenu.svelte';
-  import Logo from '$comps/site/Logo.svelte';
+  import { Combobox, Dialog, Menubar, Popover, Separator } from 'bits-ui';
   import { untrack } from 'svelte';
-  import { fade } from 'svelte/transition';
+  import { fade, fly, slide } from 'svelte/transition';
+
+  const ANIMATION_DURATION = 250;
 
   const prefs = getUserPreferences();
+
+  let animateOpenButton = $state(prefs.sitebar.open);
+  let animateCloseButton = $state(!prefs.sitebar.open);
+
+  $effect(() => {
+    if ((prefs.sitebar.open && animateOpenButton) || (!prefs.sitebar.open && animateCloseButton)) {
+      return;
+    }
+
+    if (prefs.sitebar.open) {
+      animateCloseButton = false;
+    } else {
+      animateOpenButton = false;
+    }
+
+    let timeout = setTimeout(() => {
+      if (prefs.sitebar.open) {
+        animateOpenButton = true;
+      } else {
+        animateCloseButton = true;
+      }
+    }, ANIMATION_DURATION);
+
+    return () => clearTimeout(timeout);
+  });
 
   function reloadWindow() {
     window.location.reload();
@@ -51,9 +76,7 @@
   }
 
   let currentUrlPathname = $derived($page.url.pathname);
-  let pageStatusError = $derived(
-    $page.status >= 400 ? $page.status : undefined,
-  );
+  let pageStatusError = $derived($page.status >= 400 ? $page.status : undefined);
 
   const localPages = [
     { name: 'Inicio', url: '/' },
@@ -94,9 +117,7 @@
     >
       <div class="grow w-1/5 h-full flex items-center justify-start">
         <div class="h-full p-1">
-          <Logo
-            class="size-6 border border-base-500/50 light:border-transparent"
-          />
+          <Logo class="size-6 border border-base-500/50 light:border-transparent" />
         </div>
 
         <Dialog.Root bind:open={mobileOpen}>
@@ -117,10 +138,7 @@
               transitionConfig={{ duration: 250, axis: 'x' }}
               class="fixed top-0 left-0 z-50 flex flex-col py-6 pl-4 h-full w-full max-w-md bg-base-950 border-r border-base-500/25"
             >
-              <Dialog.Close
-                title="Ocultar menus"
-                class="absolute right-2 top-2 text-base-100 size-8 p-1"
-              >
+              <Dialog.Close title="Ocultar menus" class="absolute right-2 top-2 text-base-100 size-8 p-1">
                 <IconArrowlefttoline />
                 <span class="sr-only">Ocultar menus</span>
               </Dialog.Close>
@@ -128,11 +146,8 @@
               <div class="h-10 flex flex-col text-nowrap">
                 <h2 class="sr-only">Menus disponibles</h2>
                 <div class="flex items-end h-full">
-                  <Logo
-                    class="h-full border border-base-500/50 light:border-transparent"
-                  />
-                  <span class="ml-4 text-2xl font-bold text-base-50">Menus</span
-                  >
+                  <Logo class="h-full border border-base-500/50 light:border-transparent" />
+                  <span class="ml-4 text-2xl font-bold text-base-50">Menus</span>
                 </div>
               </div>
 
@@ -161,11 +176,7 @@
                     <div class="menu-item-mobile">
                       <div class="col-start-2 flex">
                         <Combobox.Root bind:inputValue={selectedFont} required>
-                          <Combobox.Label
-                            class="pl-2 pt-1 pb-0.5 text-base !leading-none"
-                          >
-                            Fuente
-                          </Combobox.Label>
+                          <Combobox.Label class="pl-2 pt-1 pb-0.5 text-base !leading-none">Fuente</Combobox.Label>
                           <Combobox.Input
                             spellcheck="false"
                             class="bg-base-950 ml-4 px-2 pt-0.5 pb-0 align-text-bottom text-sm inline-block rounded !leading-none [&_*]:leading-none border-0 text-base-200 ring-1 ring-base-200 focus:ring-base-100 focus:bg-primary-800/50 light:focus:bg-primary-200"
@@ -228,17 +239,10 @@
                           <IconCheck />
                         </div>
                       {/if}
-                      <button
-                        class="center text-left"
-                        on:click={toggleFullscreen}
-                      >
-                        Pantalla completa
-                      </button>
+                      <button class="center text-left" on:click={toggleFullscreen}> Pantalla completa </button>
                     </div>
                     <div class="menu-item-mobile">
-                      <button class="center text-left" on:click={reloadWindow}>
-                        Recargar pagina
-                      </button>
+                      <button class="center text-left" on:click={reloadWindow}> Recargar pagina </button>
                     </div>
                   </div>
                 </div>
@@ -268,12 +272,7 @@
                       <div class="menu-separator-mobile" />
                       {#each externalPages as page (page.url)}
                         <li class="menu-item-mobile">
-                          <a
-                            class="center"
-                            href={page.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                          <a class="center" href={page.url} target="_blank" rel="noopener noreferrer">
                             {page.name}
                           </a>
                         </li>
@@ -295,11 +294,7 @@
         <Menubar.Root class="hidden h-full ml-1 lg:flex lg:items-center">
           <Menubar.Menu>
             <Menubar.Trigger class="menu-trigger">Vista</Menubar.Trigger>
-            <Menubar.Content
-              class="menu-content  light:bg-base-950"
-              align="start"
-              sideOffset={1}
-            >
+            <Menubar.Content class="menu-content  light:bg-base-950" align="start" sideOffset={1}>
               <Menubar.Item
                 class="menu-item"
                 on:click={() => {
@@ -320,11 +315,7 @@
                     <IconChevronright />
                   </div>
                 </Menubar.SubTrigger>
-                <Menubar.SubContent
-                  class="menu-content  light:bg-base-950"
-                  align="start"
-                  sideOffset={0}
-                >
+                <Menubar.SubContent class="menu-content  light:bg-base-950" align="start" sideOffset={0}>
                   <Menubar.RadioGroup bind:value={selectedFont}>
                     {#each prefs.font.available as family (family)}
                       <Menubar.RadioItem value={family.value} class="menu-item">
@@ -382,11 +373,7 @@
 
           <Menubar.Menu>
             <Menubar.Trigger class="menu-trigger">Paginas</Menubar.Trigger>
-            <Menubar.Content
-              class="menu-content  light:bg-base-950"
-              align="start"
-              sideOffset={1}
-            >
+            <Menubar.Content class="menu-content  light:bg-base-950" align="start" sideOffset={1}>
               {#each localPages as page (page.url)}
                 {@const current = currentUrlPathname === page.url}
                 <Menubar.Item
@@ -404,12 +391,7 @@
               {/each}
               <Menubar.Separator class="menu-separator" />
               {#each externalPages as page (page.url)}
-                <Menubar.Item
-                  class="menu-item"
-                  href={page.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Menubar.Item class="menu-item" href={page.url} target="_blank" rel="noopener noreferrer">
                   <span class="label">{page.name}</span>
                 </Menubar.Item>
               {/each}
@@ -418,17 +400,10 @@
         </Menubar.Root>
       </div>
 
-      <div
-        class="max-w-fit min-w-0 w-3/5 h-full flex items-center justify-center mx-2"
-      >
+      <div class="max-w-fit min-w-0 w-3/5 h-full flex items-center justify-center mx-2">
         {#key currentUrlPathname}
-          <div
-            in:slide={{ axis: 'x', duration: 250 }}
-            class="relative h-full flex items-center max-w-full"
-          >
-            <span class="text-sm font-light text-ellipsis overflow-hidden"
-              >{currentUrlPathname}</span
-            >
+          <div in:slide={{ axis: 'x', duration: 250 }} class="relative h-full flex items-center max-w-full">
+            <span class="text-sm font-light text-ellipsis overflow-hidden">{currentUrlPathname}</span>
             {#if pageStatusError}
               <span
                 class="absolute top-1.5 left-full translate-x-1.5 select-none text-xs leading-none rounded font-light px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
@@ -450,11 +425,7 @@
               {$userViewTime.human}
             </Popover.Trigger>
 
-            <Popover.Content
-              class="menu-content min-w-64 max-w-max light:bg-base-950"
-              align="end"
-              sideOffset={1}
-            >
+            <Popover.Content class="menu-content min-w-64 max-w-max light:bg-base-950" align="end" sideOffset={1}>
               <div class="flex flex-col px-2">
                 <div class="py-px">Primer visita</div>
                 <div class="pl-2">
@@ -481,24 +452,22 @@
   <div class="absolute top-0 right-0 h-full">
     <button
       on:click={toggleSitebar}
-      title={prefs.sitebar.open
-        ? 'Ocultar barra de menus'
-        : 'Ver barra de menus'}
+      title={prefs.sitebar.open ? 'Ocultar barra de menus' : 'Ver barra de menus'}
       class="text-base-200 h-full p-1"
     >
-      {#if prefs.sitebar.open}
+      {#if animateOpenButton}
         <div
-          in:fly={{ x: -32, duration: 250, delay: 250 }}
-          out:fly={{ x: 32, duration: 250 }}
+          in:fly={{ x: -32, duration: ANIMATION_DURATION }}
+          out:fly={{ x: 32, duration: ANIMATION_DURATION }}
           class="h-full"
         >
           <span class="sr-only">Ocultar barra de menus</span>
           <IconArrowrighttoline />
         </div>
-      {:else}
+      {:else if animateCloseButton}
         <div
-          in:fly={{ x: 32, duration: 250, delay: 250 }}
-          out:fly={{ x: -32, duration: 250 }}
+          in:fly={{ x: 32, duration: ANIMATION_DURATION }}
+          out:fly={{ x: -32, duration: ANIMATION_DURATION }}
           class="h-full"
         >
           <span class="sr-only">Ver barra de menus</span>
