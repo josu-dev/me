@@ -113,7 +113,7 @@
     <div
       in:fly={{ x: 1920, duration: 250 }}
       out:fly={{ x: 1920, duration: 250 }}
-      class="h-full flex flex-row border-b border-base-500/25 bg-base-950 px-[3px] shadow-sm"
+      class="h-full flex flex-row border-b border-base-500/25 bg-base-950 px-[3px] shadow-sm w-full"
     >
       <div class="grow w-1/5 h-full flex items-center justify-start">
         <div class="h-full p-1">
@@ -152,7 +152,7 @@
               </div>
 
               <div
-                class="flex flex-col gap-4 h-[calc(100%-5rem)] mr-4 xs:mr-8 px-2 py-4 overflow-y-auto overflow-x-hidden text-nowrap"
+                class="flex flex-col gap-4 h-[calc(100%-5rem)] mr-4 xs:mr-6 px-2 py-4 overflow-y-auto overflow-x-hidden text-nowrap"
               >
                 <div>
                   <h3 class="text-lg font-semibold text-base-100">Vista</h3>
@@ -174,7 +174,7 @@
                       </button>
                     </div>
                     <div class="menu-item-mobile">
-                      <div class="col-start-2 flex">
+                      <div class="col-start-2 flex w-max">
                         <Combobox.Root bind:inputValue={selectedFont} required>
                           <Combobox.Label class="pl-2 pt-1 pb-0.5 text-base !leading-none">Fuente</Combobox.Label>
                           <Combobox.Input
@@ -282,9 +282,38 @@
                 </div>
               </div>
 
-              <div class="h-10 flex flex-col text-nowrap">
-                <div class="flex items-center h-full text-base-400">
+              <div class="h-10 flex flex-col text-nowrap mr-4 xs:mr-6">
+                <div class="flex items-center justify-between h-full text-base-400">
                   <span class="text-sm">© 2024 Josudev</span>
+
+                  <Popover.Root disableFocusTrap>
+                    <Popover.Trigger title="Tiempo en la pagina" class="px-1 text-sm hover:text-base-200">
+                      {$userViewTime.human}
+                    </Popover.Trigger>
+
+                    <Popover.Content
+                      class="menu-content min-w-64 max-w-max light:bg-base-950"
+                      align="end"
+                      sideOffset={4}
+                    >
+                      <div class="flex flex-col px-2">
+                        <div class="py-px">Primer visita</div>
+                        <div class="pl-2">
+                          - {$userViewTime.firstVisit.getUTCDate()}/{$userViewTime.firstVisit.getUTCMonth()}/{$userViewTime.firstVisit.getUTCFullYear()}
+                        </div>
+                      </div>
+                      <Separator.Root class="menu-separator" />
+                      <div class="flex flex-col px-2">
+                        <div class="py-px">Tiempo en la pagina</div>
+                        <div class="pl-2">
+                          - <span>{$userViewTime.days}</span>d
+                          <span>{$userViewTime.hours}</span>h
+                          <span>{$userViewTime.mins}</span>m
+                          <span>{$userViewTime.secs}</span>s
+                        </div>
+                      </div>
+                    </Popover.Content>
+                  </Popover.Root>
                 </div>
               </div>
             </Dialog.Content>
@@ -403,7 +432,7 @@
       <div class="max-w-fit min-w-0 w-3/5 h-full flex items-center justify-center mx-2">
         {#key currentUrlPathname}
           <div in:slide={{ axis: 'x', duration: 250 }} class="relative h-full flex items-center max-w-full">
-            <span class="text-sm font-light text-ellipsis overflow-hidden">{currentUrlPathname}</span>
+            <span class="text-sm font-light overflow-hidden whitespace-pre">{currentUrlPathname}</span>
             {#if pageStatusError}
               <span
                 class="absolute top-1.5 left-full translate-x-1.5 select-none text-xs leading-none rounded font-light px-1 py-0.5 bg-red-950 text-red-500 light:bg-red-200 light:text-red-600"
@@ -416,7 +445,7 @@
       </div>
 
       <div class="min-w-0 grow w-1/5 h-full pr-8 flex items-center justify-end">
-        <div class="">
+        <div class="hidden lg:block">
           <Popover.Root disableFocusTrap>
             <Popover.Trigger
               title="Tiempo en la pagina"
@@ -520,7 +549,7 @@
     @apply grid grid-cols-[1.5rem,1fr,1.5rem] gap-0.5 items-center h-7 rounded p-0.5 select-none text-base leading-none font-light hover:bg-base-500/25;
   }
   :global(.menu-item-mobile > .center) {
-    @apply col-start-2 px-2 pt-1 pb-0.5 outline-none;
+    @apply col-start-2 px-2 pt-1 pb-0.5 outline-none w-max;
   }
   :global(.menu-item-mobile:has(.center:focus)) {
     @apply bg-primary-800/50;

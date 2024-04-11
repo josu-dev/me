@@ -13,14 +13,14 @@
   >
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-6xl font-bold text-base-50 text-center leading-tight">
+        <h1 class="text-4xl lg:text-6xl font-bold text-base-50 text-center leading-tight">
           Proximamente... <span class="animate-bounce inline-block">🏗️</span>
         </h1>
         <p
-          class="mt-[1em] text-base-300 text-xl text-balance text-center text-ellipsis"
+          class="mt-[1em] text-base-300  text-lg lg:text-2xl text-balance text-center text-ellipsis"
         >
           Cuando la seccion del <span
-            class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1.5 rounded-md font-medium break-all"
+            class="ring-1 ring-primary-950 light:ring-primary-600 bg-base-950 py-0.5 px-1.5 rounded-md font-medium"
             >blog</span
           > este lista sera el lugar para compartir experiencias, opiniones, tutoriales
           y otras cosas sobre codigo, desarrollo y la vida.

@@ -40,17 +40,17 @@
     >
       <div class="flex flex-col justify-center items-center">
         <h1
-          class="text-6xl font-bold text-white light:text-black text-center leading-tight"
+          class="text-4xl lg:text-6xl font-bold text-white light:text-black text-center leading-tight"
         >
           hum... <span class="animate-bounce inline-block">🫠</span>
         </h1>
         <p
-          class="mt-4 text-2xl font-semibold text-base-100 text-center text-pretty"
+          class="mt-4 text-lg lg:text-2xl font-semibold text-base-100 text-center text-pretty"
         >
           {subtitle}
         </p>
         <p
-          class="mt-4 text-base-300 text-lg text-balance text-center text-ellipsis"
+          class="mt-4 text-base-300 text-base lg:text-lg text-balance text-center text-ellipsis"
         >
           {#if is404}
             La pagina

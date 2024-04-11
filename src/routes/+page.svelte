@@ -13,10 +13,10 @@
   >
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-6xl font-bold text-base-50 text-center leading-tight">
+        <h1 class="text-4xl lg:text-6xl font-bold text-base-50 text-center leading-tight">
           Listo?
         </h1>
-        <p class="mt-[1em] text-base-300 text-xl text-balance text-center">
+        <p class="mt-[1em] text-base-300 text-lg lg:text-2xl text-balance text-center">
           Presiona 'Ctrl + P' o <span class="text-nowrap">'4 taps'</span> en
           movil para empezar <span class="animate-bounce inline-block">😎</span>
         </p>
