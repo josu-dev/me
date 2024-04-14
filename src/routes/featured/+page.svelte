@@ -1,8 +1,8 @@
 <script lang="ts">
   import IconBriefcase from '$comps/icons/IconBriefcase.svelte';
-  import Seo from '$comps/site/Seo.svelte';
-  import rawProjects from './projects.json';
+  import Seo from '$comps/site/SEO.svelte';
   import { Tabs } from 'bits-ui';
+  import rawProjects from './projects.json';
 
   let projects = $state(rawProjects.sort((a, b) => a.order - b.order));
 
@@ -10,8 +10,8 @@
 </script>
 
 <Seo
-  title="Public projects - Josudev"
-  description="Public projects of Josu on Github. All the repositories are open source and free to use."
+  title="Featured projects"
+  description="These are some of my featured projects, either for their implementation, for what it implied to make them or for the idea itself."
 />
 
 {#snippet ProjectTags(tags:string[])}

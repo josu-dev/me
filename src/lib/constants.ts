@@ -6,14 +6,14 @@ export const DEFAULT_LOG_LEVEL = 3;
 
 export const DEFAULT_LOG_LEVEL_CLIENT = 3;
 
-export const DEFAULT_OPEN_GRAPH = {
-    IMAGE_URL: '', /* '/logo/og-1200x630.png' */
-    IMAGE_ALT: '', /* 'Logo de \'La pagina de Josu\'' */
-    IMAGE_WIDTH: '', /* '1200' */
-    IMAGE_HEIGHT: '', /* '630' */
-    LOCALE: 'es_AR',
-    SITE_NAME: 'Josudev',
-    THEME_COLOR: '#082f49',
+export const DEFAULT_SEO = {
+    icon: '/favicon.png',
+    locale: 'es_AR',
+    image: undefined,
+    site_name: 'Josudev',
+    theme_color: '#082f49',
+    title_default: 'Josudev',
+    title_template: '%s - Josusev',
 } as const;
 
 export const DEFAULT_SITE_MENUBAR_OPEN = false;

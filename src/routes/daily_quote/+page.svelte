@@ -2,7 +2,7 @@
   import TypeWritter from '$comps/TypeWritter.svelte';
   import IconVolume2 from '$comps/icons/IconVolume2.svelte';
   import IconVolumex from '$comps/icons/IconVolumex.svelte';
-  import Seo from '$comps/site/Seo.svelte';
+  import Seo from '$comps/site/SEO.svelte';
   import { helpers } from '$comps/site/SitePalette.svelte';
   import { copytoclipboard } from '$lib/actions.js';
   import { toast } from '$lib/utils/index.js';
@@ -43,7 +43,7 @@
 </script>
 
 <Seo
-  title="Daily quote - Josudev"
+  title="Daily quote"
   description="A daily quote because why not?. It comes from Josu or something that he heard and liked."
 />
 

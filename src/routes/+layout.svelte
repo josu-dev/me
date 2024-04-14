@@ -2,8 +2,8 @@
   import { dev } from '$app/environment';
   import HyperDebug from '$comps/HyperDebug.svelte';
   import SiteBackground from '$comps/site/SiteBackground.svelte';
-  import SitePalette from '$comps/site/SitePalette.svelte';
   import SiteMenubar from '$comps/site/SiteMenubar.svelte';
+  import SitePalette from '$comps/site/SitePalette.svelte';
   import { DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME } from '$lib/constants.js';
   import { globalCommands, globalPages } from '$lib/global/palette.js';
   import { setUserPreferences } from '$lib/global/preferences.svelte.js';
