@@ -40,7 +40,7 @@
       "Humor"
     ],
     "repository": "https://github.com/josu-dev/onemorechance",
-    "homepage": "https://omc.eventitos.com.ar/",
+    "homepage": "https://onemorechance.onrender.com/",
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710978566/me/preview_omc_czl5me.gif",
       "caption": "Vista previa de algunas secciones del juego."
@@ -108,7 +108,6 @@
       "TypeScript",
       "Administacion"
     ],
-    "homepage": "https://reactjs.org/",
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710978568/me/preview_sb_nmjnyf.gif",
       "caption": "Vista previa de la carga de funcionalidades del bot."

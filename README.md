@@ -40,10 +40,11 @@ Package manager:
 [MIT](./LICENSE)
 
 
+[website]: https://josu.codes
 [bits-ui]: https://github.com/huntabyte/bits-ui
 [pnpm]: https://pnpm.io
 [svelte]: https://svelte.dev/
 [svelte-hypercommands]: https://github.com/josu-dev/svelte-hypercommands
-[svelte-kit]: https://kit.svelte.dev/
+[svelte-kit]: https://svelte.dev/
 [tailwindcss]: https://tailwindcss.com
 [vercel]: https://vercel.com
