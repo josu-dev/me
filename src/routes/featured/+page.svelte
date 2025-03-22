@@ -129,7 +129,7 @@
               <span class="hidden md:inline-block">{project.name}</span>
               <div
                 class="absolute top-0 right-0 left-0 h-0.5 group-data-[state=active]:bg-primary-800 light:group-data-[state=active]:bg-primary-600"
-              />
+              ></div>
             </Tabs.Trigger>
           {/each}
           <div class="flex-1 w-full bg-base-900/75 border-b border-base-500/25"></div>

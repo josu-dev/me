@@ -94,7 +94,7 @@
   });
 </script>
 
-<div class="absolute inset-0 -z-10" style={lightsStyles} />
+<div class="absolute inset-0 -z-10" style={lightsStyles}></div>
 
 <style>
   div {

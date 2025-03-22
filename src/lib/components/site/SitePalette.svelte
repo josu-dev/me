@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   import { goto } from '$app/navigation';
   import { createPalette, defineActionable, defineNavigable, HYPER_ITEM } from 'svelte-hypercommands';
 
@@ -123,9 +123,8 @@
       class="palette-panel bg-base-900 shadow-base-950 light:bg-base-950 light:shadow-black/25"
     >
       <form {...$form} use:form class="palette-search">
-        <!-- svelte-ignore a11y-label-has-associated-control - $label has the missing for attribute -->
         <label {...$label} use:label>Paleta de commandos</label>
-        <input {...$input} use:input class="bg-base-800 light:bg-base-900" />
+        <input {...$input as any} use:input class="bg-base-800 light:bg-base-900" />
       </form>
       <ul class="palette-results">
         {#if $mode === 'commands'}

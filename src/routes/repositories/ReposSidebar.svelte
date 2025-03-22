@@ -16,6 +16,7 @@
 </script>
 
 <Accordion.Root
+  type="single"
   bind:value={selected}
   class="w-full rounded-md p-4 border border-base-500/25 bg-base-950/75 light:bg-base-950 shadow"
 >
@@ -38,9 +39,8 @@
           </span>
         </Accordion.Trigger>
       </Accordion.Header>
+      <!-- TODO implement transition={slide} transitionConfig={{ duration: 200 }} -->
       <Accordion.Content
-        transition={slide}
-        transitionConfig={{ duration: 200 }}
         class="pb-4 text-sm tracking-[-0.01em] text-base-300"
       >
         {item.description || 'Sin descripcion'}

@@ -12,9 +12,9 @@
   import { GITHUB_REPOSITORY } from '$lib/constants.js';
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
   import { userViewTime } from '$lib/stores/user_view_time.js';
-  import { Combobox, Dialog, Menubar, Popover, Separator } from 'bits-ui';
+  import { Combobox, Dialog, Label, Menubar, Popover, Separator } from 'bits-ui';
   import { untrack } from 'svelte';
-  import { fade, fly, slide } from 'svelte/transition';
+  import { fly, slide } from 'svelte/transition';
 
   const ANIMATION_DURATION = 250;
 
@@ -128,14 +128,12 @@
 
           <Dialog.Portal>
             <Dialog.Overlay
-              transition={fade}
-              transitionConfig={{ duration: 250 }}
-              class="fixed inset-0 z-50 bg-black/50 backdrop-blur-[1px]"
+              class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 backdrop-blur-[1px]"
             />
 
+            <!-- transition={slide}
+            transitionConfig={{ duration: 250, axis: 'x' }} -->
             <Dialog.Content
-              transition={slide}
-              transitionConfig={{ duration: 250, axis: 'x' }}
               class="fixed top-0 left-0 z-50 flex flex-col py-6 pl-4 h-full w-full max-w-md bg-base-950 border-r border-base-500/25"
             >
               <Dialog.Close title="Ocultar menus" class="absolute right-2 top-2 text-base-100 size-8 p-1">
@@ -164,7 +162,7 @@
                         </div>
                       {/if}
                       <button
-                        on:click={() => {
+                        onclick={() => {
                           closeMobileMenu();
                           prefs.setSitebarOpen(false);
                         }}
@@ -175,9 +173,12 @@
                     </div>
                     <div class="menu-item-mobile">
                       <div class="col-start-2 flex w-max">
-                        <Combobox.Root bind:inputValue={selectedFont} required>
-                          <Combobox.Label class="pl-2 pt-1 pb-0.5 text-base !leading-none">Fuente</Combobox.Label>
+                        <Combobox.Root type="single" bind:value={selectedFont} required>
+                          <Label.Root id="fonts-label" class="pl-2 pt-1 pb-0.5 text-base !leading-none">
+                            Fuentes
+                          </Label.Root>
                           <Combobox.Input
+                            aria-labelledby="fonts-label"
                             spellcheck="false"
                             class="bg-base-950 ml-4 px-2 pt-0.5 pb-0 align-text-bottom text-sm inline-block rounded !leading-none [&_*]:leading-none border-0 text-base-200 ring-1 ring-base-200 focus:ring-base-100 focus:bg-primary-800/50 light:focus:bg-primary-200"
                           />
@@ -213,7 +214,7 @@
                       </div>
                       <button
                         class="center text-left"
-                        on:click={(e) => {
+                        onclick={(e) => {
                           e.preventDefault();
                           prefs.toggleTheme();
                         }}
@@ -225,7 +226,7 @@
                     <div class="menu-item-mobile">
                       <button
                         class="center text-left"
-                        on:click={() => {
+                        onclick={() => {
                           closeMobileMenu();
                           helpers.toggleOpen();
                         }}
@@ -239,10 +240,10 @@
                           <IconCheck />
                         </div>
                       {/if}
-                      <button class="center text-left" on:click={toggleFullscreen}> Pantalla completa </button>
+                      <button class="center text-left" onclick={toggleFullscreen}> Pantalla completa </button>
                     </div>
                     <div class="menu-item-mobile">
-                      <button class="center text-left" on:click={reloadWindow}> Recargar pagina </button>
+                      <button class="center text-left" onclick={reloadWindow}> Recargar pagina </button>
                     </div>
                   </div>
                 </div>
@@ -263,13 +264,13 @@
                             class="center aria-[current=page]:underline underline-offset-2"
                             href={page.url}
                             aria-current={current ? 'page' : undefined}
-                            on:click={closeMobileMenu}
+                            onclick={closeMobileMenu}
                           >
                             {page.name}
                           </a>
                         </li>
                       {/each}
-                      <div class="menu-separator-mobile" />
+                      <div class="menu-separator-mobile"></div>
                       {#each externalPages as page (page.url)}
                         <li class="menu-item-mobile">
                           <a class="center" href={page.url} target="_blank" rel="noopener noreferrer">
@@ -286,7 +287,7 @@
                 <div class="flex items-center justify-between h-full text-base-400">
                   <span class="text-sm">© 2024 Josudev</span>
 
-                  <Popover.Root disableFocusTrap>
+                  <Popover.Root>
                     <Popover.Trigger title="Tiempo en la pagina" class="px-1 text-sm hover:text-base-200">
                       {$userViewTime.human}
                     </Popover.Trigger>
@@ -295,6 +296,7 @@
                       class="menu-content min-w-64 max-w-max light:bg-base-950"
                       align="end"
                       sideOffset={4}
+                      trapFocus={false}
                     >
                       <div class="flex flex-col px-2">
                         <div class="py-px">Primer visita</div>
@@ -326,7 +328,7 @@
             <Menubar.Content class="menu-content  light:bg-base-950" align="start" sideOffset={1}>
               <Menubar.Item
                 class="menu-item"
-                on:click={() => {
+                onclick={() => {
                   prefs.setSitebarOpen(false);
                 }}
               >
@@ -348,10 +350,14 @@
                   <Menubar.RadioGroup bind:value={selectedFont}>
                     {#each prefs.font.available as family (family)}
                       <Menubar.RadioItem value={family.value} class="menu-item">
-                        <Menubar.RadioIndicator class="icon-left p-0.5">
-                          <IconCheck />
-                        </Menubar.RadioIndicator>
-                        <span class="label">{family.name}</span>
+                        {#snippet children({ checked })}
+                          <div class="icon-left p-0.5">
+                            {#if checked}
+                              <IconCheck />
+                            {/if}
+                          </div>
+                          <span class="label">{family.name}</span>
+                        {/snippet}
                       </Menubar.RadioItem>
                     {/each}
                   </Menubar.RadioGroup>
@@ -360,33 +366,34 @@
               <Menubar.CheckboxItem
                 class="menu-item"
                 checked={themeIsDark}
-                on:click={(e) => {
+                onclick={(e) => {
                   e.preventDefault();
                   prefs.toggleTheme();
                 }}
               >
-                <div class="icon-left p-0.5">
-                  {#if !themeIsDark}
-                    <IconSun />
-                  {/if}
-                  <Menubar.CheckboxIndicator>
-                    <IconMoon />
-                  </Menubar.CheckboxIndicator>
-                </div>
-                <span class="label">
-                  {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
-                </span>
+                {#snippet children({ checked })}
+                  <div class="icon-left p-0.5">
+                    {#if checked}
+                      <IconMoon />
+                    {:else}
+                      <IconSun />
+                    {/if}
+                  </div>
+                  <span class="label">
+                    {themeIsDark ? 'Tema oscuro' : 'Tema claro'}
+                  </span>
+                {/snippet}
               </Menubar.CheckboxItem>
               <Menubar.Separator class="menu-separator" />
               <Menubar.Item
                 class="menu-item"
-                on:click={() => {
+                onclick={() => {
                   helpers.toggleOpen();
                 }}
               >
                 <span class="label">Paleta de comandos</span>
               </Menubar.Item>
-              <Menubar.Item class="menu-item" on:click={toggleFullscreen}>
+              <Menubar.Item class="menu-item" onclick={toggleFullscreen}>
                 {#if prefs.fullscreen}
                   <div class="icon-left p-0.5">
                     <IconCheck />
@@ -394,7 +401,7 @@
                 {/if}
                 <span class="label">Pantalla completa</span>
               </Menubar.Item>
-              <Menubar.Item class="menu-item" on:click={reloadWindow}>
+              <Menubar.Item class="menu-item" onclick={reloadWindow}>
                 <span class="label">Recargar pagina</span>
               </Menubar.Item>
             </Menubar.Content>
@@ -405,23 +412,32 @@
             <Menubar.Content class="menu-content  light:bg-base-950" align="start" sideOffset={1}>
               {#each localPages as page (page.url)}
                 {@const current = currentUrlPathname === page.url}
-                <Menubar.Item
-                  class="menu-item aria-[current=page]:underline underline-offset-2"
-                  href={page.url}
-                  aria-current={current ? 'page' : undefined}
-                >
-                  {#if current}
-                    <div class="icon-left p-0.5">
-                      <IconChevronright />
-                    </div>
-                  {/if}
-                  <span class="label">{page.name}</span>
+                <Menubar.Item>
+                  {#snippet child({ props })}
+                    <a
+                      {...props}
+                      href={page.url}
+                      aria-current={current ? 'page' : undefined}
+                      class="menu-item aria-[current=page]:underline underline-offset-2"
+                    >
+                      {#if current}
+                        <div class="icon-left p-0.5">
+                          <IconChevronright />
+                        </div>
+                      {/if}
+                      <span class="label">{page.name}</span>
+                    </a>
+                  {/snippet}
                 </Menubar.Item>
               {/each}
               <Menubar.Separator class="menu-separator" />
               {#each externalPages as page (page.url)}
-                <Menubar.Item class="menu-item" href={page.url} target="_blank" rel="noopener noreferrer">
-                  <span class="label">{page.name}</span>
+                <Menubar.Item>
+                  {#snippet child({ props })}
+                    <a {...props} href={page.url} target="_blank" rel="noopener noreferrer" class="menu-item">
+                      <span class="label">{page.name}</span>
+                    </a>
+                  {/snippet}
                 </Menubar.Item>
               {/each}
             </Menubar.Content>
@@ -446,7 +462,7 @@
 
       <div class="min-w-0 grow w-1/5 h-full pr-8 flex items-center justify-end">
         <div class="hidden lg:block">
-          <Popover.Root disableFocusTrap>
+          <Popover.Root>
             <Popover.Trigger
               title="Tiempo en la pagina"
               class="px-1 lg:px-3 text-sm font-light text-base-300 leading-6 hover:text-base-200"
@@ -454,7 +470,12 @@
               {$userViewTime.human}
             </Popover.Trigger>
 
-            <Popover.Content class="menu-content min-w-64 max-w-max light:bg-base-950" align="end" sideOffset={1}>
+            <Popover.Content
+              trapFocus={false}
+              class="menu-content min-w-64 max-w-max light:bg-base-950"
+              align="end"
+              sideOffset={1}
+            >
               <div class="flex flex-col px-2">
                 <div class="py-px">Primer visita</div>
                 <div class="pl-2">
@@ -480,7 +501,7 @@
 
   <div class="absolute top-0 right-0 h-full">
     <button
-      on:click={toggleSitebar}
+      onclick={toggleSitebar}
       title={prefs.sitebar.open ? 'Ocultar barra de menus' : 'Ver barra de menus'}
       class="text-base-200 h-full p-1"
     >

@@ -89,7 +89,7 @@
   </div>
 
   <div class="absolute right-2 bottom-0 flex md:right-4">
-    <button class="size-8 p-px text-base-200 rounded-md" title={soundEnabledLabel} on:click={toggleSoundEffect}>
+    <button class="size-8 p-px text-base-200 rounded-md" title={soundEnabledLabel} onclick={toggleSoundEffect}>
       <span class="sr-only">{soundEnabledLabel}</span>
       {#if soundEnabled}
         <div in:blur={{ duration: 250 }}>

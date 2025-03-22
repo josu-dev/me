@@ -9,8 +9,7 @@
   import IconPlus from '$comps/icons/IconPlus.svelte';
   import IconStar from '$comps/icons/IconStar.svelte';
   import Seo from '$comps/site/SEO.svelte';
-  import { Collapsible, Combobox } from 'bits-ui';
-  import { slide } from 'svelte/transition';
+  import { Collapsible, Combobox, Label } from 'bits-ui';
   import type { SubmitFunction } from './$types.js';
   import ReposSidebar from './ReposSidebar.svelte';
   import './code_as_rawfile.css';
@@ -31,6 +30,7 @@
   });
 
   let selectedId = $state('');
+
   let selectedRepo = $derived((data.repos ?? []).find((repo) => repo.id === selectedId));
   let repoInfoOpen = $state(true);
   let showRepositoryPage = $derived.by(() => {
@@ -49,6 +49,14 @@
   let selectedRepoError = $state('');
   let highlightReadmeForm: HTMLFormElement | undefined;
 
+  function getSelectedId() {
+    return selectedId;
+  }
+  function setSelectedId(id: undefined | string) {
+    selectedRepoError = '';
+    selectedId = id ?? '';
+  }
+
   const enhanceHighlightReadme: SubmitFunction = (form) => {
     return ({ result }) => {
       if (result.type !== 'success') {
@@ -63,23 +71,6 @@
 
   $effect(() => {
     debug.setData({ selectedId: selectedId, selectedRepo: selectedRepo });
-  });
-
-  $effect(() => {
-    if (!showRepositoryPage) {
-      return;
-    }
-
-    // selectedRepo is guarded by showRepositoryPage
-    fetch(selectedRepo!.homepage!)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('HTTP error ' + response.status);
-        }
-      })
-      .catch((e) => {
-        console['error']('error catched', e);
-      });
   });
 
   $effect(() => {
@@ -106,40 +97,36 @@
     </header>
 
     <section class="flex flex-col gap-4 max-w-full overflow-hidden lg:hidden">
-      <Combobox.Root
-        onSelectedChange={(item) => {
-          // @ts-expect-error
-          selectedId = item?.value ?? '';
-        }}
-      >
+      <Combobox.Root type="single" name="favoriteFruit" bind:value={getSelectedId, setSelectedId}>
         <div class=" mt-4 flex flex-wrap items-center gap-y-2 gap-x-4">
-          <Combobox.Label class="w-max text-lg font-semibold text-base-100">Repositorio</Combobox.Label>
+          <Label.Root id="repository-label" class="w-max text-lg font-semibold text-base-100">Repositorio</Label.Root>
           <Combobox.Input
+            aria-labelledby="repository-label"
             class="min-w-max w-full max-w-sm px-2 pt-1.5 pb-1 rounded border border-base-500/25 bg-base-950/75 text-base text-base-200 focus:outline-none focus:ring-0 focus:border-base-50"
           />
         </div>
 
-        <Combobox.Content
-          class="bg-base-950 border border-base-500/50 rounded shadow-sm fill-base-500"
-          inTransition={slide}
-          sideOffset={1}
-        >
+        <!-- TODO implement inTransition={slide} -->
+        <Combobox.Content class="bg-base-950 border border-base-500/50 rounded shadow-sm fill-base-500" sideOffset={1}>
           {#each repoItems as repo (repo.id)}
             <Combobox.Item
               class="flex items-center justify-between py-1.5 px-2 text-base-100 text-sm cursor-pointer hover:bg-base-500/25 data-[selected]:bg-base-500/25"
               value={repo.id}
               label={repo.title}
             >
-              {repo.title}
-              <Combobox.ItemIndicator class="ml-auto size-4">
-                <IconCheck />
-              </Combobox.ItemIndicator>
+              {#snippet children({ selected })}
+                {repo.title}
+                {#if selected}
+                  <div class="ml-auto size-4">
+                    <IconCheck />
+                  </div>
+                {/if}
+              {/snippet}
             </Combobox.Item>
           {:else}
             <span class="block px-5 py-2 text-sm text-muted-foreground"> No results found </span>
           {/each}
         </Combobox.Content>
-        <Combobox.HiddenInput name="favoriteFruit" />
       </Combobox.Root>
 
       {#if !selectedRepo}
@@ -243,7 +230,7 @@
               src={selectedRepo.homepage ?? selectedRepo.url}
               frameborder="0"
               class="w-full h-full"
-            />
+            ></iframe>
           {:else}
             <code title="{selectedRepo.name} README.md" class="rawfile text-sm">{@html repoReadmeHtml}</code>
           {/if}
@@ -275,7 +262,7 @@
                 src={selectedRepo.homepage ?? selectedRepo.url}
                 frameborder="0"
                 class="w-full h-full"
-              />
+              ></iframe>
             {:else}
               <code title="{selectedRepo.name} README.md" class="rawfile">{@html repoReadmeHtml}</code>
             {/if}
@@ -310,7 +297,8 @@
                   >
                 {/if}
               </div>
-              <Collapsible.Content class="pt-2 space-y-4" transition={slide}>
+              <!-- TODO implement transition={slide} -->
+              <Collapsible.Content class="pt-2 space-y-4">
                 {#if selectedRepo.topics.length}
                   <div class="flex flex-wrap gap-1">
                     {#each selectedRepo.topics as tag (tag)}
@@ -355,26 +343,34 @@
                     <h4 class="sr-only">Links</h4>
                     <ul class="flex gap-4">
                       <li>
-                        <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" class="text-primary-500 a"
-                          >Github</a
-                        >
+                        <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" class="text-primary-500 a">
+                          Github
+                        </a>
                       </li>
-                      {#if selectedRepo.homepage}<li>
+                      {#if selectedRepo.homepage}
+                        <li>
                           <a
                             href={selectedRepo.homepage}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-primary-500 a">Pagina</a
+                            class="text-primary-500 a"
                           >
-                        </li>{/if}
-                      {#if selectedRepo.license}<li>
+                            Pagina
+                          </a>
+                        </li>
+                      {/if}
+                      {#if selectedRepo.license}
+                        <li>
                           <a
                             href={selectedRepo.license.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-primary-500 a">Licencia</a
+                            class="text-primary-500 a"
                           >
-                        </li>{/if}
+                            Licencia
+                          </a>
+                        </li>
+                      {/if}
                     </ul>
                   </nav>
                 </div>
@@ -385,7 +381,7 @@
       </section>
 
       <aside class="h-full overflow-y-auto">
-        <ReposSidebar repos={repoItems} bind:selected={selectedId} />
+        <ReposSidebar repos={repoItems} bind:selected={getSelectedId, setSelectedId} />
       </aside>
     </div>
   </div>

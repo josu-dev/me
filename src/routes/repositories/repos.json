@@ -9,7 +9,7 @@
     "issues": 0,
     "url": "https://github.com/josu-dev/advent-of-code",
     "createdAt": "2023-12-11T20:05:29Z",
-    "updatedAt": "2023-12-11T22:27:54Z",
+    "updatedAt": "2024-12-01T20:52:55Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -20,19 +20,19 @@
       "javascript"
     ],
     "homepage": "",
-    "size": 109
+    "size": 116
   },
   {
     "id": "679738693",
     "name": "brb-screen",
     "description": "A simple PWA for displaying brb scenes when you're away from your stream for a moment.",
     "language": "Svelte",
-    "stars": 3,
+    "stars": 4,
     "forks": 0,
-    "issues": 1,
+    "issues": 0,
     "url": "https://github.com/josu-dev/brb-screen",
     "createdAt": "2023-08-17T14:02:57Z",
-    "updatedAt": "2024-03-05T08:38:39Z",
+    "updatedAt": "2024-04-21T20:21:45Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -45,26 +45,26 @@
       "sveltekit"
     ],
     "homepage": "https://brb-screen.vercel.app",
-    "size": 4109
+    "size": 4192
   },
   {
-    "id": "473356699",
-    "name": "Computer-Science",
-    "description": "Parte del contenido generado como estudiante de Lic. en Informatica UNLP",
-    "language": "Pascal",
+    "id": "785943144",
+    "name": "Depende-Quiz-Datos",
+    "description": "Ready for a quiz time or depends on the questions? 😶‍🌫️",
+    "language": "Svelte",
     "stars": 1,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/josu-dev/Computer-Science",
-    "createdAt": "2022-03-23T20:59:28Z",
-    "updatedAt": "2023-07-13T00:02:39Z",
+    "url": "https://github.com/josu-dev/Depende-Quiz-Datos",
+    "createdAt": "2024-04-13T01:05:34Z",
+    "updatedAt": "2024-05-03T14:30:50Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
     },
     "topics": [],
-    "homepage": "",
-    "size": 167
+    "homepage": "https://josu-dev.github.io/Depende-Quiz-Datos/",
+    "size": 1416
   },
   {
     "id": "649934911",
@@ -89,7 +89,7 @@
       "typescript"
     ],
     "homepage": "",
-    "size": 255
+    "size": 249
   },
   {
     "id": "503185628",
@@ -115,12 +115,12 @@
     "name": "facturacion_llamadas",
     "description": "",
     "language": "Java",
-    "stars": 0,
+    "stars": 2,
     "forks": 0,
     "issues": 0,
     "url": "https://github.com/josu-dev/facturacion_llamadas",
     "createdAt": "2023-05-24T20:08:17Z",
-    "updatedAt": "2023-05-24T20:11:08Z",
+    "updatedAt": "2024-05-20T22:12:16Z",
     "topics": [],
     "homepage": null,
     "size": 5250
@@ -135,7 +135,7 @@
     "issues": 0,
     "url": "https://github.com/josu-dev/FiguRace",
     "createdAt": "2023-01-24T17:56:17Z",
-    "updatedAt": "2023-07-13T03:42:54Z",
+    "updatedAt": "2024-03-18T20:24:01Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -156,12 +156,12 @@
     "name": "flask-livetw",
     "description": "A simple package that enables livereload and tailwindcss for flask templates",
     "language": "Python",
-    "stars": 2,
+    "stars": 3,
     "forks": 0,
     "issues": 0,
     "url": "https://github.com/josu-dev/flask-livetw",
     "createdAt": "2023-09-11T13:24:20Z",
-    "updatedAt": "2024-03-12T15:18:33Z",
+    "updatedAt": "2024-12-30T22:28:31Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -176,7 +176,32 @@
       "websockets"
     ],
     "homepage": "https://pypi.org/project/flask-livetw",
-    "size": 92
+    "size": 122
+  },
+  {
+    "id": "947627251",
+    "name": "jasara",
+    "description": "Transfer things between devices, easily over a private network",
+    "language": "TypeScript",
+    "stars": 0,
+    "forks": 0,
+    "issues": 0,
+    "url": "https://github.com/josu-dev/jasara",
+    "createdAt": "2025-03-13T01:49:02Z",
+    "updatedAt": "2025-03-22T18:10:26Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [
+      "messaging",
+      "sveltekit",
+      "transfer-files",
+      "typescript",
+      "webrtc"
+    ],
+    "homepage": "https://jasara.josu.codes",
+    "size": 2850
   },
   {
     "id": "419376936",
@@ -188,44 +213,44 @@
     "issues": 0,
     "url": "https://github.com/josu-dev/josu-dev",
     "createdAt": "2021-10-20T15:00:35Z",
-    "updatedAt": "2021-10-20T15:03:30Z",
+    "updatedAt": "2025-01-07T20:22:29Z",
     "topics": [
       "config",
       "github-config"
     ],
     "homepage": "https://github.com/josu-dev",
-    "size": 4
+    "size": 9
   },
   {
     "id": "764412790",
     "name": "me",
-    "description": "",
+    "description": "Repository for my personal website, built how I want it to be.",
     "language": "Svelte",
     "stars": 0,
     "forks": 0,
     "issues": 0,
     "url": "https://github.com/josu-dev/me",
     "createdAt": "2024-02-28T02:55:09Z",
-    "updatedAt": "2024-03-04T16:07:02Z",
+    "updatedAt": "2025-01-14T04:01:03Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
     },
     "topics": [],
-    "homepage": null,
-    "size": 1375
+    "homepage": "https://josudev.vercel.app",
+    "size": 30697
   },
   {
     "id": "748915225",
     "name": "onemorechance",
     "description": "A Game jam idea for https://globalgamejam.org/games/2024 ended as a really funny game",
     "language": "TypeScript",
-    "stars": 2,
+    "stars": 4,
     "forks": 0,
-    "issues": 1,
+    "issues": 0,
     "url": "https://github.com/josu-dev/onemorechance",
     "createdAt": "2024-01-27T02:59:30Z",
-    "updatedAt": "2024-02-25T20:11:49Z",
+    "updatedAt": "2024-11-25T02:25:10Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -236,8 +261,8 @@
       "typescript",
       "websocket"
     ],
-    "homepage": "https://omc.eventitos.com.ar/",
-    "size": 5453
+    "homepage": "https://onemorechance.onrender.com/",
+    "size": 5461
   },
   {
     "id": "765441189",
@@ -249,64 +274,45 @@
     "issues": 0,
     "url": "https://github.com/josu-dev/PintaService",
     "createdAt": "2024-02-29T23:25:49Z",
-    "updatedAt": "2024-03-01T05:22:08Z",
+    "updatedAt": "2024-09-16T04:25:00Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
     },
     "topics": [],
     "homepage": "https://pintaservice.onrender.com/",
-    "size": 2266
+    "size": 2328
   },
   {
-    "id": "689197043",
-    "name": "pyday-datos-de-color",
+    "id": "850162414",
+    "name": "pyday",
     "description": "",
-    "language": "Python",
-    "stars": 1,
+    "language": "TypeScript",
+    "stars": 0,
     "forks": 0,
     "issues": 0,
-    "url": "https://github.com/josu-dev/pyday-datos-de-color",
-    "createdAt": "2023-09-09T04:11:41Z",
-    "updatedAt": "2023-09-09T17:28:20Z",
+    "url": "https://github.com/josu-dev/pyday",
+    "createdAt": "2024-08-31T03:08:17Z",
+    "updatedAt": "2024-09-15T20:50:25Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
     },
     "topics": [],
-    "homepage": "https://pyday-datos-de-color.vercel.app",
-    "size": 116
-  },
-  {
-    "id": "512088917",
-    "name": "Quiz-FOD",
-    "description": "",
-    "language": "Svelte",
-    "stars": 3,
-    "forks": 0,
-    "issues": 0,
-    "url": "https://github.com/josu-dev/Quiz-FOD",
-    "createdAt": "2022-07-09T04:02:46Z",
-    "updatedAt": "2022-07-12T10:38:10Z",
-    "license": {
-      "name": "MIT License",
-      "url": "https://api.github.com/licenses/mit"
-    },
-    "topics": [],
-    "homepage": "https://josu-dev.github.io/Quiz-FOD/",
-    "size": 715
+    "homepage": "https://pyday-ddc.vercel.app",
+    "size": 3394
   },
   {
     "id": "444859871",
     "name": "RobotScript",
-    "description": "A web rework of R-Info, a desktop IDE for learning programing basics and concurrency",
+    "description": "A web rework of R-Info, an old desktop IDE for learning programing basics and concurrency",
     "language": "JavaScript",
-    "stars": 8,
+    "stars": 11,
     "forks": 1,
     "issues": 0,
     "url": "https://github.com/josu-dev/RobotScript",
     "createdAt": "2022-01-05T15:46:34Z",
-    "updatedAt": "2023-02-01T23:01:53Z",
+    "updatedAt": "2024-06-23T21:29:57Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -318,19 +324,19 @@
       "student-project"
     ],
     "homepage": "https://josu-dev.github.io/RobotScript/",
-    "size": 6139
+    "size": 6144
   },
   {
     "id": "709546778",
     "name": "svelte-hypercommands",
     "description": "A headless Command Palette for hyper commands in your SvelteKit app",
     "language": "TypeScript",
-    "stars": 1,
+    "stars": 3,
     "forks": 0,
     "issues": 0,
     "url": "https://github.com/josu-dev/svelte-hypercommands",
     "createdAt": "2023-10-24T22:45:36Z",
-    "updatedAt": "2024-02-12T14:35:32Z",
+    "updatedAt": "2024-11-03T13:47:36Z",
     "license": {
       "name": "MIT License",
       "url": "https://api.github.com/licenses/mit"
@@ -342,7 +348,45 @@
       "sveltekit"
     ],
     "homepage": "",
-    "size": 367
+    "size": 453
+  },
+  {
+    "id": "915474357",
+    "name": "Universidad",
+    "description": "",
+    "language": "Pascal",
+    "stars": 0,
+    "forks": 0,
+    "issues": 0,
+    "url": "https://github.com/josu-dev/Universidad",
+    "createdAt": "2025-01-11T23:44:11Z",
+    "updatedAt": "2025-01-13T21:46:44Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "homepage": null,
+    "size": 12364
+  },
+  {
+    "id": "809521561",
+    "name": "webidl-to-dts",
+    "description": "An online transpiler for Web IDL definitions to d.ts definitions, powered by the webidl-dts-gen library",
+    "language": "Svelte",
+    "stars": 0,
+    "forks": 0,
+    "issues": 0,
+    "url": "https://github.com/josu-dev/webidl-to-dts",
+    "createdAt": "2024-06-02T23:13:16Z",
+    "updatedAt": "2024-06-22T21:12:46Z",
+    "license": {
+      "name": "MIT License",
+      "url": "https://api.github.com/licenses/mit"
+    },
+    "topics": [],
+    "homepage": "https://webidl-to-dts.vercel.app",
+    "size": 128
   },
   {
     "id": "763260888",
