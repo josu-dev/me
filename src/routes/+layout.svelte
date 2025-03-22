@@ -10,18 +10,18 @@
   import { Toaster } from 'svelte-french-toast';
   import '../app.pcss';
 
-  let {children, data} = $props();
+  let { children, data } = $props();
 
   const preferences = setUserPreferences({
-    font:{
-      family: data.userPrefs?.fontFamily
+    font: {
+      family: data.userPrefs?.fontFamily,
     },
     sitebar: {
-      open: data.userPrefs?.sitebar ?? DEFAULT_SITE_MENUBAR_OPEN
+      open: data.userPrefs?.sitebar ?? DEFAULT_SITE_MENUBAR_OPEN,
     },
     theme: {
-      value: data.userPrefs?.theme ?? DEFAULT_THEME
-    }
+      value: data.userPrefs?.theme ?? DEFAULT_THEME,
+    },
   });
 </script>
 
@@ -29,7 +29,7 @@
 
 <SitePalette commands={globalCommands} pages={globalPages} />
 {#if dev}
-  <HyperDebug/>
+  <HyperDebug />
 {/if}
 
 <Toaster
@@ -38,7 +38,7 @@
   toastOptions={{ className: 'french-toast-message' }}
 />
 
-<div class="relative flex flex-col h-full overflow-x-hidden overflow-y-auto">  
+<div class="relative flex flex-col h-full overflow-x-hidden overflow-y-auto">
   <header class="block sticky top-0 z-10 h-8 flex-none">
     <SiteMenubar />
   </header>
@@ -46,25 +46,24 @@
   <div class="flex-1" style="--subtract-height: 4rem;">
     {@render children()}
   </div>
-  
-  <div class="h-8 flex-none">
-  </div>
+
+  <div class="h-8 flex-none"></div>
 </div>
 
 <style lang="postcss">
-  :global(.french-toast-container div.french-toast-message ){
+  :global(.french-toast-container div.french-toast-message) {
     @apply text-zinc-100 bg-primary-950 border border-base-500/25;
   }
-  :global(.french-toast-container svg.lucide-circle-x ){
+  :global(.french-toast-container svg.lucide-circle-x) {
     @apply size-5 fill-red-700;
   }
-  :global(.french-toast-container svg.lucide-circle-alert ){
+  :global(.french-toast-container svg.lucide-circle-alert) {
     @apply size-5 fill-amber-700;
   }
-  :global(.french-toast-container svg.lucide-circle-check ){
+  :global(.french-toast-container svg.lucide-circle-check) {
     @apply size-5 fill-green-700;
   }
-  :global(.french-toast-container svg.lucide-info ){
+  :global(.french-toast-container svg.lucide-info) {
     @apply size-5 fill-blue-700;
   }
 </style>

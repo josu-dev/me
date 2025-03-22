@@ -1,22 +1,26 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import Seo from '$comps/site/SEO.svelte';
   import { GITHUB_REPOSITORY } from '$lib/constants.js';
 
-  $: is404 = $page.status === 404;
-  $: is500s = $page.status === 500;
+  let is404 = $derived(page.status === 404);
+  let is500s = $derived(page.status === 500);
 
-  $: title = `${$page.status} - Error`;
-  $: description =
-    (is404 && `La pagina '${$page.url.pathname}' no se encuentra disponible`) ||
-    (is500s && `El servidor no proceso correctamente la solicitud de la pagina '${$page.url.pathname}'`) ||
-    `Ocurrio un error desconocido con la solicitud de la pagina '${$page.url.pathname}'`;
+  let title = $derived(`${page.status} - Error`);
+  let description = $derived(
+    (is404 && `La pagina '${page.url.pathname}' no se encuentra disponible`) ||
+      (is500s && `El servidor no proceso correctamente la solicitud de la pagina '${page.url.pathname}'`) ||
+      `Ocurrio un error desconocido con la solicitud de la pagina '${page.url.pathname}'`
+  );
 
-  $: subtitle =
-    $page.error?.message ??
-    ((is404 && 'Pagina no encontrada') || (is500s && 'Error en el servidor') || 'Creo que hiciste algo mal');
+  let subtitle = $derived(
+    page.error?.message ??
+      ((is404 && 'Pagina no encontrada') || (is500s && 'Error en el servidor') || 'Creo que hiciste algo mal')
+  );
 
-  $: safePathname = $page.url.pathname.length >= 64 ? $page.url.pathname.slice(0, 61) + '...' : $page.url.pathname;
+  let safePathname = $derived(
+    page.url.pathname.length >= 64 ? page.url.pathname.slice(0, 61) + '...' : page.url.pathname
+  );
 </script>
 
 <Seo {title} {description} />
