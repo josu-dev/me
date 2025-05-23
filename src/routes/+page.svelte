@@ -6,7 +6,7 @@
   description="Personal website of Josu, a developer interested on general Software Development, Web Technologies and Developer Experience."
 />
 
-<main class="flex flex-col md:px-4 h-full">
+<main id="main" class="flex flex-col md:px-4 h-full">
   <div class="h-full w-full grid grid-rows-6 max-w-[min(90vw,28rem)] my-auto mx-auto lg:max-w-screen-md">
     <div class="row-start-2 row-span-4 grid lg:items-center">
       <div class="flex flex-col justify-center items-center">

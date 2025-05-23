@@ -1,7 +1,6 @@
 <script lang="ts">
   import IconChevrondown from '$comps/icons/IconChevrondown.svelte';
   import { Accordion } from 'bits-ui';
-  import { slide } from 'svelte/transition';
 
   type Props = {
     repos: {
@@ -40,9 +39,7 @@
         </Accordion.Trigger>
       </Accordion.Header>
       <!-- TODO implement transition={slide} transitionConfig={{ duration: 200 }} -->
-      <Accordion.Content
-        class="pb-4 text-sm tracking-[-0.01em] text-base-300"
-      >
+      <Accordion.Content class="pb-4 text-sm tracking-[-0.01em] text-base-300">
         {item.description || 'Sin descripcion'}
       </Accordion.Content>
     </Accordion.Item>

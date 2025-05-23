@@ -195,6 +195,8 @@
 </div>
 
 <style lang="postcss">
+  @reference "../../../app.css";
+
   .palette-container {
     /* @apply contents z-10; */
   }
@@ -216,7 +218,7 @@
 
   .palette-results {
     /* 0.5px preventes for triggering hover on siblings when pointer hover between them */
-    @apply flex flex-col gap-[0.5px] pb-2.5 px-2 overflow-y-auto sm:max-h-[40vh] scrollbar-2.5 sb-transparent sb-thumb-base-600/25 sb-thumb-hover-base-600/50;
+    @apply flex flex-col gap-[0.5px] pb-2.5 px-2 overflow-y-auto sm:max-h-[40vh] scrollbar:size-2.5 scrollbar:bg-transparent scrollbar-thumb:bg-base-600/25 scrollbar-thumb-hover:bg-base-600/50;
   }
 
   .result {
@@ -236,7 +238,7 @@
   }
 
   .result-page-icon :global(:is(svg, img)) {
-    @apply square-5;
+    @apply size-5;
   }
 
   .result-label {

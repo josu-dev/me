@@ -31,7 +31,7 @@ type Repo = {
 
 export const load: PageServerLoad = async () => {
     if (dev) {
-        const path = import.meta.url.replace('+page.server.ts', 'repos.json').replace('file:///', '');
+        const path = import.meta.url.replace('+page.server.ts', 'repos.json').replace('file://', '');
         const repos: Repo[] = JSON.parse(fs.readFileSync(path, 'utf-8'));
         return {
             repos,

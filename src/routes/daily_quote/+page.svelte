@@ -47,7 +47,7 @@
   description="A daily quote because why not?. It comes from Josu or something that he heard and liked."
 />
 
-<main class="relative flex flex-col md:px-4 h-full">
+<main id="main" class="relative flex flex-col md:px-4 h-full">
   <div class="h-full w-full grid grid-rows-6 max-w-[min(90vw,32rem)] m-auto md:max-w-[min(75vw,56rem)]">
     <div class="row-start-2 row-span-4 grid">
       <div class="flex flex-col">

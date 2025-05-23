@@ -90,7 +90,7 @@
   description="Public projects of Josu on Github. All the repositories are open source and free to use."
 />
 
-<main class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub lg:overflow-hidden">
+<main id="main" class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub lg:overflow-hidden">
   <div class="flex flex-col w-full max-w-screen-md mx-auto lg:mx-0 lg:h-full lg:max-w-full">
     <header class="text-base-50">
       <h1 class="text-2xl font-bold mt-4">Proyectos publicos</h1>
@@ -99,9 +99,9 @@
     <section class="flex flex-col gap-4 max-w-full overflow-hidden lg:hidden">
       <Combobox.Root type="single" name="favoriteFruit" bind:value={getSelectedId, setSelectedId}>
         <div class=" mt-4 flex flex-wrap items-center gap-y-2 gap-x-4">
-          <Label.Root id="repository-label" class="w-max text-lg font-semibold text-base-100">Repositorio</Label.Root>
+          <Label.Root for="repository-input" class="w-max text-lg font-semibold text-base-100">Repositorio</Label.Root>
           <Combobox.Input
-            aria-labelledby="repository-label"
+            id="repository-input"
             class="min-w-max w-full max-w-sm px-2 pt-1.5 pb-1 rounded border border-base-500/25 bg-base-950/75 text-base text-base-200 focus:outline-none focus:ring-0 focus:border-base-50"
           />
         </div>
@@ -239,7 +239,7 @@
     </section>
 
     <div
-      class="hidden flex-1 overflow-hidden mt-4 lg:grid lg:grid-cols-[1fr,24rem] lg:gap-8 lg:mt-6 2xl:grid-cols-[1fr,28rem]"
+      class="hidden flex-1 overflow-hidden mt-4 lg:grid lg:grid-cols-[1fr_24rem] lg:gap-8 lg:mt-6 2xl:grid-cols-[1fr_28rem]"
     >
       <section class="flex flex-col h-full overflow-hidden">
         {#if !selectedRepo}

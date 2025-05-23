@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin 'tailwindcss-animate';
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/jetbrains/JetBrainsMono[wght].ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'FiraCode';
+    src: url('/fonts/fira_code/FiraCode-VF.woff2') format('woff2-variations'),
+         url('/fonts/fira_code/FiraCode-VF.woff') format('woff-variations'),
+         url('/fonts/fira_code/FiraCode-VF.ttf') format('truetype-variations');
+    font-weight: 300 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CascadiaCode';
+    src: url('/fonts/cascadia_code/CascadiaCode.woff2') format('woff2-variations'),
+         url('/fonts/cascadia_code/CascadiaCode.ttf') format('truetype-variations');
+    font-weight: 300 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GeistMono';
+    src: url('/fonts/geist_mono/GeistMonoVariableVF.woff2') format('woff2-variations'),
+         url('/fonts/geist_mono/GeistMonoVariableVF.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RobotoMono';
+    src: url('/fonts/roboto_mono/RobotoMono-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 700;
+    font-style: normal;
+}
+
+@theme inline {
+    
+    --color-site-bg-dark: hsl(199, 89%, 1%);
+    --color-site-bg-light: hsl(199 92% 90%);
+    --color-site-bg-image-dark: hsla(199, 89%, 48%, 0.1);
+    --color-site-bg-image-light: hsla(199, 0%, 100%, 1);
+
+    --site-bg-color: var(--color-site-bg-dark);
+    --site-bg-image-color: var(--color-site-bg-image-dark);
+}
+
+@theme {
+    --breakpoint-xs: 480px;
+
+    --color-base-50: var(--color-zinc-50);
+    --color-base-100: var(--color-zinc-100);
+    --color-base-200: var(--color-zinc-200);
+    --color-base-300: var(--color-zinc-300);
+    --color-base-400: var(--color-zinc-400);
+    --color-base-500: var(--color-zinc-500);
+    --color-base-600: var(--color-zinc-600);
+    --color-base-700: var(--color-zinc-700);
+    --color-base-800: var(--color-zinc-800);
+    --color-base-900: var(--color-zinc-900);
+    --color-base-950: var(--color-zinc-950);
+
+    /* --color-primary-1: var(--color-sky-1); */
+    --color-primary-50: var(--color-sky-50);
+    --color-primary-100: var(--color-sky-100);
+    --color-primary-150: var(--color-sky-150);
+    --color-primary-200: var(--color-sky-200);
+    --color-primary-300: var(--color-sky-300);
+    --color-primary-400: var(--color-sky-400);
+    --color-primary-500: var(--color-sky-500);
+    --color-primary-600: var(--color-sky-600);
+    --color-primary-700: var(--color-sky-700);
+    --color-primary-800: var(--color-sky-800);
+    --color-primary-900: var(--color-sky-900);
+    --color-primary-950: var(--color-sky-950);
+}
+
+@custom-variant light ([data-theme="light"] &);
+
+@custom-variant scrollbar {
+    &::-webkit-scrollbar {
+        @slot;
+    }
+}
+
+@custom-variant scrollbar-corner {
+    &::-webkit-scrollbar-corner {
+        @slot;
+    }
+}
+
+@custom-variant scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
+        @slot;
+    }
+}
+
+@custom-variant scrollbar-thumb-hover {
+    &::-webkit-scrollbar-thumb:hover, &::-webkit-scrollbar-thumb:active {
+        @slot;
+    }
+}
+
+@layer base {
+    @media (prefers-color-scheme: light) {
+        :root {
+            --color-base-50: var(--color-zinc-950);
+            --color-base-100: var(--color-zinc-900);
+            --color-base-200: var(--color-zinc-800);
+            --color-base-300: var(--color-zinc-700);
+            --color-base-400: var(--color-zinc-600);
+            --color-base-500: var(--color-zinc-500);
+            --color-base-600: var(--color-zinc-400);
+            --color-base-700: var(--color-zinc-300);
+            --color-base-800: var(--color-zinc-200);
+            --color-base-900: var(--color-zinc-100);
+            --color-base-950: var(--color-zinc-50);
+
+            --site-bg-color: var(--color-site-bg-light);
+            --site-bg-image-color: var(--color-site-bg-image-light);
+        }
+    }
+
+    [data-theme="light"] {
+        --color-base-50: var(--color-zinc-950);
+        --color-base-100: var(--color-zinc-900);
+        --color-base-200: var(--color-zinc-800);
+        --color-base-300: var(--color-zinc-700);
+        --color-base-400: var(--color-zinc-600);
+        --color-base-500: var(--color-zinc-500);
+        --color-base-600: var(--color-zinc-400);
+        --color-base-700: var(--color-zinc-300);
+        --color-base-800: var(--color-zinc-200);
+        --color-base-900: var(--color-zinc-100);
+        --color-base-950: var(--color-zinc-50);
+
+        --site-bg-color: var(--color-site-bg-light);
+        --site-bg-image-color: var(--color-site-bg-image-light);
+    }
+
+    * {
+        @apply scrollbar:size-1.5 scrollbar-corner:bg-transparent scrollbar-thumb:bg-primary-800/25 scrollbar-thumb-hover:bg-primary-800/75 sm:scrollbar:size-2
+        light:scrollbar-thumb:bg-primary-300/50 light:scrollbar-thumb-hover:bg-primary-300/75;
+    }
+
+    html,
+    body {
+        min-height: 100%;
+        min-height: 100dvh;
+        height: 100%;
+    }
+
+    body {
+        font-family: var(--font-family), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        overflow-x: hidden;
+    }
+
+    a, button:not(:disabled), input:not(:disabled) {
+        cursor: pointer;
+    }
+
+    .lucide {
+        height: 100%;
+        width: 100%;
+    }
+
+    [data-font="JetBrainsMono"] {
+        --font-family: 'JetBrainsMono';
+    }
+
+    [data-font="FiraCode"] {
+        --font-family: 'FiraCode';
+    }
+
+    [data-font="CascadiaCode"] {
+        --font-family: 'CascadiaCode';
+    }
+
+    [data-font="GeistMono"] {
+        --font-family: 'GeistMono';
+    }
+
+    [data-font="RobotoMono"] {
+        --font-family: 'RobotoMono';
+    }
+
+    [data-font="monospace"] {
+        --font-family: monospace;
+    }
+
+    .french-toast-container div.french-toast-message {
+        @apply text-base-100 bg-primary-950 light:bg-primary-50 border border-base-500/25;
+    }
+
+    .french-toast-container svg.lucide-circle-x {
+        @apply size-5 fill-red-700;
+    }
+
+    .french-toast-container svg.lucide-circle-alert {
+        @apply size-5 fill-amber-700;
+    }
+
+    .french-toast-container svg.lucide-circle-check {
+        @apply size-5 fill-green-700;
+    }
+
+    .french-toast-container svg.lucide-info {
+        @apply size-5 fill-blue-700;
+    }
+}
+
+@utility h-screen-sub {
+    --dheight: calc(100dvh - var(--subtract-height, 0px));
+    height: var(--dheight, calc(100vh - var(--subtract-height, 0px)));
+}
+
+@utility ring-dev {
+    --tw-ring-opacity: '1';
+    --tw-ring-color: rgb(217 70 239 / var(--tw-ring-opacity));
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+@utility underline-effect {
+    @apply underline underline-offset-2 transition-all;
+
+    @variant hover {
+        @apply underline-offset-4 decoration-2;
+    }
+}
+
+@layer components {
+    .badge {
+        @apply text-xs font-medium me-2 px-1.5 py-0.5 rounded;
+    }
+
+    .badge-lg {
+        @apply text-sm font-medium me-2 px-2 py-1 rounded;
+    }
+
+    .badge-primary {
+        @apply bg-black text-gray-300;
+    }
+
+    .badge-secondary {
+        @apply bg-gray-300 text-black;
+    }
+
+    .badge-tertiary {
+        @apply bg-purple-300 text-black;
+    }
+
+    .badge-accent {
+        @apply bg-black text-purple-500;
+    }
+
+    .a {
+        @apply underline underline-offset-2 hover:underline-offset-4 transition-all duration-200;
+    }
+}

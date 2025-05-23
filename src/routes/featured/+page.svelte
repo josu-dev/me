@@ -14,7 +14,7 @@
   description="These are some of my featured projects, either for their implementation, for what it implied to make them or for the idea itself."
 />
 
-{#snippet ProjectTags(tags:string[])}
+{#snippet ProjectTags(tags: string[])}
   <div class="mt-[1em] flex flex-wrap gap-2 gap-x-3">
     {#each tags as tag}
       <span
@@ -26,7 +26,7 @@
   </div>
 {/snippet}
 
-{#snippet ProjectContent(project: typeof projects[number])}
+{#snippet ProjectContent(project: (typeof projects)[number])}
   <div class="px-2">
     {#each project.description as paragraph}
       <p class="mt-[1em] text-base-300 text-balance">{paragraph}</p>
@@ -34,23 +34,15 @@
     <ul class="list-disc mt-6 ml-6 space-y-2">
       {#if project.homepage}
         <li class="text-base-300">
-          Visita la <a
-            href={project.homepage}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline-effect"
-          >pagina web</a
+          Visita la <a href={project.homepage} target="_blank" rel="noopener noreferrer" class="underline-effect"
+            >pagina web</a
           > para probarlo.
         </li>
       {/if}
       {#if project.repository}
         <li class="text-base-300">
-          Visita el <a
-            href={project.repository}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline-effect"
-          >repositorio en Github</a
+          Visita el <a href={project.repository} target="_blank" rel="noopener noreferrer" class="underline-effect"
+            >repositorio en Github</a
           > para mas informacion.
         </li>
       {/if}
@@ -58,7 +50,7 @@
   </div>
 {/snippet}
 
-<main class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub lg:overflow-hidden">
+<main id="main" class="flex flex-col px-2 xs:px-4 h-full lg:h-screen-sub lg:overflow-hidden">
   <div class=" flex flex-col max-w-screen-md mx-auto lg:mx-0 lg:h-full lg:max-w-full">
     <header class="text-base-50">
       <h1 class="text-2xl font-bold mt-4">Proyectos destacados</h1>
@@ -66,8 +58,8 @@
 
     <div class="flex flex-col lg:hidden">
       <p class="mt-[1em] text-base text-base-300">
-        Estos son mis proyectos destacados bien por su implementacion, por lo que
-        implico realizarlos o por la idea en si.
+        Estos son mis proyectos destacados bien por su implementacion, por lo que implico realizarlos o por la idea en
+        si.
       </p>
       <ul class="mt-4 ml-2 space-y-2">
         {#each projects as project (project.id)}
@@ -75,10 +67,7 @@
             <div class="size-6 my-auto">
               <IconBriefcase />
             </div>
-              <a
-                href="#{project.id}"
-              class="text-lg font-semibold underline-effect"
-            >
+            <a href="#{project.id}" class="text-lg font-semibold underline-effect">
               {project.name}
             </a>
           </li>
@@ -88,21 +77,14 @@
         {#each projects as project (project.id)}
           <article>
             <header>
-              <h2
-                class="text-4xl font-semibold text-pretty text-base-200 pt-8"
-                id={project.id}
-              >
+              <h2 class="text-4xl font-semibold text-pretty text-base-200 pt-8" id={project.id}>
                 {project.name}
               </h2>
               {@render ProjectTags(project.tags)}
             </header>
             {@render ProjectContent(project)}
             <figure class="flex flex-col mt-8">
-              <img
-                src={project.preview.gif}
-                alt="Preview del proyecto {project.name}"
-                class="w-full object-contain"
-              />
+              <img src={project.preview.gif} alt="Preview del proyecto {project.name}" class="w-full object-contain" />
               <figcaption class="text-base-400 pl-1 mt-2">
                 {project.preview.caption}
               </figcaption>
@@ -113,10 +95,7 @@
     </div>
 
     <div class="hidden lg:flex h-full overflow-hidden pt-4 md:pt-6">
-      <Tabs.Root
-        bind:value={selectedId}
-        class="h-full grid grid-rows-[3rem,1fr] w-full overflow-hidden"
-      >
+      <Tabs.Root bind:value={selectedId} class="h-full grid grid-rows-[3rem_1fr] w-full overflow-hidden">
         <Tabs.List
           class="flex text-base font-semibold border border-b-0 border-base-500/25 text-base-200 max-w-full overflow-x-auto sb-base-900/50 [&:not(:hover)]:sb-thumb-transparent"
         >
@@ -137,21 +116,24 @@
         {#each projects as project}
           <Tabs.Content
             value={project.id}
-            class="bg-base-950/75 light:bg-base-950 border border-t-0 border-base-500/25 h-full flex flex-col overflow-y-auto {project.id !== selectedId ? 'hidden' : ''} lg:overflow-hidden"
+            class="bg-base-950/75 light:bg-base-950 border border-t-0 border-base-500/25 h-full flex flex-col overflow-y-auto {project.id !==
+            selectedId
+              ? 'hidden'
+              : ''} lg:overflow-hidden"
           >
-          <!-- another way to hidde [&[hidden='true']]:hidden - the current one works with ssr -->
-            <div class="py-8 px-4 h-full overflow-hidden lg:grid lg:gap-8 lg:grid-cols-[min(50%,48rem)_1fr] lg:max-h-full">
+            <!-- another way to hidde [&[hidden='true']]:hidden - the current one works with ssr -->
+            <div
+              class="py-8 px-4 h-full overflow-hidden lg:grid lg:gap-8 lg:grid-cols-[min(50%,48rem)_1fr] lg:max-h-full"
+            >
               <div class="overflow-y-auto px-px">
-                <h2
-                  class="mb-2 text-4xl text-base-200 font-semibold leading-none tracking-[-0.01em]"
-                >
+                <h2 class="mb-2 text-4xl text-base-200 font-semibold leading-none tracking-[-0.01em]">
                   {project.name}
                 </h2>
                 {@render ProjectTags(project.tags)}
                 {@render ProjectContent(project)}
               </div>
 
-              <figure class="overflow-hidden h-full lg:grid lg:grid-rows-[auto,1fr] lg:max-h-full">
+              <figure class="overflow-hidden h-full lg:grid lg:grid-rows-[auto_1fr] lg:max-h-full">
                 <img
                   src={project.preview.gif}
                   alt="Preview del proyecto {project.name}"

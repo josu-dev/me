@@ -39,7 +39,7 @@
   description="Want to know more about me? Here you can find my contact information and my resume."
 />
 
-<main class="flex flex-col md:px-4 h-full">
+<main id="main" class="flex flex-col md:px-4 h-full">
   <div class="h-full w-max grid grid-rows-6 max-w-[90vw] m-auto">
     <div class="row-start-2 row-span-4 flex flex-col">
       <h1 class="text-4xl lg:text-6xl font-bold text-base-50 text-center leading-tight">Sobre mi</h1>

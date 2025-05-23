@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import IconArrowlefttoline from '$comps/icons/IconArrowlefttoline.svelte';
   import IconArrowrighttoline from '$comps/icons/IconArrowrighttoline.svelte';
   import IconCheck from '$comps/icons/IconCheck.svelte';
@@ -75,8 +75,8 @@
       });
   }
 
-  let currentUrlPathname = $derived($page.url.pathname);
-  let pageStatusError = $derived($page.status >= 400 ? $page.status : undefined);
+  let currentUrlPathname = $derived(page.url.pathname);
+  let pageStatusError = $derived(page.status >= 400 ? page.status : undefined);
 
   const localPages = [
     { name: 'Inicio', url: '/' },
@@ -117,7 +117,10 @@
     >
       <div class="grow w-1/5 h-full flex items-center justify-start">
         <div class="h-full p-1">
-          <Logo class="size-6 border border-base-500/50 light:border-transparent" />
+          <a href={currentUrlPathname === '/' ? '#main' : '/'}>
+            <span class="sr-only">Inicio</span>
+            <Logo class="size-6 border border-base-500/50 light:border-transparent" />
+          </a>
         </div>
 
         <Dialog.Root bind:open={mobileOpen}>
@@ -130,11 +133,8 @@
             <Dialog.Overlay
               class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 backdrop-blur-[1px]"
             />
-
-            <!-- transition={slide}
-            transitionConfig={{ duration: 250, axis: 'x' }} -->
             <Dialog.Content
-              class="fixed top-0 left-0 z-50 flex flex-col py-6 pl-4 h-full w-full max-w-md bg-base-950 border-r border-base-500/25"
+              class="fixed top-0 left-0 z-50 flex flex-col py-6 pl-4 h-full w-full max-w-md bg-base-950 border-r border-base-500/25 data-[state=open]:animate-in data-[state=open]:slide-in-from-left-full data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left-full"
             >
               <Dialog.Close title="Ocultar menus" class="absolute right-2 top-2 text-base-100 size-8 p-1">
                 <IconArrowlefttoline />
@@ -174,11 +174,11 @@
                     <div class="menu-item-mobile">
                       <div class="col-start-2 flex w-max">
                         <Combobox.Root type="single" bind:value={selectedFont} required>
-                          <Label.Root id="fonts-label" class="pl-2 pt-1 pb-0.5 text-base !leading-none">
+                          <Label.Root for="fonts-input" class="pl-2 pt-1 pb-0.5 text-base !leading-none">
                             Fuentes
                           </Label.Root>
                           <Combobox.Input
-                            aria-labelledby="fonts-label"
+                            id="fonts-input"
                             spellcheck="false"
                             class="bg-base-950 ml-4 px-2 pt-0.5 pb-0 align-text-bottom text-sm inline-block rounded !leading-none [&_*]:leading-none border-0 text-base-200 ring-1 ring-base-200 focus:ring-base-100 focus:bg-primary-800/50 light:focus:bg-primary-200"
                           />
@@ -529,56 +529,60 @@
 </div>
 
 <style lang="postcss">
-  :global(.menu-trigger) {
-    @apply inline-flex items-center justify-center rounded px-3 cursor-pointer text-base font-light;
-  }
-  :global(.menu-trigger[data-state='open']) {
-    @apply bg-base-500/25;
-  }
-  :global(.menu-trigger[data-highlighted]) {
-    @apply bg-base-500/25;
-  }
+  @reference "../../../app.css";
 
-  :global(.menu-content) {
-    @apply z-50 w-full max-w-[min(24rem,90vw)] rounded border border-base-500/50 bg-base-900 px-1 py-1.5 shadow-sm text-base-100;
-  }
+  :global {
+    .menu-trigger {
+      @apply inline-flex items-center justify-center rounded px-3 text-base font-light;
+    }
+    .menu-trigger[data-state='open'] {
+      @apply bg-base-500/25;
+    }
+    .menu-trigger[data-highlighted] {
+      @apply bg-base-500/25;
+    }
 
-  :global(.menu-item) {
-    @apply grid grid-cols-[1.5rem,1fr,1.5rem] gap-1 items-center rounded px-2 py-px cursor-pointer select-none text-base font-light;
-  }
-  :global(.menu-item .icon-left) {
-    @apply col-start-1;
-  }
-  :global(.menu-item .label) {
-    @apply col-start-2;
-  }
-  :global(.menu-item .icon-right) {
-    @apply col-start-3;
-  }
-  :global(.menu-item[data-highlighted]) {
-    @apply bg-base-500/25;
-  }
-  :global([data-theme='light'] .menu-item[data-highlighted]) {
-    @apply bg-base-500/10;
-  }
+    .menu-content {
+      @apply z-50 w-full max-w-[min(24rem,90vw)] rounded border border-base-500/50 bg-base-900 px-1 py-1.5 shadow-sm text-base-100;
+    }
 
-  :global(.menu-separator) {
-    @apply my-1 -mx-1 block h-px bg-base-500/50;
-  }
+    .menu-item {
+      @apply grid grid-cols-[1.5rem_1fr_1.5rem] gap-1 items-center rounded px-2 py-px cursor-pointer select-none text-base font-light;
+    }
+    .menu-item .icon-left {
+      @apply col-start-1;
+    }
+    .menu-item .label {
+      @apply col-start-2;
+    }
+    .menu-item .icon-right {
+      @apply col-start-3;
+    }
+    .menu-item[data-highlighted] {
+      @apply bg-base-500/25;
+    }
+    [data-theme='light'] .menu-item[data-highlighted] {
+      @apply bg-base-500/10;
+    }
 
-  :global(.menu-item-mobile) {
-    @apply grid grid-cols-[1.5rem,1fr,1.5rem] gap-0.5 items-center h-7 rounded p-0.5 select-none text-base leading-none font-light hover:bg-base-500/25;
-  }
-  :global(.menu-item-mobile > .center) {
-    @apply col-start-2 px-2 pt-1 pb-0.5 outline-none w-max;
-  }
-  :global(.menu-item-mobile:has(.center:focus)) {
-    @apply bg-primary-800/50;
-  }
-  :global([data-theme='light'] .menu-item-mobile:has(.center:focus)) {
-    @apply bg-primary-200;
-  }
-  :global(.menu-separator-mobile) {
-    @apply my-1 block h-px bg-base-500/50;
+    .menu-separator {
+      @apply my-1 -mx-1 block h-px bg-base-500/50;
+    }
+
+    .menu-item-mobile {
+      @apply grid grid-cols-[1.5rem_1fr_1.5rem] gap-0.5 items-center h-7 rounded p-0.5 select-none text-base leading-none font-light hover:bg-base-500/25;
+    }
+    .menu-item-mobile > .center {
+      @apply col-start-2 px-2 pt-1 pb-0.5 outline-none w-max;
+    }
+    .menu-item-mobile:has(.center:focus) {
+      @apply bg-primary-800/50;
+    }
+    [data-theme='light'] .menu-item-mobile:has(.center:focus) {
+      @apply bg-primary-200;
+    }
+    .menu-separator-mobile {
+      @apply my-1 block h-px bg-base-500/50;
+    }
   }
 </style>
