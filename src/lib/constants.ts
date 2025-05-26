@@ -9,11 +9,16 @@ export const DEFAULT_LOG_LEVEL_CLIENT = 3;
 export const DEFAULT_SEO = {
     icon: '/favicon.png',
     locale: 'es_AR',
-    image: undefined,
+    image: {
+      url: '/logo/og_1200x630.png',
+      alt: 'Logo de Josudev version banner',
+      width: '1200',
+      height: '630',
+    },
     site_name: 'Josudev',
     theme_color: '#082f49',
     title_default: 'Josudev',
-    title_template: '%s - Josusev',
+    title_template: '%s - Josudev',
 } as const;
 
 export const DEFAULT_SITE_MENUBAR_OPEN = false;

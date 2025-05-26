@@ -111,7 +111,7 @@
       e.preventDefault();
       helpers.toggleOpen();
     },
-    touches: 4,
+    touches: 3,
     threshold: 350,
   }}
   class="palette-container"
