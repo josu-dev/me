@@ -1,24 +1,17 @@
 <script lang="ts">
   import IconChevrondown from '$comps/icons/IconChevrondown.svelte';
   import { Accordion } from 'bits-ui';
+  import type { Repo } from './shared.js';
 
   type Props = {
-    repos: {
-      id: string;
-      title: string;
-      description: string;
-    }[];
+    repos: Repo[];
     selected: string;
   };
 
   let { repos: items, selected = $bindable() }: Props = $props();
 </script>
 
-<Accordion.Root
-  type="single"
-  bind:value={selected}
-  class="w-full rounded-md p-4 border border-base-500/25 bg-base-950/75 light:bg-base-950 shadow"
->
+<Accordion.Root type="single" bind:value={selected} class="">
   {#each items as item (item.id)}
     <Accordion.Item
       value={item.id}
@@ -28,7 +21,7 @@
         <Accordion.Trigger
           class="group flex w-full flex-1 items-center justify-between py-2 text-base text-base-200 font-medium transition-all [&[data-state=open]>span>div]:rotate-180 "
         >
-          {item.title}
+          {item.name}
           <span
             class="inline-flex size-8 items-center justify-center bg-transparent rounded-md transition-all group-hover:bg-base-500/25"
           >
@@ -38,8 +31,7 @@
           </span>
         </Accordion.Trigger>
       </Accordion.Header>
-      <!-- TODO implement transition={slide} transitionConfig={{ duration: 200 }} -->
-      <Accordion.Content class="pb-4 text-sm tracking-[-0.01em] text-base-300">
+      <Accordion.Content class="pb-4 text-sm tracking-[-0.01em] text-base-300 {item.description ? '' : 'italic'}">
         {item.description || 'Sin descripcion'}
       </Accordion.Content>
     </Accordion.Item>

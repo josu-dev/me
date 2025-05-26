@@ -10,16 +10,16 @@
   let description = $derived(
     (is404 && `La pagina '${page.url.pathname}' no se encuentra disponible`) ||
       (is500s && `El servidor no proceso correctamente la solicitud de la pagina '${page.url.pathname}'`) ||
-      `Ocurrio un error desconocido con la solicitud de la pagina '${page.url.pathname}'`
+      `Ocurrio un error desconocido con la solicitud de la pagina '${page.url.pathname}'`,
   );
 
   let subtitle = $derived(
     page.error?.message ??
-      ((is404 && 'Pagina no encontrada') || (is500s && 'Error en el servidor') || 'Creo que hiciste algo mal')
+      ((is404 && 'Pagina no encontrada') || (is500s && 'Error en el servidor') || 'Creo que hiciste algo mal'),
   );
 
   let safePathname = $derived(
-    page.url.pathname.length >= 64 ? page.url.pathname.slice(0, 61) + '...' : page.url.pathname
+    page.url.pathname.length >= 64 ? page.url.pathname.slice(0, 61) + '...' : page.url.pathname,
   );
 </script>
 
@@ -56,7 +56,7 @@
               rel="noopener noreferrer"
               class="font-semibold underline underline-offset-2 transition-all hover:underline-offset-4 hover:decoration-2 hover:text-white light:hover:text-black"
             >
-              Github
+              GitHub
             </a>
           </p>
         {/if}

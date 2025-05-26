@@ -1,6 +1,7 @@
 import { FONTS } from '$lib/constants';
-import z from 'zod';
+import { z } from 'zod/v4';
 import type { RequestHandler } from './$types';
+
 
 const configSchema = z.object({
     theme: z.enum(['dark', 'light']).optional(),

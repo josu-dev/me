@@ -9,7 +9,7 @@
   import IconSun from '$comps/icons/IconSun.svelte';
   import Logo from '$comps/site/Logo.svelte';
   import { helpers } from '$comps/site/SitePalette.svelte';
-  import { GITHUB_REPOSITORY } from '$lib/constants.js';
+  import { GITHUB_REPOSITORY, LINKEDIN_USERNAME } from '$lib/constants.js';
   import { getUserPreferences } from '$lib/global/preferences.svelte.js';
   import { userViewTime } from '$lib/stores/user_view_time.js';
   import { Combobox, Dialog, Label, Menubar, Popover, Separator } from 'bits-ui';
@@ -82,13 +82,13 @@
     { name: 'Inicio', url: '/' },
     { name: 'Blog', url: '/blog' },
     { name: 'Cita diaria', url: '/daily_quote' },
-    { name: 'Proyectos destacados', url: '/featured' },
-    { name: 'Proyectos publicos', url: '/repositories' },
+    { name: 'Destacados', url: '/repositories/featured' },
+    { name: 'Repositorios', url: '/repositories' },
     { name: 'Sobre mi', url: '/about_me' },
   ];
 
   const externalPages = [
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/j-josu/' },
+    { name: 'LinkedIn', url: `https://www.linkedin.com/in/${LINKEDIN_USERNAME}/` },
     { name: 'Repositorio', url: GITHUB_REPOSITORY },
   ];
   let themeIsDark = $derived(prefs.theme.value === 'dark');

@@ -4,7 +4,7 @@
   import { Tabs } from 'bits-ui';
   import rawProjects from './projects.json';
 
-  let projects = $state(rawProjects.sort((a, b) => a.order - b.order));
+  let projects = $state(rawProjects.filter((a) => a.show).sort((a, b) => a.order - b.order));
 
   let selectedId = $state(projects[0]?.id ?? '');
 </script>
@@ -42,7 +42,7 @@
       {#if project.repository}
         <li class="text-base-300">
           Visita el <a href={project.repository} target="_blank" rel="noopener noreferrer" class="underline-effect"
-            >repositorio en Github</a
+            >repositorio en GitHub</a
           > para mas informacion.
         </li>
       {/if}
@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <div class="hidden lg:flex h-full overflow-hidden pt-4 md:pt-6">
+    <div class="hidden lg:flex h-full overflow-hidden pt-4">
       <Tabs.Root bind:value={selectedId} class="h-full grid grid-rows-[3rem_1fr] w-full overflow-hidden">
         <Tabs.List
           class="flex text-base font-semibold border border-b-0 border-base-500/25 text-base-200 max-w-full overflow-x-auto sb-base-900/50 [&:not(:hover)]:sb-thumb-transparent"
@@ -104,8 +104,7 @@
               value={project.id}
               class="relative group text-nowrap bg-base-900/75 py-1.5 px-3 border-b [&:not(:last-child)]:border-r border-base-500/25 data-[state=active]:bg-base-950/75 light:data-[state=active]:bg-base-950 data-[state=active]:border-b-transparent"
             >
-              <span class="md:hidden">{project.nameShort}</span>
-              <span class="hidden md:inline-block">{project.name}</span>
+              <span>{project.name}</span>
               <div
                 class="absolute top-0 right-0 left-0 h-0.5 group-data-[state=active]:bg-primary-800 light:group-data-[state=active]:bg-primary-600"
               ></div>

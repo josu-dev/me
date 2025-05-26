@@ -1,9 +1,9 @@
 [
   {
     "id": "1",
+    "show": true,
     "order": 0,
     "name": "RobotScript",
-    "nameShort": "RS",
     "description": [
       "RobotScript es una reversion del entorno de programacion R-Info usada en la facultad UNLP Informatica para la enseñanza de las nociones basicas de programacion como tambien el paradigma de programacion concurrente. Este entorno cuenta con un editor de texto para escribir el codigo del programa y un interprete que ejecuta el programa desarrollado viendo el comportamiento de los robots graficamente.",
       "El objetivo de este proyecto fue modernizar la aplicacion de escritorio existente realizada en Java reemplazandola por una pagina web autocontenida de manera que pueda ser utilizada en cualquier navegador sin la necesidad de descargar ni instalar algo.",
@@ -25,9 +25,9 @@
   },
   {
     "id": "2",
-    "order": 1,
+    "show": true,
+    "order": 3,
     "name": "One More Chance",
-    "nameShort": "OMC",
     "description": [
       "One More Chance es un juego de chistes multijugador en tiempo real para jugar con tus amigos por llamada de voz o incluso en persona. El juego consiste en una serie de rondas en las que cada jugador tiene que completar los espacios vacios de una frase para intentar hacer un chiste. Luego todos los jugadores califican las frases y el que mas puntos obenga al final de la partida es el ganador.",
       "Este proyecto nacio como una entrada a la Global Game Jam 2024 de Globant. La idea de la jam era crear un juego dentro de la tematica de \"Risas\" en un plazo de 48 horas. Durante la jam se desarrollo el concepto del juego y la primera version del mismo con un equipo de 4 personas. Luego de la jam continue el desarrollo del juego por mi cuenta hasta llegar a la version actual.",
@@ -48,9 +48,9 @@
   },
   {
     "id": "3",
+    "show": true,
     "order": 2,
     "name": "Hypercommands",
-    "nameShort": "HC",
     "description": [
       "Hypercommands es una libreria para crear Paletas de comandos dentro de tu aplicacion web. Estas paletas son como \"ventanas emergentes\" que aparecen en la pantalla y permiten ejecutar comandos u otras acciones.",
       "Esta libreria tiene un enfoque headless, es decir, no tiene estilos ni componentes visuales predefinidos, sino que se encarga de la logica y la interaccion con el usuario, aunque provee una implementacion de ejemplo para que puedas usarla directamente. El objetivo es que sea altamente customizable para adaptarse a las necesidades de tu aplicacion.",
@@ -70,9 +70,9 @@
   },
   {
     "id": "4",
-    "order": 3,
+    "show": true,
+    "order": 4,
     "name": "Pinta Service",
-    "nameShort": "PS",
     "description": [
       "Pinta Service es un sistema web para gestionar los servicios ofrecidos por instituciones o centros de \"Investigación y Desarrollo en Tecnologia de Pinturas\". Fue desarrollado como trabajo final para la materia \"Proyecto de Software\" de la Facultad de Informatica de la UNLP.",
       "El sistema consta de dos paginas, una publica donde los usuarios pueden ver los servicios ofrecidos y realizar las solicitudes de los mismos, y otra privada donde los administradores pueden gestionar las solicitudes y los servicios.",
@@ -94,9 +94,9 @@
   },
   {
     "id": "5",
+    "show": false,
     "order": 4,
     "name": "Student Bot",
-    "nameShort": "SB",
     "description": [
       "Student Bot es un bot de Discord para la comunidad \"Devs Overflow\". Este bot fue desarrollado para la gestion del servidor de Discord de la comunidad, como tambien brindar utilidades para los miembros.",
       "El bot cuenta con comandos para la gestion de canales, mensajes entre otros. Ademas cuenta con funcionalidades relacionadas a la Facultad de Informatica de la UNLP para facilitar la busqueda de informacion relacionada a la misma port parte de los miembros que pertenecen a la facultad.",
@@ -111,6 +111,29 @@
     "preview": {
       "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1710978568/me/preview_sb_nmjnyf.gif",
       "caption": "Vista previa de la carga de funcionalidades del bot."
+    }
+  },
+  {
+    "id": "6",
+    "show": true,
+    "order": 1,
+    "name": "lamezcla",
+    "description": [
+      "lamezcla es un un reproductor de musica basado en contenido publico de YouTube. Fue desarrollado por el simple motivo que el modo aleatorio de YouTube para las playlists no es aleatoria ademas de tener limitantes de tamaño en la playlist a reproducir.",
+      "El reproductor es una pagina web Local First donde a medida que se busca, navega y usa se van guardando los canales, playlists y videos para tener una experiencia mas fluida.",
+      "El reproductor cuenta con historial de reproduccion, playlist customizadas, playlists generadas como los mas escuchados como tambien filtros y busqueda dentro de canales y playlists en si."
+    ],
+    "tags": [
+      "Open Source",
+      "Reproductor de Musica",
+      "Local First",
+      "YouTube"
+    ],
+    "repository": "https://github.com/josu-dev/lamezcla",
+    "homepage": "https://lamezcla.josu.codes/",
+    "preview": {
+      "gif": "https://res.cloudinary.com/der7w507f/image/upload/v1748265387/me/preview_lm_gftj1p.png",
+      "caption": "Vista previa de algunas funcionalidades del reproductor."
     }
   }
 ]

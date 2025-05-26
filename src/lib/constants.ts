@@ -42,6 +42,8 @@ export const GITHUB_USERNAME = 'josu-dev';
 
 export const GITHUB_REPOSITORY = 'https://github.com/josu-dev/me';
 
+export const LINKEDIN_USERNAME = 'josu-dev';
+
 export const TOAST = {
     DURATION_ERROR: 5000,
     DURATION_INFO: 3500,
