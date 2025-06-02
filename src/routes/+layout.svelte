@@ -4,7 +4,6 @@
   import SiteBackground from '$comps/site/SiteBackground.svelte';
   import SiteMenubar from '$comps/site/SiteMenubar.svelte';
   import SitePalette from '$comps/site/SitePalette.svelte';
-  import { DEFAULT_SITE_MENUBAR_OPEN, DEFAULT_THEME } from '$lib/constants.js';
   import { globalCommands, globalPages } from '$lib/global/palette.js';
   import { setUserPreferences } from '$lib/global/preferences.svelte.js';
   import { Toaster } from 'svelte-french-toast';
@@ -14,13 +13,13 @@
 
   const preferences = setUserPreferences({
     font: {
-      family: data.userPrefs?.fontFamily,
+      family: data.userPrefs.fontFamily,
     },
     sitebar: {
-      open: data.userPrefs?.sitebar ?? DEFAULT_SITE_MENUBAR_OPEN,
+      open: data.userPrefs.sitebar,
     },
     theme: {
-      value: data.userPrefs?.theme ?? DEFAULT_THEME,
+      value: data.userPrefs.theme,
     },
   });
 </script>

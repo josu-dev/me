@@ -21,7 +21,7 @@ export const DEFAULT_SEO = {
     title_template: '%s - Josudev',
 } as const;
 
-export const DEFAULT_SITE_MENUBAR_OPEN = false;
+export const DEFAULT_SITEBAR_OPEN = true;
 
 export const DEFAULT_THEME = 'dark';
 
