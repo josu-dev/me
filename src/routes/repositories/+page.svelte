@@ -19,7 +19,8 @@
   let { data } = $props();
 
   const repos_cache = $derived.by(() => {
-    const repos = data.repos.toSorted((a, b) => a.name.localeCompare(b.name));
+    const repos = [...data.repos];
+    repos.sort((a, b) => a.name.localeCompare(b.name));
     const id_to_repo: Record<string, undefined | Repo> = { '': undefined };
     for (let i = 0; i < data.repos.length; i++) {
       const repo = data.repos[i];
