@@ -7,14 +7,14 @@ import type { OctokitRepoResponse, Repo } from './shared.js';
 
 
 export const load: PageServerLoad = async () => {
-    if (dev) {
-        const fs = await import('fs');
-        const path = import.meta.url.replace('+page.server.ts', 'repos.json').replace('file://', '');
-        const repos: Repo[] = JSON.parse(fs.readFileSync(path, 'utf-8'));
-        return {
-            repos,
-        };
-    }
+    // if (dev) {
+    //     const fs = await import('fs');
+    //     const path = import.meta.url.replace('+page.server.ts', 'repos.json').replace('file://', '');
+    //     const repos: Repo[] = JSON.parse(fs.readFileSync(path, 'utf-8'));
+    //     return {
+    //         repos,
+    //     };
+    // }
 
     let reposResponse: OctokitRepoResponse;
     try {

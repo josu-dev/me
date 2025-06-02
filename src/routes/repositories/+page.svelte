@@ -17,7 +17,7 @@
   import type { Repo } from './shared.js';
 
   let { data } = $props();
-
+  console.log(data);
   const repos_cache = $derived.by(() => {
     const repos = data.repos.toSorted((a, b) => a.name.localeCompare(b.name));
     const id_to_repo: Record<string, undefined | Repo> = { '': undefined };
